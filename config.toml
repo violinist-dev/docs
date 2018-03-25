@@ -4,6 +4,7 @@ languageCode = "en-us"
 title = "Violinist documentation"
 theme = "hugo-simpledoc-theme"
 pygmentsStyle = "manni"
+publishDir = "docs"
 [blackfriday]
   angledQuotes = true
   fractions = false
