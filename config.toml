@@ -1,0 +1,29 @@
+# Site settings
+baseURL = "https://docs.violinist.io/"
+languageCode = "en-us"
+title = "Violinist documentation"
+theme = "hugo-simpledoc-theme"
+pygmentsStyle = "manni"
+[blackfriday]
+  angledQuotes = true
+  fractions = false
+  plainIDAnchors = true
+  smartlists = true
+  extensions = ["hardLineBreak"]
+
+# Site parameters
+[params]
+
+    # Meta
+    description = "Violinist documentation"
+    author = "support@violinist.io"
+    keywords = "composer, violinist, php, documentation"
+    
+    # Header
+    # If not set, site title and meta description will be shown.
+    # You may use markdown here
+    headerTitle = "Violinist documentation"
+    headerDescription = "Set-up and configuration of your Violinist monitoring."
+    
+    # Back-to-top button name
+    bttButton = ""

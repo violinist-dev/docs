@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Violinist documentation</title>
+    <link>https://docs.violinist.io/</link>
+    <description>Recent content on Violinist documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 25 Mar 2018 10:50:02 +0200</lastBuildDate>
+    
+	<atom:link href="https://docs.violinist.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Blacklisting Projects</title>
+      <link>https://docs.violinist.io/blacklisting-projects/</link>
+      <pubDate>Sun, 25 Mar 2018 10:50:02 +0200</pubDate>
+      
+      <guid>https://docs.violinist.io/blacklisting-projects/</guid>
+      <description>Configuration name: blacklist
+type: array
+default: []
+{ &amp;#34;name&amp;#34;: &amp;#34;company/project&amp;#34;, &amp;#34;extra&amp;#34;: { &amp;#34;violinist&amp;#34;: { &amp;#34;blacklist&amp;#34;: []  } } } An array of packages to always ignore while running updates with Violinist. Defaults to nothing.
+Explanation Some times a version of your package comes out that will never be compatible with your codebase. Some times this means you have to do some refactoring, but you only have time to do so some time in the future.</description>
+    </item>
+    
+    <item>
+      <title>Updating beyond version range</title>
+      <link>https://docs.violinist.io/upgrading-beyond-ranges/</link>
+      <pubDate>Sun, 25 Mar 2018 10:50:02 +0200</pubDate>
+      
+      <guid>https://docs.violinist.io/upgrading-beyond-ranges/</guid>
+      <description>Configuration name: allow_updates_beyond_constraint
+type: int
+default: 1
+{ &amp;#34;name&amp;#34;: &amp;#34;company/project&amp;#34;, &amp;#34;extra&amp;#34;: { &amp;#34;violinist&amp;#34;: { &amp;#34;allow_updates_beyond_constraint&amp;#34;: 1  } } } Indicate whether or not we can try to update a package even if it is beyond the range specified in composer.json. Defaults to true.
+Explanation Strictly speaking, if your composer.json specifies that you want to have the package vendor/package in the version range ~1.0.0, then composer will install all version in the range 1.</description>
+    </item>
+    
+  </channel>
+</rss>
