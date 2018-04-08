@@ -22,7 +22,7 @@ __default__: 1
 }
 {{< /highlight >}}
 
-Indicate whether or not we can try to update a package even if it is beyond the range specified in composer.json. Defaults to true.
+Indicate whether or not we can try to update a package even if it is beyond the range specified in composer.json. Defaults to 1 (true).
 
 ## Explanation
 
@@ -46,12 +46,12 @@ Say you depend on the project `vendor/package` in range `~1.0.0`. And say the la
 To make Violinist stop trying to update `vendor/package` (and all other pages) beyond your specified version range you simply add the following to your composer.json:
 
 
-{{< highlight JSON "hl_lines=7-13" >}}
+{{< highlight JSON "hl_lines=7-11" >}}
 {
   "name": "company/project",
   "description": "My awesome project",
   "dependencies": {
-    "vendor/package": "^1.4.0",
+    "vendor/package": "~1.0.0",
   },
   "extra": {
     "violinist": {
