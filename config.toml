@@ -24,7 +24,24 @@ publishDir = "docs"
     # If not set, site title and meta description will be shown.
     # You may use markdown here
     headerTitle = "Violinist documentation"
-    headerDescription = "Set-up and configuration of your Violinist monitoring."
+    completeExample = """
+```
+{
+  "name": "company/project",
+  "description": "My awesome project",
+  "dependencies": {
+    "vendor/package": "~1.0.0",
+  },
+  "extra": {
+    "violinist": {
+      "allow_updates_beyond_constraint": 1,
+      "blacklist: [],
+      "update_with_dependencies": 1
+    }
+  }
+}
+```
+"""
     
     # Back-to-top button name
     bttButton = ""

@@ -14,7 +14,11 @@
     <section id="Menu">
         <header>
             <h1>{{ with .Site.Params.headerTitle }}{{ . | markdownify }}{{ else }}{{ .Site.Title }}{{ end }}</h1>
-            <p>{{ with .Site.Params.headerDescription }}{{ . | markdownify }}{{ else }}{{ .Site.Params.description }}{{ end }}</p>
+            <p>Set-up and configuration of your Violinist monitoring.</p>
+            <p>All configuration of Violinist is optional. All configuration have default values, and if you do nothing, we will try to update in the way we feel is most sensible for most projects.</p>
+            <p>To provide a flexible way to configure Violinist, we have opted to use the <code>extra</code> part <a href="https://getcomposer.org/doc/04-schema.md#extra">of the composer.json schema.</a></p>
+            <p>A complete composer.json with all example values filled in (with their default values) are provided here for reference. To read about the different parts, click on their link counterpart below.</p>
+            {{ with .Site.Params.completeExample }}{{ . | markdownify }}{{end}}
         </header>
         <nav>
         {{ range .Site.Menus.top }}
