@@ -242,26 +242,102 @@
         <header>
             <h1>Violinist documentation</h1>
             <p>Set-up and configuration of your Violinist monitoring.</p>
+            <p>All configuration of Violinist is optional. All configuration have default values, and if you do nothing, we will try to update in the way we feel is most sensible for most projects.</p>
+            <p>To provide a flexible way to configure Violinist, we have opted to use the <code>extra</code> part <a href="https://getcomposer.org/doc/04-schema.md#extra">of the composer.json schema.</a></p>
+            <p>A complete composer.json with all example values filled in (with their default values) are provided here for reference. To read about the different parts, click on their link counterpart below.</p>
+            <pre><code>{
+  &quot;name&quot;: &quot;company/project&quot;,
+  &quot;description&quot;: &quot;My awesome project&quot;,
+  &quot;dependencies&quot;: {
+    &quot;vendor/package&quot;: &quot;~1.0.0&quot;,
+  },
+  &quot;extra&quot;: {
+    &quot;violinist&quot;: {
+      &quot;allow_updates_beyond_constraint&quot;: 1,
+      &quot;blacklist: [],
+      &quot;update_with_dependencies&quot;: 1
+    }
+  }
+}
+</code></pre>
+
         </header>
         <nav>
         
         </nav>
         <nav>
         
-            <a href="#blacklisting-projects">Blacklisting Projects</a>
+            <a href="#updating-beyond">allow_updates_beyond_constraint</a>
         
-            <a href="#updating-beyond">Updating beyond version range</a>
+            <a href="#blacklisting-projects">blacklist</a>
         
-            <a href="#update-with-deps">Upgrading with or without dependncies</a>
+            <a href="#update-with-deps">update_with_dependencies</a>
         
         </nav>
     </section>
 
     
 
+    <section id="updating-beyond">
+
+        <h1><a href="#updating-beyond">allow_updates_beyond_constraint</a><small><a href="#html">Back to Top</a></small></h1>
+
+        <h2 id="configuration">Configuration</h2>
+
+<p><strong>name</strong>: allow_updates_beyond_constraint<br />
+<strong>type</strong>: int<br />
+<strong>default</strong>: 1</p>
+
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;allow_updates_beyond_constraint&#34;</span>: <span style="color:#f60">1</span>
+</span>    }
+  }
+}</code></pre></div>
+
+<p>Indicate whether or not we can try to update a package even if it is beyond the range specified in composer.json. Defaults to 1 (true).</p>
+
+<h2 id="explanation">Explanation</h2>
+
+<p>Strictly speaking, if your composer.json specifies that you want to have the package <code>vendor/package</code> in the version range <code>~1.0.0</code>, then composer will install all version in the range 1.0.x, but refuse to update it to 1.1.0. Some times this is what you want. But many times, a new version at 1.1.0 will include new features and be backwards compatible. So maybe you actually might want to start using that version instead? This is what the option for allowing to update beyond your version constraint does.</p>
+
+<h2 id="example">Example</h2>
+
+<p>Say you depend on the project <code>vendor/package</code> in range <code>~1.0.0</code>. And say the latest version is 1.1.0. And say you actually do not want to receive this update via Violinist. And say your composer.json looks something like this:</p>
+
+<p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
+  }
+}</code></pre></div></p>
+
+<p>To make Violinist stop trying to update <code>vendor/package</code> (and all other pages) beyond your specified version range you simply add the following to your composer.json:</p>
+
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
+  },
+<span style="display:block;width:100%;background-color:#d8dada">  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+</span><span style="display:block;width:100%;background-color:#d8dada">    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+</span><span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;allow_updates_beyond_constraint&#34;</span>: <span style="color:#f60">0</span>
+</span><span style="display:block;width:100%;background-color:#d8dada">    }
+</span><span style="display:block;width:100%;background-color:#d8dada">  }
+</span>}</code></pre></div>
+
+
+    </section>
+
+    
+
     <section id="blacklisting-projects">
 
-        <h1><a href="#blacklisting-projects">Blacklisting Projects</a><small><a href="#html">Back to Top</a></small></h1>
+        <h1><a href="#blacklisting-projects">blacklist</a><small><a href="#html">Back to Top</a></small></h1>
 
         <h2 id="configuration">Configuration</h2>
 
@@ -320,66 +396,9 @@
 
     
 
-    <section id="updating-beyond">
-
-        <h1><a href="#updating-beyond">Updating beyond version range</a><small><a href="#html">Back to Top</a></small></h1>
-
-        <h2 id="configuration">Configuration</h2>
-
-<p><strong>name</strong>: allow_updates_beyond_constraint<br />
-<strong>type</strong>: int<br />
-<strong>default</strong>: 1</p>
-
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
-  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
-    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
-<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;allow_updates_beyond_constraint&#34;</span>: <span style="color:#f60">1</span>
-</span>    }
-  }
-}</code></pre></div>
-
-<p>Indicate whether or not we can try to update a package even if it is beyond the range specified in composer.json. Defaults to true.</p>
-
-<h2 id="explanation">Explanation</h2>
-
-<p>Strictly speaking, if your composer.json specifies that you want to have the package <code>vendor/package</code> in the version range <code>~1.0.0</code>, then composer will install all version in the range 1.0.x, but refuse to update it to 1.1.0. Some times this is what you want. But many times, a new version at 1.1.0 will include new features and be backwards compatible. So maybe you actually might want to start using that version instead? This is what the option for allowing to update beyond your version constraint does.</p>
-
-<h2 id="example">Example</h2>
-
-<p>Say you depend on the project <code>vendor/package</code> in range <code>~1.0.0</code>. And say the latest version is 1.1.0. And say you actually do not want to receive this update via Violinist. And say your composer.json looks something like this:</p>
-
-<p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
-  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
-    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
-  }
-}</code></pre></div></p>
-
-<p>To make Violinist stop trying to update <code>vendor/package</code> (and all other pages) beyond your specified version range you simply add the following to your composer.json:</p>
-
-<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
-  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
-    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;^1.4.0&#34;</span>,
-  },
-<span style="display:block;width:100%;background-color:#d8dada">  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
-</span><span style="display:block;width:100%;background-color:#d8dada">    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
-</span><span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;allow_updates_beyond_constraint&#34;</span>: <span style="color:#f60">0</span>
-</span><span style="display:block;width:100%;background-color:#d8dada">    }
-</span><span style="display:block;width:100%;background-color:#d8dada">  }
-</span><span style="display:block;width:100%;background-color:#d8dada">}</span></code></pre></div>
-
-
-    </section>
-
-    
-
     <section id="update-with-deps">
 
-        <h1><a href="#update-with-deps">Upgrading with or without dependncies</a><small><a href="#html">Back to Top</a></small></h1>
+        <h1><a href="#update-with-deps">update_with_dependencies</a><small><a href="#html">Back to Top</a></small></h1>
 
         <h2 id="configuration">Configuration</h2>
 
@@ -391,20 +410,20 @@
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
     <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
-<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;update_with_dependencies&#34;</span>: <span style="color:#f60">0</span>
+<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;update_with_dependencies&#34;</span>: <span style="color:#f60">1</span>
 </span>    }
   }
 }</code></pre></div>
 
-<p>Indicate whether or not we update a package using the <code>--with-dependencies</code> flag for composer. Defaults to TRUE.</p>
+<p>Indicate whether or not we update a package using the <code>--with-dependencies</code> flag for composer. Defaults to 1 (true).</p>
 
 <h2 id="explanation">Explanation</h2>
 
-<p>Strictly speaking, if your composer.json specifies that you want to have the package <code>vendor/package</code> in the version range <code>~1.0.0</code>, then composer will install all version in the range 1.0.x, but refuse to update it to 1.1.0. Some times this is what you want. But many times, a new version at 1.1.0 will include new features and be backwards compatible. So maybe you actually might want to start using that version instead? This is what the option for allowing to update beyond your version constraint does.</p>
+<p>When you update a package that also depend on other packages, which probably in turn are described as dependencies with semantic versioning, you might want to update to the newest version of the depended-upon packages as well, since these are compatible and will include bug fixes and improvements for you, in a compatible way. If you do not want this, then this configuration option is what you are after.</p>
 
 <h2 id="example">Example</h2>
 
-<p>Say you depend on the project <code>vendor/package</code> in range <code>~1.0.0</code>. And say the latest version is 1.1.0. And say you actually do not want to receive this update via Violinist. And say your composer.json looks something like this:</p>
+<p>Say you depend on the project <code>vendor/package</code> in range <code>~1.0.0</code>. And say the latest version is 1.1.0. And say you <code>vendor/package</code> depends on <code>vendor2/package2</code> in the range <code>~2.0.0</code>. And say that in your last upgrade of <code>vendor/package</code> you got version <code>2.0.1</code> of the package <code>vendor2/package2</code>, and now the version <code>2.0.2</code> is available. By default, Violinist will then also upgrade package <code>vendor2/package2</code> for you. But maybe this is not what you want, since you in another part of your codebase actually rely on a bug that exists in version <code>2.0.1</code>. And say your composer.json looks something like this:</p>
 
 <p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
@@ -414,7 +433,7 @@
   }
 }</code></pre></div></p>
 
-<p>To make Violinist stop trying to update <code>vendor/package</code> (and all other pages) beyond your specified version range you simply add the following to your composer.json:</p>
+<p>To make Violinist stop trying to update <code>vendor2/package2</code> when updating your direct dependency <code>vendor/package</code> (and similar for all other packages) you simply add the following to your composer.json:</p>
 
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
@@ -424,10 +443,10 @@
   },
 <span style="display:block;width:100%;background-color:#d8dada">  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
 </span><span style="display:block;width:100%;background-color:#d8dada">    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
-</span><span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;allow_updates_beyond_constraint&#34;</span>: <span style="color:#f60">0</span>
+</span><span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;update_with_dependencies&#34;</span>: <span style="color:#f60">0</span>
 </span><span style="display:block;width:100%;background-color:#d8dada">    }
 </span><span style="display:block;width:100%;background-color:#d8dada">  }
-</span><span style="display:block;width:100%;background-color:#d8dada">}</span></code></pre></div>
+</span>}</code></pre></div>
 
 
     </section>
