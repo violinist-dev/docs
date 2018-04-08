@@ -22,5 +22,5 @@ The docs will probably be available on [http://localhost:1313/](http://localhost
 ## Build the docs
 
 ```
-$ hugo build
+$ hugo
 ```
