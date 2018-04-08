@@ -252,6 +252,8 @@
         
             <a href="#updating-beyond">Updating beyond version range</a>
         
+            <a href="#update-with-deps">Upgrading with or without dependncies</a>
+        
         </nav>
     </section>
 
@@ -338,6 +340,63 @@
 }</code></pre></div>
 
 <p>Indicate whether or not we can try to update a package even if it is beyond the range specified in composer.json. Defaults to true.</p>
+
+<h2 id="explanation">Explanation</h2>
+
+<p>Strictly speaking, if your composer.json specifies that you want to have the package <code>vendor/package</code> in the version range <code>~1.0.0</code>, then composer will install all version in the range 1.0.x, but refuse to update it to 1.1.0. Some times this is what you want. But many times, a new version at 1.1.0 will include new features and be backwards compatible. So maybe you actually might want to start using that version instead? This is what the option for allowing to update beyond your version constraint does.</p>
+
+<h2 id="example">Example</h2>
+
+<p>Say you depend on the project <code>vendor/package</code> in range <code>~1.0.0</code>. And say the latest version is 1.1.0. And say you actually do not want to receive this update via Violinist. And say your composer.json looks something like this:</p>
+
+<p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
+  }
+}</code></pre></div></p>
+
+<p>To make Violinist stop trying to update <code>vendor/package</code> (and all other pages) beyond your specified version range you simply add the following to your composer.json:</p>
+
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;^1.4.0&#34;</span>,
+  },
+<span style="display:block;width:100%;background-color:#d8dada">  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+</span><span style="display:block;width:100%;background-color:#d8dada">    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+</span><span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;allow_updates_beyond_constraint&#34;</span>: <span style="color:#f60">0</span>
+</span><span style="display:block;width:100%;background-color:#d8dada">    }
+</span><span style="display:block;width:100%;background-color:#d8dada">  }
+</span><span style="display:block;width:100%;background-color:#d8dada">}</span></code></pre></div>
+
+
+    </section>
+
+    
+
+    <section id="update-with-deps">
+
+        <h1><a href="#update-with-deps">Upgrading with or without dependncies</a><small><a href="#html">Back to Top</a></small></h1>
+
+        <h2 id="configuration">Configuration</h2>
+
+<p><strong>name</strong>: update_with_dependencies<br />
+<strong>type</strong>: int<br />
+<strong>default</strong>: 1</p>
+
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;update_with_dependencies&#34;</span>: <span style="color:#f60">0</span>
+</span>    }
+  }
+}</code></pre></div>
+
+<p>Indicate whether or not we update a package using the <code>--with-dependencies</code> flag for composer. Defaults to TRUE.</p>
 
 <h2 id="explanation">Explanation</h2>
 

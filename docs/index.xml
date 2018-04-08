@@ -37,5 +37,18 @@ default: 1
 Explanation Strictly speaking, if your composer.json specifies that you want to have the package vendor/package in the version range ~1.0.0, then composer will install all version in the range 1.</description>
     </item>
     
+    <item>
+      <title>Upgrading with or without dependncies</title>
+      <link>https://docs.violinist.io/update-with-dependencies/</link>
+      <pubDate>Sun, 25 Mar 2018 10:50:02 +0200</pubDate>
+      
+      <guid>https://docs.violinist.io/update-with-dependencies/</guid>
+      <description>Configuration name: update_with_dependencies
+type: int
+default: 1
+{ &amp;#34;name&amp;#34;: &amp;#34;company/project&amp;#34;, &amp;#34;extra&amp;#34;: { &amp;#34;violinist&amp;#34;: { &amp;#34;update_with_dependencies&amp;#34;: 0  } } } Indicate whether or not we update a package using the --with-dependencies flag for composer. Defaults to TRUE.
+Explanation Strictly speaking, if your composer.json specifies that you want to have the package vendor/package in the version range ~1.0.0, then composer will install all version in the range 1.0.x, but refuse to update it to 1.</description>
+    </item>
+    
   </channel>
 </rss>
