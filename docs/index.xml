@@ -38,6 +38,33 @@ Explanation Some times a version of your package comes out that will never be co
     </item>
     
     <item>
+      <title>timeframe_disallowed</title>
+      <link>https://docs.violinist.io/timeframe-disallowed/</link>
+      <pubDate>Sun, 25 Mar 2018 10:50:02 +0200</pubDate>
+      
+      <guid>https://docs.violinist.io/timeframe-disallowed/</guid>
+      <description>Configuration name: timeframe_disallowed
+type: string
+default: 0
+{ &amp;#34;name&amp;#34;: &amp;#34;company/project&amp;#34;, &amp;#34;extra&amp;#34;: { &amp;#34;violinist&amp;#34;: { &amp;#34;timeframe_disallowed&amp;#34;: 0  } } } Indicate what timeframe the updater are allowed and disallowed to run.
+Explanation By default, violinist will try to run updates all of the time. When a new package is released, or when it is time to rebase the existing pull requests. If you are actively working on a project during work hours, this can be either annoying or impractical.</description>
+    </item>
+    
+    <item>
+      <title>timezone</title>
+      <link>https://docs.violinist.io/timezone/</link>
+      <pubDate>Sun, 25 Mar 2018 10:50:02 +0200</pubDate>
+      
+      <guid>https://docs.violinist.io/timezone/</guid>
+      <description>Configuration name: timezone
+type: string
+default: +0000
+{ &amp;#34;name&amp;#34;: &amp;#34;company/project&amp;#34;, &amp;#34;extra&amp;#34;: { &amp;#34;violinist&amp;#34;: { &amp;#34;timezone&amp;#34;: &amp;#34;+0000&amp;#34;  } } } Indicate what timezone to use for the option timeframe_disallowed.
+Explanation It would not help much to restrict the timeframe for the updates to be run, unless you could also say what timezone you were talking about. This is what the timezone option is for.
+Example Say you want to only update the project with Violinist outside working hours, and you are located in the timezone PDT.</description>
+    </item>
+    
+    <item>
       <title>update_with_dependencies</title>
       <link>https://docs.violinist.io/update-with-dependencies/</link>
       <pubDate>Sun, 25 Mar 2018 10:50:02 +0200</pubDate>
