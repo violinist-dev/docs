@@ -6,10 +6,23 @@
     <description>Recent content on Violinist documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 25 Mar 2018 10:50:02 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 06 Dec 2018 19:28:34 +0100</lastBuildDate>
     
 	<atom:link href="https://docs.violinist.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>one_pull_request_per_package</title>
+      <link>https://docs.violinist.io/one-pull-request-per-package/</link>
+      <pubDate>Thu, 06 Dec 2018 19:28:34 +0100</pubDate>
+      
+      <guid>https://docs.violinist.io/one-pull-request-per-package/</guid>
+      <description>Configuration name: one_pull_request_per_package
+type: int
+default: 0
+{ &amp;#34;name&amp;#34;: &amp;#34;company/project&amp;#34;, &amp;#34;extra&amp;#34;: { &amp;#34;violinist&amp;#34;: { &amp;#34;one_pull_request_per_package&amp;#34;: 0  } } } Indicate whether you want one pull request per package or not.
+Explanation Some packages update more often than you do maintenance on your project. If this is the case, you might find you have 4 pull requests for the version 8.0.2 through 8.0.5 of a certain package. This would in turn end up with you closing 3 pull requests, and merging one.</description>
+    </item>
     
     <item>
       <title>allow_updates_beyond_constraint</title>

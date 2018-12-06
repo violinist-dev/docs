@@ -255,9 +255,10 @@
     &quot;violinist&quot;: {
       &quot;allow_updates_beyond_constraint&quot;: 1,
       &quot;blacklist: [],
-      &quot;update_with_dependencies&quot;: 1,
+      &quot;one_pull_request_per_package&quot;: 0,
       &quot;timeframe_disallowed&quot;: 0,
-      &quot;timezone&quot;: &quot;+0000&quot;
+      &quot;timezone&quot;: &quot;+0000&quot;,
+      &quot;update_with_dependencies&quot;: 1
     }
   }
 }
@@ -268,6 +269,8 @@
         
         </nav>
         <nav>
+        
+            <a href="#one-pull-request-per-package">one_pull_request_per_package</a>
         
             <a href="#updating-beyond">allow_updates_beyond_constraint</a>
         
@@ -280,6 +283,55 @@
             <a href="#update-with-deps">update_with_dependencies</a>
         
         </nav>
+    </section>
+
+    
+
+    <section id="one-pull-request-per-package">
+
+        <h1><a href="#one-pull-request-per-package">one_pull_request_per_package</a><small><a href="#html">Back to Top</a></small></h1>
+
+        <h2 id="configuration">Configuration</h2>
+
+<p><strong>name</strong>: one_pull_request_per_package<br />
+<strong>type</strong>: int<br />
+<strong>default</strong>: 0</p>
+
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;one_pull_request_per_package&#34;</span>: <span style="color:#f60">0</span>
+</span>    }
+  }
+}</code></pre></div>
+
+<p>Indicate whether you want one pull request per package or not.</p>
+
+<h2 id="explanation">Explanation</h2>
+
+<p>Some packages update more often than you do maintenance on your project. If this is the case, you might find you have 4 pull requests for the version 8.0.2 through 8.0.5 of a certain package. This would in turn end up with you closing 3 pull requests, and merging one. If this is the case, maybe you want the option <code>one_pull_request_per_package</code>, so you only have one pull request for that package, that keeps itself up to date.</p>
+
+<h2 id="example">Example</h2>
+
+<p>If a package is out of date, and a new version comes out, the default behaviour of Violinist would be to create a new pull request for this version. But say you are not very active in maintaining your project, and you just want the one pull request to stay up to date. Say you want to come to your repo and see the pull request &laquo;Update vendor/package&raquo; instead of 4 pull requests with the titles &laquo;Update vendor/package to version x.x.x&raquo;. You simply go ahead and change this option to 1.</p>
+
+<p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
+  },
+  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;one_pull_request_per_package&#34;</span>: <span style="color:#f60">1</span>
+</span>    }
+  }
+}</code></pre></div></p>
+
+<p>This way, the same pull request will stay up to date, when the next version comes out. Basically, violinist will force-push to the same branch for each new version, until you merge the update for the package, or the pull request becomes outdated by you updating the package manually.</p>
+
+
     </section>
 
     
