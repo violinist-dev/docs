@@ -254,6 +254,7 @@
   &quot;extra&quot;: {
     &quot;violinist&quot;: {
       &quot;allow_updates_beyond_constraint&quot;: 1,
+      &quot;assignees&quot;: [],
       &quot;blacklist: [],
       &quot;one_pull_request_per_package&quot;: 0,
       &quot;timeframe_disallowed&quot;: 0,
@@ -270,6 +271,8 @@
         </nav>
         <nav>
         
+            <a href="#assignees">assignees</a>
+        
             <a href="#one-pull-request-per-package">one_pull_request_per_package</a>
         
             <a href="#updating-beyond">allow_updates_beyond_constraint</a>
@@ -283,6 +286,75 @@
             <a href="#update-with-deps">update_with_dependencies</a>
         
         </nav>
+    </section>
+
+    
+
+    <section id="assignees">
+
+        <h1><a href="#assignees">assignees</a><small><a href="#html">Back to Top</a></small></h1>
+
+        <blockquote>
+<p>This feature is only available on the agency and enterprise plans.</p>
+</blockquote>
+
+<h2 id="configuration">Configuration</h2>
+
+<p><strong>name</strong>: assignees<br />
+<strong>type</strong>: array<br />
+<strong>default</strong>: []</p>
+
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;assignees&#34;</span>: []
+</span>    }
+  }
+}</code></pre></div>
+
+<p>An array of assignees that this project will use as the default assignee for new pull requests.</p>
+
+<blockquote>
+<p>NB! The value of this option depends on your VCS provider. For github this will be an array of usernames. For gitlab the array should consist of user IDs. You can find your user id by visiting <a href="https://gitlab.com/api/v4/users?username=YOUR_USERNAME">https://gitlab.com/api/v4/users?username=YOUR_USERNAME</a> where YOUR_USERNAME is your gitlab username. (reference: <a href="https://forum.gitlab.com/t/where-is-my-user-id-in-gitlab-com/7912">https://forum.gitlab.com/t/where-is-my-user-id-in-gitlab-com/7912</a>)</p>
+
+<p>If you are using self hosted gitlab, change the domain accordingly.</p>
+
+<p>Another difference is that gitlab only accepts one assignee per pull request. So while it should still be an array, if it contains more than one item, only the first user id will be assigned.</p>
+</blockquote>
+
+<h2 id="explanation">Explanation</h2>
+
+<p>If you have a large team and want some people to get explicitly assigned (and probably by extension notified) per project, this is the setting to use. You can assign several users if you are using Github, but only one user if you are using Gitlab.</p>
+
+<h2 id="example">Example</h2>
+
+<p>Say you wanted to assign the user <code>my-review-user</code> for all pull requests created on the project <code>company/project</code>. And say your composer.json looks something like this:</p>
+
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>
+}</code></pre></div>
+
+<p>To make Violinist assign <code>my-review-user</code> to all of the pull requests created, simply add the following to your composer.json:</p>
+
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
+<span style="display:block;width:100%;background-color:#d8dada">  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+</span><span style="display:block;width:100%;background-color:#d8dada">    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+</span><span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;assignees&#34;</span>: [
+</span><span style="display:block;width:100%;background-color:#d8dada">        <span style="color:#c30">&#34;my-review-user&#34;</span>
+</span><span style="display:block;width:100%;background-color:#d8dada">      ]
+</span><span style="display:block;width:100%;background-color:#d8dada">    }
+</span><span style="display:block;width:100%;background-color:#d8dada">  }
+</span>}</code></pre></div>
+
+<blockquote>
+<p>NB! The above example is for github. For gitlab you would use a user id (see above).</p>
+</blockquote>
+
+
     </section>
 
     

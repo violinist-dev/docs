@@ -6,10 +6,24 @@
     <description>Recent content on Violinist documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 Dec 2018 19:28:34 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 04 Apr 2019 20:22:04 +0200</lastBuildDate>
     
 	<atom:link href="https://docs.violinist.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>assignees</title>
+      <link>https://docs.violinist.io/assignees/</link>
+      <pubDate>Thu, 04 Apr 2019 20:22:04 +0200</pubDate>
+      
+      <guid>https://docs.violinist.io/assignees/</guid>
+      <description>This feature is only available on the agency and enterprise plans.
+ Configuration name: assignees
+type: array
+default: []
+{ &amp;#34;name&amp;#34;: &amp;#34;company/project&amp;#34;, &amp;#34;extra&amp;#34;: { &amp;#34;violinist&amp;#34;: { &amp;#34;assignees&amp;#34;: []  } } } An array of assignees that this project will use as the default assignee for new pull requests.
+ NB! The value of this option depends on your VCS provider. For github this will be an array of usernames.</description>
+    </item>
     
     <item>
       <title>one_pull_request_per_package</title>

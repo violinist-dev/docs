@@ -35,6 +35,7 @@ publishDir = "docs"
   "extra": {
     "violinist": {
       "allow_updates_beyond_constraint": 1,
+      "assignees": [],
       "blacklist: [],
       "one_pull_request_per_package": 0,
       "timeframe_disallowed": 0,
