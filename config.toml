@@ -29,7 +29,7 @@ publishDir = "docs"
 {
   "name": "company/project",
   "description": "My awesome project",
-  "dependencies": {
+  "require": {
     "vendor/package": "~1.0.0",
   },
   "extra": {

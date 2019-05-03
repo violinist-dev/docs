@@ -38,7 +38,7 @@ Say you want to only update the project with Violinist outside working hours. Fo
 {
   "name": "company/project",
   "description": "My awesome project",
-  "dependencies": {
+  "require": {
     "vendor/package": "~1.0.0",
   }
 }
@@ -52,7 +52,7 @@ To make Violinist stop trying to update during working hours. Then you would spe
 {
   "name": "company/project",
   "description": "My awesome project",
-  "dependencies": {
+  "require": {
     "vendor/package": "^1.4.0",
   },
   "extra": {

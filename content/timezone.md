@@ -36,7 +36,7 @@ Say you want to only update the project with Violinist outside working hours, an
 {
   "name": "company/project",
   "description": "My awesome project",
-  "dependencies": {
+  "require": {
     "vendor/package": "~1.0.0",
   },
   "extra": {
@@ -55,7 +55,7 @@ To make Violinist start using your timezone, you would add something like this:
 {
   "name": "company/project",
   "description": "My awesome project",
-  "dependencies": {
+  "require": {
     "vendor/package": "^1.4.0",
   },
   "extra": {
@@ -73,7 +73,7 @@ You can also use one of the [predefined PHP timezones](http://php.net/manual/en/
 {
   "name": "company/project",
   "description": "My awesome project",
-  "dependencies": {
+  "require": {
     "vendor/package": "^1.4.0",
   },
   "extra": {

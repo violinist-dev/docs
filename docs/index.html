@@ -248,7 +248,7 @@
             <pre><code>{
   &quot;name&quot;: &quot;company/project&quot;,
   &quot;description&quot;: &quot;My awesome project&quot;,
-  &quot;dependencies&quot;: {
+  &quot;require&quot;: {
     &quot;vendor/package&quot;: &quot;~1.0.0&quot;,
   },
   &quot;extra&quot;: {
@@ -391,7 +391,7 @@
 <p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
     <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
   },
   <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
@@ -440,7 +440,7 @@
 <p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
     <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
   }
 }</code></pre></div></p>
@@ -450,7 +450,7 @@
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
     <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
   },
 <span style="display:block;width:100%;background-color:#d8dada">  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
@@ -496,20 +496,20 @@
 
 <p>Say you wanted to blacklist the project <code>vendor/package</code>. And say your composer.json looks something like this:</p>
 
-<p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
     <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;^1.4.0&#34;</span>,
   }
-}</code></pre></div></p>
+}</code></pre></div>
 
 <p>To make Violinist stop trying to update <code>vendor/package</code> you simply add the following to your composer.json:</p>
 
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
     <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;^1.4.0&#34;</span>,
   },
 <span style="display:block;width:100%;background-color:#d8dada">  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
@@ -560,7 +560,7 @@
 <p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
     <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
   }
 }</code></pre></div></p>
@@ -570,7 +570,7 @@
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
     <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;^1.4.0&#34;</span>,
   },
 <span style="display:block;width:100%;background-color:#d8dada">  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
@@ -617,7 +617,7 @@
 <p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
     <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
   },
   <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
@@ -632,7 +632,7 @@
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
     <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;^1.4.0&#34;</span>,
   },
   <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
@@ -648,7 +648,7 @@
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
     <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;^1.4.0&#34;</span>,
   },
   <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
@@ -696,7 +696,7 @@
 <p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
     <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
   }
 }</code></pre></div></p>
@@ -706,7 +706,7 @@
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
-  <span style="color:#309;font-weight:bold">&#34;dependencies&#34;</span>: {
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
     <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;^1.4.0&#34;</span>,
   },
 <span style="display:block;width:100%;background-color:#d8dada">  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {

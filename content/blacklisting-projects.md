@@ -39,7 +39,7 @@ Say you wanted to blacklist the project `vendor/package`. And say your composer.
 {
   "name": "company/project",
   "description": "My awesome project",
-  "dependencies": {
+  "require": {
     "vendor/package": "^1.4.0",
   }
 }
@@ -53,7 +53,7 @@ To make Violinist stop trying to update `vendor/package` you simply add the foll
 {
   "name": "company/project",
   "description": "My awesome project",
-  "dependencies": {
+  "require": {
     "vendor/package": "^1.4.0",
   },
   "extra": {

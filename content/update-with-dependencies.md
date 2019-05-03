@@ -36,7 +36,7 @@ Say you depend on the project `vendor/package` in range `~1.0.0`. And say the la
 {
   "name": "company/project",
   "description": "My awesome project",
-  "dependencies": {
+  "require": {
     "vendor/package": "~1.0.0",
   }
 }
@@ -50,7 +50,7 @@ To make Violinist stop trying to update `vendor2/package2` when updating your di
 {
   "name": "company/project",
   "description": "My awesome project",
-  "dependencies": {
+  "require": {
     "vendor/package": "^1.4.0",
   },
   "extra": {

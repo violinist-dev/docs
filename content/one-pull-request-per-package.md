@@ -36,7 +36,7 @@ If a package is out of date, and a new version comes out, the default behaviour 
 {
   "name": "company/project",
   "description": "My awesome project",
-  "dependencies": {
+  "require": {
     "vendor/package": "~1.0.0",
   },
   "extra": {
