@@ -283,6 +283,8 @@
         
             <a href="#timezone">timezone</a>
         
+            <a href="#update_dev_dependencies">update_dev_dependencies</a>
+        
             <a href="#update-with-deps">update_with_dependencies</a>
         
         </nav>
@@ -521,6 +523,26 @@
 </span><span style="display:block;width:100%;background-color:#d8dada">  }
 </span>}</code></pre></div>
 
+<h2 id="example-with-wildcards">Example with wildcards</h2>
+
+<p>You can also use wildcards in your blacklist. Examples could be <code>vendor/*</code> or <code>vendor/prefix_*</code>.</p>
+
+<p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;^1.4.0&#34;</span>,
+  },
+<span style="display:block;width:100%;background-color:#d8dada">  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+</span><span style="display:block;width:100%;background-color:#d8dada">    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+</span><span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;blacklist&#34;</span>: [
+</span><span style="display:block;width:100%;background-color:#d8dada">        <span style="color:#c30">&#34;vendor/*&#34;</span>,
+</span><span style="display:block;width:100%;background-color:#d8dada">        <span style="color:#c30">&#34;vendor/prefix_*&#34;</span>
+</span><span style="display:block;width:100%;background-color:#d8dada">      ]
+</span><span style="display:block;width:100%;background-color:#d8dada">    }
+</span><span style="display:block;width:100%;background-color:#d8dada">  }
+</span>}</code></pre></div></p>
+
 
     </section>
 
@@ -658,6 +680,68 @@
 </span>    }
   }
 }</code></pre></div>
+
+
+    </section>
+
+    
+
+    <section id="update_dev_dependencies">
+
+        <h1><a href="#update_dev_dependencies">update_dev_dependencies</a><small><a href="#html">Back to Top</a></small></h1>
+
+        <h2 id="configuration">Configuration</h2>
+
+<p><strong>name</strong>: update_dev_dependencies<br />
+<strong>type</strong>: int<br />
+<strong>default</strong>: 1</p>
+
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;update_dev_dependencies&#34;</span>: <span style="color:#f60">1</span>
+</span>    }
+  }
+}</code></pre></div>
+
+<p>Indicate whether or not you want Violinist to also update your dev dependencies. The default behavior is to also update these.</p>
+
+<h2 id="explanation">Explanation</h2>
+
+<p>If you have a project where you for some reason do not want to update your dev dependencies, you can use this option.</p>
+
+<h2 id="example">Example</h2>
+
+<p>Say you wanted to avoid updating all of your dev dependencies. And say your composer.json looked something like this:</p>
+
+<p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
+  },
+  <span style="color:#309;font-weight:bold">&#34;require-dev&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;vendor/dev-package&#34;</span>: <span style="color:#c30">&#34;*&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;vendor/dev-package2&#34;</span>: <span style="color:#c30">&#34;*&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;vendor/dev-package3&#34;</span>: <span style="color:#c30">&#34;*&#34;</span>
+  }
+}</code></pre></div></p>
+
+<p>To make Violinist  stop updating your dev dependencies, you simply add the following to your composer.json:</p>
+
+<p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;^1.4.0&#34;</span>,
+  },
+  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+      <span style="color:#309;font-weight:bold">&#34;update_dev_dependencies&#34;</span>: <span style="color:#f60">0</span>
+<span style="display:block;width:100%;background-color:#d8dada">    }
+</span>  }
+}</code></pre></div></p>
 
 
     </section>

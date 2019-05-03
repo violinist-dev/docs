@@ -65,3 +65,27 @@ To make Violinist stop trying to update `vendor/package` you simply add the foll
   }
 }
 {{< /highlight >}}
+
+
+## Example with wildcards
+
+You can also use wildcards in your blacklist. Examples could be `vendor/*` or `vendor/prefix_*`.
+
+
+{{< highlight JSON "hl_lines=7-14" >}}
+{
+  "name": "company/project",
+  "description": "My awesome project",
+  "require": {
+    "vendor/package": "^1.4.0",
+  },
+  "extra": {
+    "violinist": {
+      "blacklist": [
+        "vendor/*",
+        "vendor/prefix_*"
+      ]
+    }
+  }
+}
+{{< /highlight >}}

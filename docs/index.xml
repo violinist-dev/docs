@@ -92,6 +92,20 @@ Example Say you want to only update the project with Violinist outside working h
     </item>
     
     <item>
+      <title>update_dev_dependencies</title>
+      <link>https://docs.violinist.io/update_dev_dependencies/</link>
+      <pubDate>Sun, 25 Mar 2018 10:50:02 +0200</pubDate>
+      
+      <guid>https://docs.violinist.io/update_dev_dependencies/</guid>
+      <description>Configuration name: update_dev_dependencies
+type: int
+default: 1
+{ &amp;#34;name&amp;#34;: &amp;#34;company/project&amp;#34;, &amp;#34;extra&amp;#34;: { &amp;#34;violinist&amp;#34;: { &amp;#34;update_dev_dependencies&amp;#34;: 1  } } } Indicate whether or not you want Violinist to also update your dev dependencies. The default behavior is to also update these.
+Explanation If you have a project where you for some reason do not want to update your dev dependencies, you can use this option.
+Example Say you wanted to avoid updating all of your dev dependencies.</description>
+    </item>
+    
+    <item>
       <title>update_with_dependencies</title>
       <link>https://docs.violinist.io/update-with-dependencies/</link>
       <pubDate>Sun, 25 Mar 2018 10:50:02 +0200</pubDate>
