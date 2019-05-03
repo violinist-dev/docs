@@ -51,12 +51,17 @@ Say you wanted to avoid updating all of your dev dependencies. And say your comp
 To make Violinist  stop updating your dev dependencies, you simply add the following to your composer.json:
 
 
-{{< highlight JSON "hl_lines=10" >}}
+{{< highlight JSON "hl_lines=12-16" >}}
 {
   "name": "company/project",
   "description": "My awesome project",
   "require": {
-    "vendor/package": "^1.4.0",
+    "vendor/package": "~1.0.0",
+  },
+  "require-dev": {
+    "vendor/dev-package": "*",
+    "vendor/dev-package2": "*",
+    "vendor/dev-package3": "*"
   },
   "extra": {
     "violinist": {
