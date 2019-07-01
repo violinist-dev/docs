@@ -256,6 +256,7 @@
       &quot;allow_updates_beyond_constraint&quot;: 1,
       &quot;assignees&quot;: [],
       &quot;blacklist: [],
+      &quot;default_branch&quot;: &quot;&quot;,
       &quot;one_pull_request_per_package&quot;: 0,
       &quot;timeframe_disallowed&quot;: 0,
       &quot;timezone&quot;: &quot;+0000&quot;,
@@ -270,6 +271,8 @@
         
         </nav>
         <nav>
+        
+            <a href="#default_branch">default_branch</a>
         
             <a href="#assignees">assignees</a>
         
@@ -288,6 +291,52 @@
             <a href="#update-with-deps">update_with_dependencies</a>
         
         </nav>
+    </section>
+
+    
+
+    <section id="default_branch">
+
+        <h1><a href="#default_branch">default_branch</a><small><a href="#html">Back to Top</a></small></h1>
+
+        <h2 id="configuration">Configuration</h2>
+
+<p><strong>name</strong>: default_branch<br />
+<strong>type</strong>: string<br />
+<strong>default</strong>: &ldquo;</p>
+
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;default_branch&#34;</span>: <span style="color:#c30">&#34;develop&#34;</span>
+</span>    }
+  }
+}</code></pre></div>
+
+<p>Indicate what branch you want the Violinist pull requests created against.</p>
+
+<h2 id="explanation">Explanation</h2>
+
+<p>Different projects uses different workflows for their branches. For example, your default branch in your VCS provider might be your production branch (for example <code>master</code>) while you want the pull requests to be created towards a development branch )(for example <code>develop</code>). By default, Violinist will use the default branch for the repository to create the pull requests, but if you want the base branch to differ from this setting, you want to use the <code>default_branch</code> option.</p>
+
+<h2 id="example">Example</h2>
+
+<p>If a project uses the <code>master</code> branch as the default branch, and you want the pull requests to be based on the branch <code>develop</code>, you might want to configure your project like so:</p>
+
+<p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;default_branch&#34;</span>: <span style="color:#c30">&#34;develop&#34;</span>
+</span>    }
+  }
+}</code></pre></div></p>
+
+<p>If you do not enter anything in this field, leaving the default value for it in there (<code>&quot;&quot;</code> - an empty string) the project will use the settings from the project repository. In the example above that would mean the branch <code>master</code>.</p>
+
+
     </section>
 
     

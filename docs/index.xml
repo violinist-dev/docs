@@ -6,10 +6,23 @@
     <description>Recent content on Violinist documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Apr 2019 20:22:04 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jul 2019 17:46:00 +0200</lastBuildDate>
     
 	<atom:link href="https://docs.violinist.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>default_branch</title>
+      <link>https://docs.violinist.io/default_branch/</link>
+      <pubDate>Mon, 01 Jul 2019 17:46:00 +0200</pubDate>
+      
+      <guid>https://docs.violinist.io/default_branch/</guid>
+      <description>Configuration name: default_branch
+type: string
+default: &amp;ldquo;
+{ &amp;#34;name&amp;#34;: &amp;#34;company/project&amp;#34;, &amp;#34;extra&amp;#34;: { &amp;#34;violinist&amp;#34;: { &amp;#34;default_branch&amp;#34;: &amp;#34;develop&amp;#34;  } } } Indicate what branch you want the Violinist pull requests created against.
+Explanation Different projects uses different workflows for their branches. For example, your default branch in your VCS provider might be your production branch (for example master) while you want the pull requests to be created towards a development branch )(for example develop).</description>
+    </item>
     
     <item>
       <title>assignees</title>
