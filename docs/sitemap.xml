@@ -3,6 +3,12 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://docs.violinist.io/</loc>
+    <lastmod>2019-07-01T17:46:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://docs.violinist.io/default_branch/</loc>
     <lastmod>2019-07-01T17:46:00+02:00</lastmod>
   </url>
@@ -54,12 +60,6 @@
   
   <url>
     <loc>https://docs.violinist.io/tags/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://docs.violinist.io/</loc>
-    <lastmod>2019-07-01T17:46:00+02:00</lastmod>
     <priority>0</priority>
   </url>
   

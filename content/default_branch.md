@@ -16,7 +16,7 @@ __default__: ''
   "name": "company/project",
   "extra": {
     "violinist": {
-      "default_branch": "develop"
+      "default_branch": ""
     }
   }
 }

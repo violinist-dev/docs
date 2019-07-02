@@ -6,7 +6,7 @@
     <title>Violinist documentation</title>
     <meta name="description" content="Violinist documentation">
     <meta name="author" content="support@violinist.io">
-    <meta name="generator" content="Hugo 0.40.1" />
+    <meta name="generator" content="Hugo 0.55.6" />
     <style type="text/css">
     body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
         margin: 0;
@@ -265,7 +265,6 @@
   }
 }
 </code></pre>
-
         </header>
         <nav>
         
@@ -309,7 +308,7 @@
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
     <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
-<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;default_branch&#34;</span>: <span style="color:#c30">&#34;develop&#34;</span>
+<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;default_branch&#34;</span>: <span style="color:#c30">&#34;&#34;</span>
 </span>    }
   }
 }</code></pre></div>
@@ -324,7 +323,7 @@
 
 <p>If a project uses the <code>master</code> branch as the default branch, and you want the pull requests to be based on the branch <code>develop</code>, you might want to configure your project like so:</p>
 
-<p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
@@ -332,7 +331,7 @@
 <span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;default_branch&#34;</span>: <span style="color:#c30">&#34;develop&#34;</span>
 </span>    }
   }
-}</code></pre></div></p>
+}</code></pre></div>
 
 <p>If you do not enter anything in this field, leaving the default value for it in there (<code>&quot;&quot;</code> - an empty string) the project will use the settings from the project repository. In the example above that would mean the branch <code>master</code>.</p>
 
@@ -439,7 +438,7 @@
 
 <p>If a package is out of date, and a new version comes out, the default behaviour of Violinist would be to create a new pull request for this version. But say you are not very active in maintaining your project, and you just want the one pull request to stay up to date. Say you want to come to your repo and see the pull request &laquo;Update vendor/package&raquo; instead of 4 pull requests with the titles &laquo;Update vendor/package to version x.x.x&raquo;. You simply go ahead and change this option to 1.</p>
 
-<p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
@@ -450,7 +449,7 @@
 <span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;one_pull_request_per_package&#34;</span>: <span style="color:#f60">1</span>
 </span>    }
   }
-}</code></pre></div></p>
+}</code></pre></div>
 
 <p>This way, the same pull request will stay up to date, when the next version comes out. Basically, violinist will force-push to the same branch for each new version, until you merge the update for the package, or the pull request becomes outdated by you updating the package manually.</p>
 
@@ -488,13 +487,13 @@
 
 <p>Say you depend on the project <code>vendor/package</code> in range <code>~1.0.0</code>. And say the latest version is 1.1.0. And say you actually do not want to receive this update via Violinist. And say your composer.json looks something like this:</p>
 
-<p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
     <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
   }
-}</code></pre></div></p>
+}</code></pre></div>
 
 <p>To make Violinist stop trying to update <code>vendor/package</code> (and all other pages) beyond your specified version range you simply add the following to your composer.json:</p>
 
@@ -576,7 +575,7 @@
 
 <p>You can also use wildcards in your blacklist. Examples could be <code>vendor/*</code> or <code>vendor/prefix_*</code>.</p>
 
-<p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
@@ -590,7 +589,7 @@
 </span><span style="display:block;width:100%;background-color:#d8dada">      ]
 </span><span style="display:block;width:100%;background-color:#d8dada">    }
 </span><span style="display:block;width:100%;background-color:#d8dada">  }
-</span>}</code></pre></div></p>
+</span>}</code></pre></div>
 
 
     </section>
@@ -628,13 +627,13 @@
 
 <p>Say you want to only update the project with Violinist outside working hours. For example not inside the timeframe 6AM to 6PM (06:00 - 18:00). And say your composer.json looks like this:</p>
 
-<p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
     <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
   }
-}</code></pre></div></p>
+}</code></pre></div>
 
 <p>To make Violinist stop trying to update during working hours. Then you would specify a timeframe like so:</p>
 
@@ -685,7 +684,7 @@
 
 <p>Say you want to only update the project with Violinist outside working hours, and you are located in the timezone <strong>PDT</strong>. By default, specifying a timeframe would use the UTC timezone, so to avoid having to convert the time to your timezone, you could specify this in your composer.json. So say your project, including timeframe_disallowed, had the following composer.json:</p>
 
-<p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
@@ -696,7 +695,7 @@
       <span style="color:#309;font-weight:bold">&#34;timeframe_disallowed&#34;</span>: <span style="color:#c30">&#34;06:00-18:00&#34;</span>
     }
   }
-}</code></pre></div></p>
+}</code></pre></div>
 
 <p>To make Violinist start using your timezone, you would add something like this:</p>
 
@@ -764,7 +763,7 @@
 
 <p>Say you wanted to avoid updating all of your dev dependencies. And say your composer.json looked something like this:</p>
 
-<p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
@@ -775,11 +774,11 @@
     <span style="color:#309;font-weight:bold">&#34;vendor/dev-package2&#34;</span>: <span style="color:#c30">&#34;*&#34;</span>,
     <span style="color:#309;font-weight:bold">&#34;vendor/dev-package3&#34;</span>: <span style="color:#c30">&#34;*&#34;</span>
   }
-}</code></pre></div></p>
+}</code></pre></div>
 
 <p>To make Violinist  stop updating your dev dependencies, you simply add the following to your composer.json:</p>
 
-<p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
@@ -795,7 +794,7 @@
 </span><span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;update_dev_dependencies&#34;</span>: <span style="color:#f60">0</span>
 </span><span style="display:block;width:100%;background-color:#d8dada">    }
 </span><span style="display:block;width:100%;background-color:#d8dada">  }
-</span>}</code></pre></div></p>
+</span>}</code></pre></div>
 
 
     </section>
@@ -831,13 +830,13 @@
 
 <p>Say you depend on the project <code>vendor/package</code> in range <code>~1.0.0</code>. And say the latest version is 1.1.0. And say you <code>vendor/package</code> depends on <code>vendor2/package2</code> in the range <code>~2.0.0</code>. And say that in your last upgrade of <code>vendor/package</code> you got version <code>2.0.1</code> of the package <code>vendor2/package2</code>, and now the version <code>2.0.2</code> is available. By default, Violinist will then also upgrade package <code>vendor2/package2</code> for you. But maybe this is not what you want, since you in another part of your codebase actually rely on a bug that exists in version <code>2.0.1</code>. And say your composer.json looks something like this:</p>
 
-<p><div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
     <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
   }
-}</code></pre></div></p>
+}</code></pre></div>
 
 <p>To make Violinist stop trying to update <code>vendor2/package2</code> when updating your direct dependency <code>vendor/package</code> (and similar for all other packages) you simply add the following to your composer.json:</p>
 

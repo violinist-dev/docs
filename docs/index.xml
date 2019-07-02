@@ -20,7 +20,7 @@
       <description>Configuration name: default_branch
 type: string
 default: &amp;ldquo;
-{ &amp;#34;name&amp;#34;: &amp;#34;company/project&amp;#34;, &amp;#34;extra&amp;#34;: { &amp;#34;violinist&amp;#34;: { &amp;#34;default_branch&amp;#34;: &amp;#34;develop&amp;#34;  } } } Indicate what branch you want the Violinist pull requests created against.
+{ &amp;#34;name&amp;#34;: &amp;#34;company/project&amp;#34;, &amp;#34;extra&amp;#34;: { &amp;#34;violinist&amp;#34;: { &amp;#34;default_branch&amp;#34;: &amp;#34;&amp;#34;  } } } Indicate what branch you want the Violinist pull requests created against.
 Explanation Different projects uses different workflows for their branches. For example, your default branch in your VCS provider might be your production branch (for example master) while you want the pull requests to be created towards a development branch )(for example develop).</description>
     </item>
     
