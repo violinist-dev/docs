@@ -5,6 +5,7 @@ title = "Violinist documentation"
 theme = "hugo-simpledoc-theme"
 pygmentsStyle = "manni"
 publishDir = "docs"
+disableKinds = ["taxonomyTerm"]
 [blackfriday]
   angledQuotes = true
   fractions = false
