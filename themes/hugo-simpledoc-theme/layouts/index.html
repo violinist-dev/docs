@@ -6,7 +6,7 @@
     <title>{{ .Site.Title }}</title>
     <meta name="description" content="{{ with .Site.Params.description }}{{ . }}{{ end }}">
     <meta name="author" content="{{ with .Site.Params.author }}{{ . }}{{ end }}">
-    {{ .Hugo.Generator }}
+    {{ hugo.Generator }}
     {{ partial "style.html" . }}
 </head>
 
@@ -26,13 +26,13 @@
         {{ end }}
         </nav>
         <nav>
-        {{ range .Data.Pages.ByWeight }}
+        {{ range .Site.RegularPages.ByWeight }}
             <a href="#{{ .Params.anchor }}">{{ .Title }}</a>
         {{ end }}
         </nav>
     </section>
 
-    {{ range .Data.Pages.ByWeight }}
+    {{ range .Site.RegularPages.ByWeight }}
 
     <section id="{{ .Params.anchor }}">
 
