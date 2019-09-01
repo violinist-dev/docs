@@ -26,7 +26,7 @@ Indicate what branch you want the Violinist pull requests created against.
 
 ## Explanation
 
-Different projects uses different workflows for their branches. For example, your default branch in your VCS provider might be your production branch (for example `master`) while you want the pull requests to be created towards a development branch )(for example `develop`). By default, Violinist will use the default branch for the repository to create the pull requests, but if you want the base branch to differ from this setting, you want to use the `default_branch` option.
+Different projects uses different workflows for their branches. For example, your default branch in your VCS provider might be your production branch (for example `master`) while you want the pull requests to be created towards a development branch (for example `develop`). By default, Violinist will use the default branch for the repository to create the pull requests, but if you want the base branch to differ from this setting, you want to use the `default_branch` option.
 
 ## Example
 
