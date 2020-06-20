@@ -6,7 +6,7 @@
     <title>Violinist documentation</title>
     <meta name="description" content="Violinist documentation">
     <meta name="author" content="support@violinist.io">
-    <meta name="generator" content="Hugo 0.57.2" />
+    <meta name="generator" content="Hugo 0.72.0" />
     <style type="text/css">
     body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
         margin: 0;
@@ -281,6 +281,8 @@
         
             <a href="#blacklisting-projects">blacklist</a>
         
+            <a href="#bundled-packages">bundled_packages</a>
+        
             <a href="#timeframe_disallowed">timeframe_disallowed</a>
         
             <a href="#timezone">timezone</a>
@@ -299,11 +301,9 @@
         <h1><a href="#default_branch">default_branch</a><small><a href="#html">Back to Top</a></small></h1>
 
         <h2 id="configuration">Configuration</h2>
-
-<p><strong>name</strong>: default_branch<br />
-<strong>type</strong>: string<br />
-<strong>default</strong>: &ldquo;</p>
-
+<p><strong>name</strong>: default_branch<br>
+<strong>type</strong>: string<br>
+<strong>default</strong>: '&rsquo;</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
@@ -312,17 +312,11 @@
 </span>    }
   }
 }</code></pre></div>
-
 <p>Indicate what branch you want the Violinist pull requests created against.</p>
-
 <h2 id="explanation">Explanation</h2>
-
 <p>Different projects uses different workflows for their branches. For example, your default branch in your VCS provider might be your production branch (for example <code>master</code>) while you want the pull requests to be created towards a development branch (for example <code>develop</code>). By default, Violinist will use the default branch for the repository to create the pull requests, but if you want the base branch to differ from this setting, you want to use the <code>default_branch</code> option.</p>
-
 <h2 id="example">Example</h2>
-
 <p>If a project uses the <code>master</code> branch as the default branch, and you want the pull requests to be based on the branch <code>develop</code>, you might want to configure your project like so:</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
@@ -332,7 +326,6 @@
 </span>    }
   }
 }</code></pre></div>
-
 <p>If you do not enter anything in this field, leaving the default value for it in there (<code>&quot;&quot;</code> - an empty string) the project will use the settings from the project repository. In the example above that would mean the branch <code>master</code>.</p>
 
 
@@ -347,13 +340,10 @@
         <blockquote>
 <p>This feature is only available on the agency and enterprise plans.</p>
 </blockquote>
-
 <h2 id="configuration">Configuration</h2>
-
-<p><strong>name</strong>: assignees<br />
-<strong>type</strong>: array<br />
+<p><strong>name</strong>: assignees<br>
+<strong>type</strong>: array<br>
 <strong>default</strong>: []</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
@@ -362,32 +352,21 @@
 </span>    }
   }
 }</code></pre></div>
-
 <p>An array of assignees that this project will use as the default assignee for new pull requests.</p>
-
 <blockquote>
 <p>NB! The value of this option depends on your VCS provider. For github this will be an array of usernames. For gitlab the array should consist of user IDs. You can find your user id by visiting <a href="https://gitlab.com/api/v4/users?username=YOUR_USERNAME">https://gitlab.com/api/v4/users?username=YOUR_USERNAME</a> where YOUR_USERNAME is your gitlab username. (reference: <a href="https://forum.gitlab.com/t/where-is-my-user-id-in-gitlab-com/7912">https://forum.gitlab.com/t/where-is-my-user-id-in-gitlab-com/7912</a>)</p>
-
 <p>If you are using self hosted gitlab, change the domain accordingly.</p>
-
 <p>Another difference is that gitlab only accepts one assignee per pull request. So while it should still be an array, if it contains more than one item, only the first user id will be assigned.</p>
 </blockquote>
-
 <h2 id="explanation">Explanation</h2>
-
 <p>If you have a large team and want some people to get explicitly assigned (and probably by extension notified) per project, this is the setting to use. You can assign several users if you are using Github, but only one user if you are using Gitlab.</p>
-
 <h2 id="example">Example</h2>
-
 <p>Say you wanted to assign the user <code>my-review-user</code> for all pull requests created on the project <code>company/project</code>. And say your composer.json looks something like this:</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>
 }</code></pre></div>
-
 <p>To make Violinist assign <code>my-review-user</code> to all of the pull requests created, simply add the following to your composer.json:</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
@@ -399,7 +378,6 @@
 </span><span style="display:block;width:100%;background-color:#d8dada">    }
 </span><span style="display:block;width:100%;background-color:#d8dada">  }
 </span>}</code></pre></div>
-
 <blockquote>
 <p>NB! The above example is for github. For gitlab you would use a user id (see above).</p>
 </blockquote>
@@ -414,11 +392,9 @@
         <h1><a href="#one-pull-request-per-package">one_pull_request_per_package</a><small><a href="#html">Back to Top</a></small></h1>
 
         <h2 id="configuration">Configuration</h2>
-
-<p><strong>name</strong>: one_pull_request_per_package<br />
-<strong>type</strong>: int<br />
+<p><strong>name</strong>: one_pull_request_per_package<br>
+<strong>type</strong>: int<br>
 <strong>default</strong>: 0</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
@@ -427,17 +403,11 @@
 </span>    }
   }
 }</code></pre></div>
-
 <p>Indicate whether you want one pull request per package or not.</p>
-
 <h2 id="explanation">Explanation</h2>
-
 <p>Some packages update more often than you do maintenance on your project. If this is the case, you might find you have 4 pull requests for the version 8.0.2 through 8.0.5 of a certain package. This would in turn end up with you closing 3 pull requests, and merging one. If this is the case, maybe you want the option <code>one_pull_request_per_package</code>, so you only have one pull request for that package, that keeps itself up to date.</p>
-
 <h2 id="example">Example</h2>
-
-<p>If a package is out of date, and a new version comes out, the default behaviour of Violinist would be to create a new pull request for this version. But say you are not very active in maintaining your project, and you just want the one pull request to stay up to date. Say you want to come to your repo and see the pull request &laquo;Update vendor/package&raquo; instead of 4 pull requests with the titles &laquo;Update vendor/package to version x.x.x&raquo;. You simply go ahead and change this option to 1.</p>
-
+<p>If a package is out of date, and a new version comes out, the default behaviour of Violinist would be to create a new pull request for this version. But say you are not very active in maintaining your project, and you just want the one pull request to stay up to date. Say you want to come to your repo and see the pull request &ldquo;Update vendor/package&rdquo; instead of 4 pull requests with the titles &ldquo;Update vendor/package to version x.x.x&rdquo;. You simply go ahead and change this option to 1.</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
@@ -450,7 +420,6 @@
 </span>    }
   }
 }</code></pre></div>
-
 <p>This way, the same pull request will stay up to date, when the next version comes out. Basically, violinist will force-push to the same branch for each new version, until you merge the update for the package, or the pull request becomes outdated by you updating the package manually.</p>
 
 
@@ -463,11 +432,9 @@
         <h1><a href="#updating-beyond">allow_updates_beyond_constraint</a><small><a href="#html">Back to Top</a></small></h1>
 
         <h2 id="configuration">Configuration</h2>
-
-<p><strong>name</strong>: allow_updates_beyond_constraint<br />
-<strong>type</strong>: int<br />
+<p><strong>name</strong>: allow_updates_beyond_constraint<br>
+<strong>type</strong>: int<br>
 <strong>default</strong>: 1</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
@@ -476,17 +443,11 @@
 </span>    }
   }
 }</code></pre></div>
-
 <p>Indicate whether or not we can try to update a package even if it is beyond the range specified in composer.json. Defaults to 1 (true).</p>
-
 <h2 id="explanation">Explanation</h2>
-
 <p>Strictly speaking, if your composer.json specifies that you want to have the package <code>vendor/package</code> in the version range <code>~1.0.0</code>, then composer will install all version in the range 1.0.x, but refuse to update it to 1.1.0. Some times this is what you want. But many times, a new version at 1.1.0 will include new features and be backwards compatible. So maybe you actually might want to start using that version instead? This is what the option for allowing to update beyond your version constraint does.</p>
-
 <h2 id="example">Example</h2>
-
 <p>Say you depend on the project <code>vendor/package</code> in range <code>~1.0.0</code>. And say the latest version is 1.1.0. And say you actually do not want to receive this update via Violinist. And say your composer.json looks something like this:</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
@@ -494,9 +455,7 @@
     <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
   }
 }</code></pre></div>
-
 <p>To make Violinist stop trying to update <code>vendor/package</code> (and all other pages) beyond your specified version range you simply add the following to your composer.json:</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
@@ -520,11 +479,9 @@
         <h1><a href="#blacklisting-projects">blacklist</a><small><a href="#html">Back to Top</a></small></h1>
 
         <h2 id="configuration">Configuration</h2>
-
-<p><strong>name</strong>: blacklist<br />
-<strong>type</strong>: array<br />
+<p><strong>name</strong>: blacklist<br>
+<strong>type</strong>: array<br>
 <strong>default</strong>: []</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
@@ -533,34 +490,25 @@
 </span>    }
   }
 }</code></pre></div>
-
 <p>An array of packages to always ignore while running updates with Violinist. Defaults to nothing.</p>
-
 <h2 id="explanation">Explanation</h2>
-
 <p>Some times a version of your package comes out that will never be compatible with your codebase. Some times this means you have to do some refactoring, but you only have time to do so some time in the future. Some times this makes you annoyed that Violinist is continiously trying to update that package, even if you know it will fail. This could be an example of when you want to blacklist a project.</p>
-
 <p>If you want to blacklist a project, you can add some extra information into your composer.json.</p>
-
 <h2 id="example">Example</h2>
-
 <p>Say you wanted to blacklist the project <code>vendor/package</code>. And say your composer.json looks something like this:</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
-    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;^1.4.0&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;^1.4.0&#34;</span>
   }
 }</code></pre></div>
-
 <p>To make Violinist stop trying to update <code>vendor/package</code> you simply add the following to your composer.json:</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
-    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;^1.4.0&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;^1.4.0&#34;</span>
   },
 <span style="display:block;width:100%;background-color:#d8dada">  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
 </span><span style="display:block;width:100%;background-color:#d8dada">    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
@@ -570,16 +518,13 @@
 </span><span style="display:block;width:100%;background-color:#d8dada">    }
 </span><span style="display:block;width:100%;background-color:#d8dada">  }
 </span>}</code></pre></div>
-
 <h2 id="example-with-wildcards">Example with wildcards</h2>
-
 <p>You can also use wildcards in your blacklist. Examples could be <code>vendor/*</code> or <code>vendor/prefix_*</code>.</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
-    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;^1.4.0&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;^1.4.0&#34;</span>
   },
 <span style="display:block;width:100%;background-color:#d8dada">  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
 </span><span style="display:block;width:100%;background-color:#d8dada">    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
@@ -596,16 +541,69 @@
 
     
 
+    <section id="bundled-packages">
+
+        <h1><a href="#bundled-packages">bundled_packages</a><small><a href="#html">Back to Top</a></small></h1>
+
+        <h2 id="configuration">Configuration</h2>
+<p><strong>name</strong>: bundled_packages<br>
+<strong>type</strong>: array<br>
+<strong>default</strong>: []</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;bundled_packages&#34;</span>: []
+</span>    }
+  }
+}</code></pre></div>
+<p>An array of packages to bundle with other packages, keyed by the main package.</p>
+<h2 id="explanation">Explanation</h2>
+<p>Some times you depend on packages that are typically released in new versions at the same time. For example symfony packages. So instead of getting one pull request per symfony package your project depends on, you can get one pull request with all of them, bundled together with the update of one package.</p>
+<p>This is even better when coupled with blacklisting projects, so you just skip those bundled packages all together.</p>
+<p>If you want to bundle some projects, you can add some extra information into your composer.json.</p>
+<h2 id="example">Example</h2>
+<p>Say your project depends on both <code>symfony/dom-crawler</code> and <code>symfony/yaml</code>. And you want to get them both updated in one pull request, bundled with <code>symfony/dom-crawler</code>. And say your composer.json looks something like this:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;symfony/dom-crawler&#34;</span>: <span style="color:#c30">&#34;^3.4&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;symfony/yaml&#34;</span>: <span style="color:#c30">&#34;^3.4&#34;</span>
+  }
+}</code></pre></div>
+<p>To make Violinist update them both together, you would do something like this:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;symfony/dom-crawler&#34;</span>: <span style="color:#c30">&#34;^3.4&#34;</span>,
+    <span style="color:#309;font-weight:bold">&#34;symfony/yaml&#34;</span>: <span style="color:#c30">&#34;^3.4&#34;</span>
+  },
+<span style="display:block;width:100%;background-color:#d8dada">  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+</span><span style="display:block;width:100%;background-color:#d8dada">    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+</span><span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;bundled_packages&#34;</span>: {
+</span><span style="display:block;width:100%;background-color:#d8dada">        <span style="color:#309;font-weight:bold">&#34;symfony/dom-crawler&#34;</span>: [
+</span><span style="display:block;width:100%;background-color:#d8dada">          <span style="color:#c30">&#34;symfony/yaml&#34;</span>
+</span><span style="display:block;width:100%;background-color:#d8dada">        ]
+</span><span style="display:block;width:100%;background-color:#d8dada">      }
+</span><span style="display:block;width:100%;background-color:#d8dada">    }
+</span><span style="display:block;width:100%;background-color:#d8dada">  }
+</span>}</code></pre></div>
+
+
+    </section>
+
+    
+
     <section id="timeframe_disallowed">
 
         <h1><a href="#timeframe_disallowed">timeframe_disallowed</a><small><a href="#html">Back to Top</a></small></h1>
 
         <h2 id="configuration">Configuration</h2>
-
-<p><strong>name</strong>: timeframe_disallowed<br />
-<strong>type</strong>: string<br />
+<p><strong>name</strong>: timeframe_disallowed<br>
+<strong>type</strong>: string<br>
 <strong>default</strong>: 0</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
@@ -614,19 +612,12 @@
 </span>    }
   }
 }</code></pre></div>
-
 <p>Indicate what timeframe the updater are allowed and disallowed to run.</p>
-
 <h2 id="explanation">Explanation</h2>
-
 <p>By default, violinist will try to run updates all of the time. When a new package is released, or when it is time to rebase the existing pull requests. If you are actively working on a project during work hours, this can be either annoying or impractical. For example, it could clog up the CI pipeline if you have many projects monitored. So maybe you want to restrict the updater to run in a certain timeframe, so these pull requests and rebased branches can run when they are not getting in your way? If that is the case, you probably want the option <strong>timeframe_disallowed</strong>.</p>
-
 <p>If you want to combine this with your local time, you want to use the option <a href="#timezone">timezone</a></p>
-
 <h2 id="example">Example</h2>
-
 <p>Say you want to only update the project with Violinist outside working hours. For example not inside the timeframe 6AM to 6PM (06:00 - 18:00). And say your composer.json looks like this:</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
@@ -634,9 +625,7 @@
     <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
   }
 }</code></pre></div>
-
 <p>To make Violinist stop trying to update during working hours. Then you would specify a timeframe like so:</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
@@ -660,11 +649,9 @@
         <h1><a href="#timezone">timezone</a><small><a href="#html">Back to Top</a></small></h1>
 
         <h2 id="configuration">Configuration</h2>
-
-<p><strong>name</strong>: timezone<br />
-<strong>type</strong>: string<br />
+<p><strong>name</strong>: timezone<br>
+<strong>type</strong>: string<br>
 <strong>default</strong>: +0000</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
@@ -673,17 +660,11 @@
 </span>    }
   }
 }</code></pre></div>
-
 <p>Indicate what timezone to use for the option timeframe_disallowed.</p>
-
 <h2 id="explanation">Explanation</h2>
-
 <p>It would not help much to restrict the timeframe for the updates to be run, unless you could also say what timezone you were talking about. This is what the <strong>timezone</strong> option is for.</p>
-
 <h2 id="example">Example</h2>
-
 <p>Say you want to only update the project with Violinist outside working hours, and you are located in the timezone <strong>PDT</strong>. By default, specifying a timeframe would use the UTC timezone, so to avoid having to convert the time to your timezone, you could specify this in your composer.json. So say your project, including timeframe_disallowed, had the following composer.json:</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
@@ -696,9 +677,7 @@
     }
   }
 }</code></pre></div>
-
 <p>To make Violinist start using your timezone, you would add something like this:</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
@@ -712,9 +691,7 @@
 </span>    }
   }
 }</code></pre></div>
-
 <p>You can also use one of the <a href="http://php.net/manual/en/timezones.php">predefined PHP timezones</a>:</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
@@ -739,11 +716,9 @@
         <h1><a href="#update_dev_dependencies">update_dev_dependencies</a><small><a href="#html">Back to Top</a></small></h1>
 
         <h2 id="configuration">Configuration</h2>
-
-<p><strong>name</strong>: update_dev_dependencies<br />
-<strong>type</strong>: int<br />
+<p><strong>name</strong>: update_dev_dependencies<br>
+<strong>type</strong>: int<br>
 <strong>default</strong>: 1</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
@@ -752,17 +727,11 @@
 </span>    }
   }
 }</code></pre></div>
-
 <p>Indicate whether or not you want Violinist to also update your dev dependencies. The default behavior is to also update these.</p>
-
 <h2 id="explanation">Explanation</h2>
-
 <p>If you have a project where you for some reason do not want to update your dev dependencies, you can use this option.</p>
-
 <h2 id="example">Example</h2>
-
 <p>Say you wanted to avoid updating all of your dev dependencies. And say your composer.json looked something like this:</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
@@ -775,9 +744,7 @@
     <span style="color:#309;font-weight:bold">&#34;vendor/dev-package3&#34;</span>: <span style="color:#c30">&#34;*&#34;</span>
   }
 }</code></pre></div>
-
 <p>To make Violinist  stop updating your dev dependencies, you simply add the following to your composer.json:</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
@@ -806,11 +773,9 @@
         <h1><a href="#update-with-deps">update_with_dependencies</a><small><a href="#html">Back to Top</a></small></h1>
 
         <h2 id="configuration">Configuration</h2>
-
-<p><strong>name</strong>: update_with_dependencies<br />
-<strong>type</strong>: int<br />
+<p><strong>name</strong>: update_with_dependencies<br>
+<strong>type</strong>: int<br>
 <strong>default</strong>: 1</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
@@ -819,17 +784,11 @@
 </span>    }
   }
 }</code></pre></div>
-
 <p>Indicate whether or not we update a package using the <code>--with-dependencies</code> flag for composer. Defaults to 1 (true).</p>
-
 <h2 id="explanation">Explanation</h2>
-
 <p>When you update a package that also depend on other packages, which probably in turn are described as dependencies with semantic versioning, you might want to update to the newest version of the depended-upon packages as well, since these are compatible and will include bug fixes and improvements for you, in a compatible way. If you do not want this, then this configuration option is what you are after.</p>
-
 <h2 id="example">Example</h2>
-
 <p>Say you depend on the project <code>vendor/package</code> in range <code>~1.0.0</code>. And say the latest version is 1.1.0. And say you <code>vendor/package</code> depends on <code>vendor2/package2</code> in the range <code>~2.0.0</code>. And say that in your last upgrade of <code>vendor/package</code> you got version <code>2.0.1</code> of the package <code>vendor2/package2</code>, and now the version <code>2.0.2</code> is available. By default, Violinist will then also upgrade package <code>vendor2/package2</code> for you. But maybe this is not what you want, since you in another part of your codebase actually rely on a bug that exists in version <code>2.0.1</code>. And say your composer.json looks something like this:</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
@@ -837,9 +796,7 @@
     <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
   }
 }</code></pre></div>
-
 <p>To make Violinist stop trying to update <code>vendor2/package2</code> when updating your direct dependency <code>vendor/package</code> (and similar for all other packages) you simply add the following to your composer.json:</p>
-
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,

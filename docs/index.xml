@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Violinist documentation</title>
@@ -6,7 +6,6 @@
     <description>Recent content on Violinist documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 Jul 2019 17:46:00 +0200</lastBuildDate>
     
 	<atom:link href="https://docs.violinist.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,7 +18,7 @@
       <guid>https://docs.violinist.io/default_branch/</guid>
       <description>Configuration name: default_branch
 type: string
-default: &amp;ldquo;
+default: &#39;&amp;rsquo;
 { &amp;#34;name&amp;#34;: &amp;#34;company/project&amp;#34;, &amp;#34;extra&amp;#34;: { &amp;#34;violinist&amp;#34;: { &amp;#34;default_branch&amp;#34;: &amp;#34;&amp;#34;  } } } Indicate what branch you want the Violinist pull requests created against.
 Explanation Different projects uses different workflows for their branches. For example, your default branch in your VCS provider might be your production branch (for example master) while you want the pull requests to be created towards a development branch (for example develop).</description>
     </item>
@@ -75,6 +74,19 @@ type: array
 default: []
 { &amp;#34;name&amp;#34;: &amp;#34;company/project&amp;#34;, &amp;#34;extra&amp;#34;: { &amp;#34;violinist&amp;#34;: { &amp;#34;blacklist&amp;#34;: []  } } } An array of packages to always ignore while running updates with Violinist. Defaults to nothing.
 Explanation Some times a version of your package comes out that will never be compatible with your codebase. Some times this means you have to do some refactoring, but you only have time to do so some time in the future.</description>
+    </item>
+    
+    <item>
+      <title>bundled_packages</title>
+      <link>https://docs.violinist.io/bundled-packages/</link>
+      <pubDate>Sun, 25 Mar 2018 10:50:02 +0200</pubDate>
+      
+      <guid>https://docs.violinist.io/bundled-packages/</guid>
+      <description>Configuration name: bundled_packages
+type: array
+default: []
+{ &amp;#34;name&amp;#34;: &amp;#34;company/project&amp;#34;, &amp;#34;extra&amp;#34;: { &amp;#34;violinist&amp;#34;: { &amp;#34;bundled_packages&amp;#34;: []  } } } An array of packages to bundle with other packages, keyed by the main package.
+Explanation Some times you depend on packages that are typically released in new versions at the same time. For example symfony packages. So instead of getting one pull request per symfony package your project depends on, you can get one pull request with all of them, bundled together with the update of one package.</description>
     </item>
     
     <item>

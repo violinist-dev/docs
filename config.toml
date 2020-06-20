@@ -6,13 +6,23 @@ theme = "hugo-simpledoc-theme"
 pygmentsStyle = "manni"
 publishDir = "docs"
 disableKinds = ["taxonomyTerm"]
-[blackfriday]
-  angledQuotes = true
-  fractions = false
-  plainIDAnchors = true
-  smartlists = true
-  extensions = ["hardLineBreak"]
-
+[markup.goldmark]
+  [markup.goldmark.extensions]
+    definitionList = true
+    footnote = true
+    linkify = true
+    strikethrough = true
+    table = true
+    taskList = true
+    typographer = true
+  [markup.goldmark.parser]
+    attribute = true
+    autoHeadingID = true
+    autoHeadingIDType = "github"
+  [markup.goldmark.renderer]
+    hardWraps = true
+    unsafe = false
+    xhtml = false
 # Site parameters
 [params]
 
@@ -20,7 +30,7 @@ disableKinds = ["taxonomyTerm"]
     description = "Violinist documentation"
     author = "support@violinist.io"
     keywords = "composer, violinist, php, documentation"
-    
+
     # Header
     # If not set, site title and meta description will be shown.
     # You may use markdown here
@@ -48,6 +58,6 @@ disableKinds = ["taxonomyTerm"]
 }
 ```
 """
-    
+
     # Back-to-top button name
     bttButton = ""

@@ -2,7 +2,7 @@
 title: "blacklist"
 date: 2018-03-25T10:50:02+02:00
 anchor: "blacklisting-projects"
-weight: 
+weight:
 ---
 
 ## Configuration
@@ -40,7 +40,7 @@ Say you wanted to blacklist the project `vendor/package`. And say your composer.
   "name": "company/project",
   "description": "My awesome project",
   "require": {
-    "vendor/package": "^1.4.0",
+    "vendor/package": "^1.4.0"
   }
 }
 {{< /highlight >}}
@@ -54,7 +54,7 @@ To make Violinist stop trying to update `vendor/package` you simply add the foll
   "name": "company/project",
   "description": "My awesome project",
   "require": {
-    "vendor/package": "^1.4.0",
+    "vendor/package": "^1.4.0"
   },
   "extra": {
     "violinist": {
@@ -77,7 +77,7 @@ You can also use wildcards in your blacklist. Examples could be `vendor/*` or `v
   "name": "company/project",
   "description": "My awesome project",
   "require": {
-    "vendor/package": "^1.4.0",
+    "vendor/package": "^1.4.0"
   },
   "extra": {
     "violinist": {
