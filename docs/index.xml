@@ -38,6 +38,19 @@ default: []
     </item>
     
     <item>
+      <title>number_of_concurrent_updates</title>
+      <link>https://docs.violinist.io/number_of_concurrent_updates/</link>
+      <pubDate>Thu, 06 Dec 2018 19:28:34 +0100</pubDate>
+      
+      <guid>https://docs.violinist.io/number_of_concurrent_updates/</guid>
+      <description>Configuration name: number_of_concurrent_updates
+type: int
+default: 0
+{ &amp;#34;name&amp;#34;: &amp;#34;company/project&amp;#34;, &amp;#34;extra&amp;#34;: { &amp;#34;violinist&amp;#34;: { &amp;#34;number_of_concurrent_updates&amp;#34;: 0  } } } Indicate how many open pull requests you want at a time.
+Explanation If you have a whole range of build steps and environments for a project per branch, having a bunch of branches come in from Violinist might clog up your build pipeline or spin up many servers. If this is the case, and you want to throttle the pull requests Violinist keeps open, then this option is for you.</description>
+    </item>
+    
+    <item>
       <title>one_pull_request_per_package</title>
       <link>https://docs.violinist.io/one-pull-request-per-package/</link>
       <pubDate>Thu, 06 Dec 2018 19:28:34 +0100</pubDate>

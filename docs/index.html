@@ -6,7 +6,7 @@
     <title>Violinist documentation</title>
     <meta name="description" content="Violinist documentation">
     <meta name="author" content="support@violinist.io">
-    <meta name="generator" content="Hugo 0.72.0" />
+    <meta name="generator" content="Hugo 0.74.3" />
     <style type="text/css">
     body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
         margin: 0;
@@ -256,10 +256,13 @@
       &quot;allow_updates_beyond_constraint&quot;: 1,
       &quot;assignees&quot;: [],
       &quot;blacklist: [],
+      &quot;bundled_packages&quot;: [],
       &quot;default_branch&quot;: &quot;&quot;,
+      &quot;number_of_concurrent_updates&quot;: 0,
       &quot;one_pull_request_per_package&quot;: 0,
       &quot;timeframe_disallowed&quot;: 0,
       &quot;timezone&quot;: &quot;+0000&quot;,
+      &quot;update_dev_dependencies&quot;: 1,
       &quot;update_with_dependencies&quot;: 1
     }
   }
@@ -274,6 +277,8 @@
             <a href="#default_branch">default_branch</a>
         
             <a href="#assignees">assignees</a>
+        
+            <a href="#number-of-concurrent-updates">number_of_concurrent_updates</a>
         
             <a href="#one-pull-request-per-package">one_pull_request_per_package</a>
         
@@ -357,6 +362,7 @@
 <p>NB! The value of this option depends on your VCS provider. For github this will be an array of usernames. For gitlab the array should consist of user IDs. You can find your user id by visiting <a href="https://gitlab.com/api/v4/users?username=YOUR_USERNAME">https://gitlab.com/api/v4/users?username=YOUR_USERNAME</a> where YOUR_USERNAME is your gitlab username. (reference: <a href="https://forum.gitlab.com/t/where-is-my-user-id-in-gitlab-com/7912">https://forum.gitlab.com/t/where-is-my-user-id-in-gitlab-com/7912</a>)</p>
 <p>If you are using self hosted gitlab, change the domain accordingly.</p>
 <p>Another difference is that gitlab only accepts one assignee per pull request. So while it should still be an array, if it contains more than one item, only the first user id will be assigned.</p>
+<p>If you are using Bitbucket, then a limitation will be that you cannot assign the same user you have authenticated Violinist with. For example, if you logged in to Violinist using the username <code>user123</code>, then the value of assignees can not be <code>user123</code> as bitbucket does not allow this.</p>
 </blockquote>
 <h2 id="explanation">Explanation</h2>
 <p>If you have a large team and want some people to get explicitly assigned (and probably by extension notified) per project, this is the setting to use. You can assign several users if you are using Github, but only one user if you are using Gitlab.</p>
@@ -381,6 +387,46 @@
 <blockquote>
 <p>NB! The above example is for github. For gitlab you would use a user id (see above).</p>
 </blockquote>
+
+
+    </section>
+
+    
+
+    <section id="number-of-concurrent-updates">
+
+        <h1><a href="#number-of-concurrent-updates">number_of_concurrent_updates</a><small><a href="#html">Back to Top</a></small></h1>
+
+        <h2 id="configuration">Configuration</h2>
+<p><strong>name</strong>: number_of_concurrent_updates<br>
+<strong>type</strong>: int<br>
+<strong>default</strong>: 0</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;number_of_concurrent_updates&#34;</span>: <span style="color:#f60">0</span>
+</span>    }
+  }
+}</code></pre></div>
+<p>Indicate how many open pull requests you want at a time.</p>
+<h2 id="explanation">Explanation</h2>
+<p>If you have a whole range of build steps and environments for a project per branch, having a bunch of branches come in from Violinist might clog up your build pipeline or spin up many servers. If this is the case, and you want to throttle the pull requests Violinist keeps open, then this option is for you.</p>
+<h2 id="example">Example</h2>
+<p>If you have a large project, some times the number of dependencies that are out of date could be many, especially when starting Violinist monitoring for the first time. And maybe you are creating QA enviroments for all your branches, or maybe your branches trigger build steps that take a long time to complete. So you want to throttle Violinist somehow. Then this option is for you. So if you wanted to limit the number of open pull requests to <code>5</code>, for example, then you would change your composer.json to look something like this:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
+  },
+  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;number_of_concurrent_updates&#34;</span>: <span style="color:#f60">5</span>
+</span>    }
+  }
+}</code></pre></div>
+<p>This way, the number of open pull requests will not pass 5 at any point. This will be true, even if you decide to change other configuration options, such as <code>one_pull_request_per_package</code> for example, so it might be the case that you have to close some pull requests manually to achieve the desired result.</p>
 
 
     </section>
