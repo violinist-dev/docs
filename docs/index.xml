@@ -5,10 +5,20 @@
     <link>https://docs.violinist.io/</link>
     <description>Recent content on Violinist documentation</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="https://docs.violinist.io/index.xml" rel="self" type="application/rss+xml" />
-    
+    <language>en-us</language><atom:link href="https://docs.violinist.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>security_updates_only</title>
+      <link>https://docs.violinist.io/security-updates-only/</link>
+      <pubDate>Fri, 05 Feb 2021 11:11:29 +0100</pubDate>
+      
+      <guid>https://docs.violinist.io/security-updates-only/</guid>
+      <description>Configuration name: security_updates_only
+type: int
+default: 0
+{ &amp;#34;name&amp;#34;: &amp;#34;company/project&amp;#34;, &amp;#34;extra&amp;#34;: { &amp;#34;violinist&amp;#34;: { &amp;#34;security_updates_only&amp;#34;: 0  } } } Only update security updates to dependencies.
+Explanation If you are only interested in getting automated pull requests for security updates to your dependencies, this option will do that for you.
+Example Say you have a project with a lot of updates coming in all the time, but you are only interested in getting security updates through violinist.</description>
+    </item>
     
     <item>
       <title>default_branch</title>
@@ -18,7 +28,7 @@
       <guid>https://docs.violinist.io/default_branch/</guid>
       <description>Configuration name: default_branch
 type: string
-default: &#39;&amp;rsquo;
+default: &#39;&#39;
 { &amp;#34;name&amp;#34;: &amp;#34;company/project&amp;#34;, &amp;#34;extra&amp;#34;: { &amp;#34;violinist&amp;#34;: { &amp;#34;default_branch&amp;#34;: &amp;#34;&amp;#34;  } } } Indicate what branch you want the Violinist pull requests created against.
 Explanation Different projects uses different workflows for their branches. For example, your default branch in your VCS provider might be your production branch (for example master) while you want the pull requests to be created towards a development branch (for example develop).</description>
     </item>

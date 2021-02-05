@@ -6,7 +6,7 @@
     <title>Violinist documentation</title>
     <meta name="description" content="Violinist documentation">
     <meta name="author" content="support@violinist.io">
-    <meta name="generator" content="Hugo 0.74.3" />
+    <meta name="generator" content="Hugo 0.80.0" />
     <style type="text/css">
     body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
         margin: 0;
@@ -260,6 +260,7 @@
       &quot;default_branch&quot;: &quot;&quot;,
       &quot;number_of_concurrent_updates&quot;: 0,
       &quot;one_pull_request_per_package&quot;: 0,
+      &quot;security_updates_only&quot;: 0,
       &quot;timeframe_disallowed&quot;: 0,
       &quot;timezone&quot;: &quot;+0000&quot;,
       &quot;update_dev_dependencies&quot;: 1,
@@ -273,6 +274,8 @@
         
         </nav>
         <nav>
+        
+            <a href="#security-updates-only">security_updates_only</a>
         
             <a href="#default_branch">default_branch</a>
         
@@ -301,6 +304,46 @@
 
     
 
+    <section id="security-updates-only">
+
+        <h1><a href="#security-updates-only">security_updates_only</a><small><a href="#html">Back to Top</a></small></h1>
+
+        <h2 id="configuration">Configuration</h2>
+<p><strong>name</strong>: security_updates_only<br>
+<strong>type</strong>: int<br>
+<strong>default</strong>: 0</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;security_updates_only&#34;</span>: <span style="color:#f60">0</span>
+</span>    }
+  }
+}</code></pre></div>
+<p>Only update security updates to dependencies.</p>
+<h2 id="explanation">Explanation</h2>
+<p>If you are only interested in getting automated pull requests for security updates to your dependencies, this option will do that for you.</p>
+<h2 id="example">Example</h2>
+<p>Say you have a project with a lot of updates coming in all the time, but you are only interested in getting security updates through violinist. Then you would change the option <code>security_updates_only</code> to 1. So in practice, change composer.json to look something like this:</p>
+<div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
+  },
+  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;security_updates_only&#34;</span>: <span style="color:#f60">1</span>
+</span>    }
+  }
+}</code></pre></div>
+<p>This way, violinist will only send pull requests if a security updates is released of the package <code>vendor/package</code>. For a regular update, no pull request is created.</p>
+
+
+    </section>
+
+    
+
     <section id="default_branch">
 
         <h1><a href="#default_branch">default_branch</a><small><a href="#html">Back to Top</a></small></h1>
@@ -308,7 +351,7 @@
         <h2 id="configuration">Configuration</h2>
 <p><strong>name</strong>: default_branch<br>
 <strong>type</strong>: string<br>
-<strong>default</strong>: '&rsquo;</p>
+<strong>default</strong>: ''</p>
 <div class="highlight"><pre style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
   <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
   <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {

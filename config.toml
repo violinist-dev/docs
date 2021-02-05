@@ -52,6 +52,7 @@ disableKinds = ["taxonomyTerm"]
       "default_branch": "",
       "number_of_concurrent_updates": 0,
       "one_pull_request_per_package": 0,
+      "security_updates_only": 0,
       "timeframe_disallowed": 0,
       "timezone": "+0000",
       "update_dev_dependencies": 1,
