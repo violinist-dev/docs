@@ -95,9 +95,9 @@ To make Violinist update them both together, you would do something like this:
           "symfony/yaml"
         ]
       },
-      "blacklist": {
+      "blacklist": [
         "symfony/yaml"
-      }
+      ]
     }
   }
 }
