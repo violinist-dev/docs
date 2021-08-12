@@ -26,13 +26,13 @@
         {{ end }}
         </nav>
         <nav>
-        {{ range .Site.RegularPages.ByWeight }}
+        {{ range .Site.RegularPages.ByTitle }}
             <a href="#{{ .Params.anchor }}">{{ .Title }}</a>
         {{ end }}
         </nav>
     </section>
 
-    {{ range .Site.RegularPages.ByWeight }}
+    {{ range .Site.RegularPages.ByTitle }}
 
     <section id="{{ .Params.anchor }}">
 
