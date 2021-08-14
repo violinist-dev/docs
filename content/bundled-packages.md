@@ -25,6 +25,8 @@ __default__: []
 
 An array of packages to bundle with other packages, keyed by the main package.
 
+>Quite often you probably want to also avoid getting pull requests for the packages you are bundling. To do this, you probably want to [blacklist](#blacklisting-projects) the packages in question.
+
 ## Explanation
 
 Some times you depend on packages that are typically released in new versions at the same time. For example symfony packages. So instead of getting one pull request per symfony package your project depends on, you can get one pull request with all of them, bundled together with the update of one package.
@@ -33,7 +35,9 @@ This is even better when coupled with blacklisting projects, so you just skip th
 
 If you want to bundle some projects, you can add some extra information into your composer.json.
 
-## Example
+## Examples
+
+### Simple example
 
 Say your project depends on both `symfony/dom-crawler` and `symfony/yaml`. And you want to get them both updated in one pull request, bundled with `symfony/dom-crawler`. And say your composer.json looks something like this:
 
@@ -67,6 +71,33 @@ To make Violinist update them both together, you would do something like this:
           "symfony/yaml"
         ]
       }
+    }
+  }
+}
+{{< /highlight >}}
+
+### Example with a block list
+
+> With the configuration above, when a new release is released for __symfony/dom-crawler__ and __symfony/yaml__ (which usually are released at the same time) you will get 2 pull requests. One pull request will update symfony/dom-crawler, bundled with symfony/yaml. The other one will update symfony/yaml. This is probably not what you want. You probably want to have just the one pull request for symfony/dom-crawler where symfony/yaml is already updated, and not get individual pull requests for symfony/yaml. To achieve this, you need to also blacklist symfony/yaml. Like so:
+
+{{< highlight JSON "hl_lines=8-19" >}}
+{
+  "name": "company/project",
+  "description": "My awesome project",
+  "require": {
+    "symfony/dom-crawler": "^3.4",
+    "symfony/yaml": "^3.4"
+  },
+  "extra": {
+    "violinist": {
+      "bundled_packages": {
+        "symfony/dom-crawler": [
+          "symfony/yaml"
+        ]
+      },
+      "blacklist": [
+        "symfony/yaml"
+      ]
     }
   }
 }
