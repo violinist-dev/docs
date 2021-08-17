@@ -114,6 +114,20 @@ default: []
     </item>
     
     <item>
+      <title>run_scripts</title>
+      <link>https://docs.violinist.io/run-scripts/</link>
+      <pubDate>Sun, 25 Mar 2018 10:50:02 +0200</pubDate>
+      
+      <guid>https://docs.violinist.io/run-scripts/</guid>
+      <description>Configuration name: run_scripts
+type: int
+default: 1
+{ &amp;#34;name&amp;#34;: &amp;#34;company/project&amp;#34;, &amp;#34;extra&amp;#34;: { &amp;#34;violinist&amp;#34;: { &amp;#34;run_scripts&amp;#34;: 1  } } } Indicate if you want to run scripts as part of your update commands. Or rather if you want to avoid running scripts.
+This translates to using the --no-scripts option in composer.
+Explanation Some times you have projects that do magic things as part of their installation or update commands. For example creating databases or clearing Redis cache.</description>
+    </item>
+    
+    <item>
       <title>timeframe_disallowed</title>
       <link>https://docs.violinist.io/timeframe-disallowed/</link>
       <pubDate>Sun, 25 Mar 2018 10:50:02 +0200</pubDate>
