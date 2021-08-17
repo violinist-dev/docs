@@ -289,6 +289,8 @@
         
             <a href="#one-pull-request-per-package">one_pull_request_per_package</a>
         
+            <a href="#run-scripts">run_scripts</a>
+        
             <a href="#security-updates-only">security_updates_only</a>
         
             <a href="#timeframe_disallowed">timeframe_disallowed</a>
@@ -667,6 +669,46 @@
   }
 }</code></pre></div>
 <p>This way, the same pull request will stay up to date, when the next version comes out. Basically, violinist will force-push to the same branch for each new version, until you merge the update for the package, or the pull request becomes outdated by you updating the package manually.</p>
+
+
+    </section>
+
+    
+
+    <section id="run-scripts">
+
+        <h1><a href="#run-scripts">run_scripts</a><small><a href="#html">Back to Top</a></small></h1>
+
+        <h2 id="configuration">Configuration</h2>
+<p><strong>name</strong>: run_scripts<br>
+<strong>type</strong>: int<br>
+<strong>default</strong>: 1</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;run_scripts&#34;</span>: <span style="color:#f60">1</span>
+</span>    }
+  }
+}</code></pre></div>
+<p>Indicate if you want to run scripts as part of your update commands. Or rather if you want to avoid running scripts.</p>
+<p>This translates to using the <code>--no-scripts</code> option in composer.</p>
+<h2 id="explanation">Explanation</h2>
+<p>Some times you have projects that do magic things as part of their installation or update commands. For example creating databases or clearing Redis cache. If your project already has this stablished, you might want to avoid using this in violinist, as this would crash the update, meaning you get no updates.</p>
+<h2 id="example">Example</h2>
+<p>Say you wanted to disable running scripts on your project for violinist, since it keeps crashing. You would go ahead and edit your composer.json as follows:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
+  },
+  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+<span style="display:block;width:100%;background-color:#d8dada">      <span style="color:#309;font-weight:bold">&#34;run_scripts&#34;</span>: <span style="color:#f60">0</span>
+</span>    }
+  }
+}</code></pre></div>
 
 
     </section>
