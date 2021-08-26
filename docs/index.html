@@ -28,7 +28,7 @@
         color: #242424;
         max-width: 800px;
         margin: 5% auto;
-       
+
     }
     body::after {
         clear: both;
@@ -95,7 +95,14 @@
         border-radius: 3px;
         color: #000;
         font: monospace;
-        padding: 2px 7px;
+        padding: 2px 0px;
+    }
+    .highlight {
+        overflow: scroll;
+        width: 100%;
+    }
+    header .highlight span {
+        display: inline;
     }
     a {
         color: #1e8cbe;
@@ -181,7 +188,7 @@
         cursor: pointer;
         font-weight: 500;
         position: relative;
-        text-decoration: none; 
+        text-decoration: none;
         padding: 10px 12px;
         width: 100%;
         padding-right: 3px;
@@ -202,7 +209,7 @@
         background-color: #E6E8EA;
         color: #1e8cbe;
         text-decoration: underline;
-    }   
+    }
     nav a:hover:before {
         display: block;
     }
@@ -228,13 +235,19 @@
         h2 {
             font-size: 20px;
         }
-    }   
+    }
     @media screen and (max-width: 514px) {
         p, ul, ol, blockquote  {
             margin-bottom: 8%;
         }
     }
+    @media screen and (max-width: 514px) {
+        section h1 a {
+            word-break: break-all;
+        }
+    }
 </style>
+
 </head>
 
 <body>
@@ -242,75 +255,130 @@
         <header>
             <h1>Violinist documentation</h1>
             <p>Set-up and configuration of your Violinist monitoring.</p>
+            <h2>Introduction</h2>
+            <nav>
+                
+                    <a href="#commands">Composer commands used</a>
+                
+            </nav>
+            <h2>Configuration reference</h2>
             <p>All configuration of Violinist is optional. All configuration have default values, and if you do nothing, we will try to update in the way we feel is most sensible for most projects.</p>
             <p>To provide a flexible way to configure Violinist, we have opted to use the <code>extra</code> part <a href="https://getcomposer.org/doc/04-schema.md#extra">of the composer.json schema.</a></p>
             <p>A complete composer.json with all example values filled in (with their default values) are provided here for reference. To read about the different parts, click on their link counterpart below.</p>
-            <pre><code>{
-  &quot;name&quot;: &quot;company/project&quot;,
-  &quot;description&quot;: &quot;My awesome project&quot;,
-  &quot;require&quot;: {
-    &quot;vendor/package&quot;: &quot;~1.0.0&quot;,
+            <div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#309;font-weight:bold">&#34;name&#34;</span>: <span style="color:#c30">&#34;company/project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;description&#34;</span>: <span style="color:#c30">&#34;My awesome project&#34;</span>,
+  <span style="color:#309;font-weight:bold">&#34;require&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;vendor/package&#34;</span>: <span style="color:#c30">&#34;~1.0.0&#34;</span>,
   },
-  &quot;extra&quot;: {
-    &quot;violinist&quot;: {
-      &quot;allow_updates_beyond_constraint&quot;: 1,
-      &quot;assignees&quot;: [],
-      &quot;blacklist: [],
-      &quot;bundled_packages&quot;: [],
-      &quot;default_branch&quot;: &quot;&quot;,
-      &quot;number_of_concurrent_updates&quot;: 0,
-      &quot;one_pull_request_per_package&quot;: 0,
-      &quot;security_updates_only&quot;: 0,
-      &quot;timeframe_disallowed&quot;: 0,
-      &quot;timezone&quot;: &quot;+0000&quot;,
-      &quot;update_dev_dependencies&quot;: 1,
-      &quot;update_with_dependencies&quot;: 1
+  <span style="color:#309;font-weight:bold">&#34;extra&#34;</span>: {
+    <span style="color:#309;font-weight:bold">&#34;violinist&#34;</span>: {
+      <span style="color:#309;font-weight:bold">&#34;allow_updates_beyond_constraint&#34;</span>: <span style="color:#f60">1</span>,
+      <span style="color:#309;font-weight:bold">&#34;assignees&#34;</span>: [],
+      <span style="color:#309;font-weight:bold">&#34;blacklist&#34;</span>: [],
+      <span style="color:#309;font-weight:bold">&#34;bundled_packages&#34;</span>: [],
+      <span style="color:#309;font-weight:bold">&#34;default_branch&#34;</span>: <span style="color:#c30">&#34;&#34;</span>,
+      <span style="color:#309;font-weight:bold">&#34;number_of_concurrent_updates&#34;</span>: <span style="color:#f60">0</span>,
+      <span style="color:#309;font-weight:bold">&#34;one_pull_request_per_package&#34;</span>: <span style="color:#f60">0</span>,
+      <span style="color:#309;font-weight:bold">&#34;security_updates_only&#34;</span>: <span style="color:#f60">0</span>,
+      <span style="color:#309;font-weight:bold">&#34;timeframe_disallowed&#34;</span>: <span style="color:#f60">0</span>,
+      <span style="color:#309;font-weight:bold">&#34;timezone&#34;</span>: <span style="color:#c30">&#34;+0000&#34;</span>,
+      <span style="color:#309;font-weight:bold">&#34;update_dev_dependencies&#34;</span>: <span style="color:#f60">1</span>,
+      <span style="color:#309;font-weight:bold">&#34;update_with_dependencies&#34;</span>: <span style="color:#f60">1</span>
     }
   }
 }
-</code></pre>
+</code></pre></div>
         </header>
         <nav>
         
         </nav>
+
         <nav>
         
-            <a href="#updating-beyond">allow_updates_beyond_constraint</a>
+            
+                <a href="#updating-beyond">allow_updates_beyond_constraint</a>
+            
         
-            <a href="#assignees">assignees</a>
+            
+                <a href="#assignees">assignees</a>
+            
         
-            <a href="#blacklisting-projects">blacklist</a>
+            
+                <a href="#blacklisting-projects">blacklist</a>
+            
         
-            <a href="#bundled-packages">bundled_packages</a>
+            
+                <a href="#bundled-packages">bundled_packages</a>
+            
         
-            <a href="#default_branch">default_branch</a>
+            
+                <a href="#default_branch">default_branch</a>
+            
         
-            <a href="#number-of-concurrent-updates">number_of_concurrent_updates</a>
+            
+                <a href="#number-of-concurrent-updates">number_of_concurrent_updates</a>
+            
         
-            <a href="#one-pull-request-per-package">one_pull_request_per_package</a>
+            
+                <a href="#one-pull-request-per-package">one_pull_request_per_package</a>
+            
         
-            <a href="#run-scripts">run_scripts</a>
+            
+                <a href="#run-scripts">run_scripts</a>
+            
         
-            <a href="#security-updates-only">security_updates_only</a>
+            
+                <a href="#security-updates-only">security_updates_only</a>
+            
         
-            <a href="#timeframe_disallowed">timeframe_disallowed</a>
+            
+                <a href="#timeframe_disallowed">timeframe_disallowed</a>
+            
         
-            <a href="#timezone">timezone</a>
+            
+                <a href="#timezone">timezone</a>
+            
         
-            <a href="#update_dev_dependencies">update_dev_dependencies</a>
+            
+                <a href="#update_dev_dependencies">update_dev_dependencies</a>
+            
         
-            <a href="#update-with-deps">update_with_dependencies</a>
+            
+                <a href="#update-with-deps">update_with_dependencies</a>
+            
+        
+            
         
         </nav>
     </section>
 
     
+    <section id="commands">
 
-    <section id="updating-beyond">
+        <h1><a href="#commands">Composer commands used</a><small><a href="#html">Back to Top</a></small></h1>
 
-        <h1><a href="#updating-beyond">allow_updates_beyond_constraint</a><small><a href="#html">Back to Top</a></small></h1>
+        <h2 id="looking-for-updates">Looking for updates</h2>
+<p>To identify the updates that are available, violinist will run the following command:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">composer outdated -D -m</code></pre></div>
+<p>You can read more about this command <a href="https://getcomposer.org/doc/03-cli.md#outdated">on the official composer website</a></p>
+<p>The two options mean as follows:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">--direct (-D): Restricts the list of packages to your direct dependencies.
+--minor-only (-m): Only shows packages that have minor SemVer-compatible updates.</code></pre></div>
+<p>There are still several ways this can be manipulated. See the config options for details.</p>
 
-        <h2 id="configuration">Configuration</h2>
+
+    </section>
+    
+
+    
+        
+
+        <section id="updating-beyond">
+
+            <h1><a href="#updating-beyond">allow_updates_beyond_constraint</a><small><a href="#html">Back to Top</a></small></h1>
+
+            <h2 id="configuration">Configuration</h2>
 <p><strong>name</strong>: allow_updates_beyond_constraint<br>
 <strong>type</strong>: int<br>
 <strong>default</strong>: 1</p>
@@ -349,15 +417,17 @@
 </span>}</code></pre></div>
 
 
-    </section>
+        </section>
+        
 
     
+        
 
-    <section id="assignees">
+        <section id="assignees">
 
-        <h1><a href="#assignees">assignees</a><small><a href="#html">Back to Top</a></small></h1>
+            <h1><a href="#assignees">assignees</a><small><a href="#html">Back to Top</a></small></h1>
 
-        <blockquote>
+            <blockquote>
 <p>This feature is only available on the agency and enterprise plans.</p>
 </blockquote>
 <h2 id="configuration">Configuration</h2>
@@ -404,15 +474,17 @@
 </blockquote>
 
 
-    </section>
+        </section>
+        
 
     
+        
 
-    <section id="blacklisting-projects">
+        <section id="blacklisting-projects">
 
-        <h1><a href="#blacklisting-projects">blacklist</a><small><a href="#html">Back to Top</a></small></h1>
+            <h1><a href="#blacklisting-projects">blacklist</a><small><a href="#html">Back to Top</a></small></h1>
 
-        <h2 id="configuration">Configuration</h2>
+            <h2 id="configuration">Configuration</h2>
 <p><strong>name</strong>: blacklist<br>
 <strong>type</strong>: array<br>
 <strong>default</strong>: []</p>
@@ -471,15 +543,17 @@
 </span>}</code></pre></div>
 
 
-    </section>
+        </section>
+        
 
     
+        
 
-    <section id="bundled-packages">
+        <section id="bundled-packages">
 
-        <h1><a href="#bundled-packages">bundled_packages</a><small><a href="#html">Back to Top</a></small></h1>
+            <h1><a href="#bundled-packages">bundled_packages</a><small><a href="#html">Back to Top</a></small></h1>
 
-        <h2 id="configuration">Configuration</h2>
+            <h2 id="configuration">Configuration</h2>
 <p><strong>name</strong>: bundled_packages<br>
 <strong>type</strong>: array<br>
 <strong>default</strong>: []</p>
@@ -554,15 +628,17 @@
 </span>}</code></pre></div>
 
 
-    </section>
+        </section>
+        
 
     
+        
 
-    <section id="default_branch">
+        <section id="default_branch">
 
-        <h1><a href="#default_branch">default_branch</a><small><a href="#html">Back to Top</a></small></h1>
+            <h1><a href="#default_branch">default_branch</a><small><a href="#html">Back to Top</a></small></h1>
 
-        <h2 id="configuration">Configuration</h2>
+            <h2 id="configuration">Configuration</h2>
 <p><strong>name</strong>: default_branch<br>
 <strong>type</strong>: string<br>
 <strong>default</strong>: ''</p>
@@ -591,15 +667,17 @@
 <p>If you do not enter anything in this field, leaving the default value for it in there (<code>&quot;&quot;</code> - an empty string) the project will use the settings from the project repository. In the example above that would mean the branch <code>master</code>.</p>
 
 
-    </section>
+        </section>
+        
 
     
+        
 
-    <section id="number-of-concurrent-updates">
+        <section id="number-of-concurrent-updates">
 
-        <h1><a href="#number-of-concurrent-updates">number_of_concurrent_updates</a><small><a href="#html">Back to Top</a></small></h1>
+            <h1><a href="#number-of-concurrent-updates">number_of_concurrent_updates</a><small><a href="#html">Back to Top</a></small></h1>
 
-        <h2 id="configuration">Configuration</h2>
+            <h2 id="configuration">Configuration</h2>
 <p><strong>name</strong>: number_of_concurrent_updates<br>
 <strong>type</strong>: int<br>
 <strong>default</strong>: 0</p>
@@ -631,15 +709,17 @@
 <p>This way, the number of open pull requests will not pass 5 at any point. This will be true, even if you decide to change other configuration options, such as <code>one_pull_request_per_package</code> for example, so it might be the case that you have to close some pull requests manually to achieve the desired result.</p>
 
 
-    </section>
+        </section>
+        
 
     
+        
 
-    <section id="one-pull-request-per-package">
+        <section id="one-pull-request-per-package">
 
-        <h1><a href="#one-pull-request-per-package">one_pull_request_per_package</a><small><a href="#html">Back to Top</a></small></h1>
+            <h1><a href="#one-pull-request-per-package">one_pull_request_per_package</a><small><a href="#html">Back to Top</a></small></h1>
 
-        <h2 id="configuration">Configuration</h2>
+            <h2 id="configuration">Configuration</h2>
 <p><strong>name</strong>: one_pull_request_per_package<br>
 <strong>type</strong>: int<br>
 <strong>default</strong>: 0</p>
@@ -671,15 +751,17 @@
 <p>This way, the same pull request will stay up to date, when the next version comes out. Basically, violinist will force-push to the same branch for each new version, until you merge the update for the package, or the pull request becomes outdated by you updating the package manually.</p>
 
 
-    </section>
+        </section>
+        
 
     
+        
 
-    <section id="run-scripts">
+        <section id="run-scripts">
 
-        <h1><a href="#run-scripts">run_scripts</a><small><a href="#html">Back to Top</a></small></h1>
+            <h1><a href="#run-scripts">run_scripts</a><small><a href="#html">Back to Top</a></small></h1>
 
-        <h2 id="configuration">Configuration</h2>
+            <h2 id="configuration">Configuration</h2>
 <p><strong>name</strong>: run_scripts<br>
 <strong>type</strong>: int<br>
 <strong>default</strong>: 1</p>
@@ -711,15 +793,17 @@
 }</code></pre></div>
 
 
-    </section>
+        </section>
+        
 
     
+        
 
-    <section id="security-updates-only">
+        <section id="security-updates-only">
 
-        <h1><a href="#security-updates-only">security_updates_only</a><small><a href="#html">Back to Top</a></small></h1>
+            <h1><a href="#security-updates-only">security_updates_only</a><small><a href="#html">Back to Top</a></small></h1>
 
-        <h2 id="configuration">Configuration</h2>
+            <h2 id="configuration">Configuration</h2>
 <p><strong>name</strong>: security_updates_only<br>
 <strong>type</strong>: int<br>
 <strong>default</strong>: 0</p>
@@ -751,15 +835,17 @@
 <p>This way, violinist will only send pull requests if a security updates is released of the package <code>vendor/package</code>. For a regular update, no pull request is created.</p>
 
 
-    </section>
+        </section>
+        
 
     
+        
 
-    <section id="timeframe_disallowed">
+        <section id="timeframe_disallowed">
 
-        <h1><a href="#timeframe_disallowed">timeframe_disallowed</a><small><a href="#html">Back to Top</a></small></h1>
+            <h1><a href="#timeframe_disallowed">timeframe_disallowed</a><small><a href="#html">Back to Top</a></small></h1>
 
-        <h2 id="configuration">Configuration</h2>
+            <h2 id="configuration">Configuration</h2>
 <p><strong>name</strong>: timeframe_disallowed<br>
 <strong>type</strong>: string<br>
 <strong>default</strong>: 0</p>
@@ -799,15 +885,17 @@
 </span>}</code></pre></div>
 
 
-    </section>
+        </section>
+        
 
     
+        
 
-    <section id="timezone">
+        <section id="timezone">
 
-        <h1><a href="#timezone">timezone</a><small><a href="#html">Back to Top</a></small></h1>
+            <h1><a href="#timezone">timezone</a><small><a href="#html">Back to Top</a></small></h1>
 
-        <h2 id="configuration">Configuration</h2>
+            <h2 id="configuration">Configuration</h2>
 <p><strong>name</strong>: timezone<br>
 <strong>type</strong>: string<br>
 <strong>default</strong>: +0000</p>
@@ -866,15 +954,17 @@
 }</code></pre></div>
 
 
-    </section>
+        </section>
+        
 
     
+        
 
-    <section id="update_dev_dependencies">
+        <section id="update_dev_dependencies">
 
-        <h1><a href="#update_dev_dependencies">update_dev_dependencies</a><small><a href="#html">Back to Top</a></small></h1>
+            <h1><a href="#update_dev_dependencies">update_dev_dependencies</a><small><a href="#html">Back to Top</a></small></h1>
 
-        <h2 id="configuration">Configuration</h2>
+            <h2 id="configuration">Configuration</h2>
 <p><strong>name</strong>: update_dev_dependencies<br>
 <strong>type</strong>: int<br>
 <strong>default</strong>: 1</p>
@@ -923,15 +1013,17 @@
 </span>}</code></pre></div>
 
 
-    </section>
+        </section>
+        
 
     
+        
 
-    <section id="update-with-deps">
+        <section id="update-with-deps">
 
-        <h1><a href="#update-with-deps">update_with_dependencies</a><small><a href="#html">Back to Top</a></small></h1>
+            <h1><a href="#update-with-deps">update_with_dependencies</a><small><a href="#html">Back to Top</a></small></h1>
 
-        <h2 id="configuration">Configuration</h2>
+            <h2 id="configuration">Configuration</h2>
 <p><strong>name</strong>: update_with_dependencies<br>
 <strong>type</strong>: int<br>
 <strong>default</strong>: 1</p>
@@ -970,7 +1062,11 @@
 </span>}</code></pre></div>
 
 
-    </section>
+        </section>
+        
+
+    
+        
 
     
 

@@ -19,7 +19,7 @@
         color: #242424;
         max-width: 800px;
         margin: 5% auto;
-       
+
     }
     body::after {
         clear: both;
@@ -86,7 +86,14 @@
         border-radius: 3px;
         color: #000;
         font: monospace;
-        padding: 2px 7px;
+        padding: 2px 0px;
+    }
+    .highlight {
+        overflow: scroll;
+        width: 100%;
+    }
+    header .highlight span {
+        display: inline;
     }
     a {
         color: #1e8cbe;
@@ -172,7 +179,7 @@
         cursor: pointer;
         font-weight: 500;
         position: relative;
-        text-decoration: none; 
+        text-decoration: none;
         padding: 10px 12px;
         width: 100%;
         padding-right: 3px;
@@ -193,7 +200,7 @@
         background-color: #E6E8EA;
         color: #1e8cbe;
         text-decoration: underline;
-    }   
+    }
     nav a:hover:before {
         display: block;
     }
@@ -219,10 +226,15 @@
         h2 {
             font-size: 20px;
         }
-    }   
+    }
     @media screen and (max-width: 514px) {
         p, ul, ol, blockquote  {
             margin-bottom: 8%;
+        }
+    }
+    @media screen and (max-width: 514px) {
+        section h1 a {
+            word-break: break-all;
         }
     }
 </style>
