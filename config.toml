@@ -36,7 +36,6 @@ disableKinds = ["taxonomyTerm"]
     # You may use markdown here
     headerTitle = "Violinist documentation"
     completeExample = """
-```
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -47,7 +46,7 @@ disableKinds = ["taxonomyTerm"]
     "violinist": {
       "allow_updates_beyond_constraint": 1,
       "assignees": [],
-      "blacklist: [],
+      "blacklist": [],
       "bundled_packages": [],
       "default_branch": "",
       "number_of_concurrent_updates": 0,
@@ -60,7 +59,6 @@ disableKinds = ["taxonomyTerm"]
     }
   }
 }
-```
 """
 
     # Back-to-top button name
