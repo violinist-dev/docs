@@ -33,4 +33,4 @@ The default command for updating packages with violinist are the following:
 composer update vendor/package --with-dependencies
 {{< /highlight >}}
 
-If you do not want violinist to update with dependencies, you can use the configuration option [#update-with-deps](update_with_dependencies)
+If you do not want violinist to update with dependencies, you can use the configuration option [update_with_dependencies](#update-with-deps)
