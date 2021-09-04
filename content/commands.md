@@ -24,3 +24,13 @@ The two options mean as follows:
 {{< /highlight >}}
 
 There are still several ways this can be manipulated. See the config options for details.
+
+## Updating packages
+
+The default command for updating packages with violinist are the following:
+
+{{< highlight bash >}}
+composer update vendor/package --with-dependencies
+{{< /highlight >}}
+
+If you do not want violinist to update with dependencies, you can use the configuration option [#update-with-deps](update_with_dependencies)
