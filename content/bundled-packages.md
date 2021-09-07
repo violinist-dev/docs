@@ -102,3 +102,28 @@ To make Violinist update them both together, you would do something like this:
   }
 }
 {{< /highlight >}}
+
+### Example for Drupal (with block list)
+
+{{< highlight JSON "hl_lines=8-19" >}}
+{
+  "name": "company/drupal-project",
+  "description": "My awesome Drupal project",
+  "require": {
+    "drupal/core-composer-scaffold": "^9.2.0",
+    "drupal/core-recommended": "^9.2.0"
+  },
+  "extra": {
+    "violinist": {
+        "bundled_packages": {
+          "drupal/core-recommended": [
+            "drupal/core-composer-scaffold"
+          ]
+        },
+        "blocklist": [
+          "drupal/core-composer-scaffold"
+        ]
+    }
+  }
+}
+{{< /highlight >}}
