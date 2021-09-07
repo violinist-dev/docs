@@ -1,13 +1,13 @@
 ---
-title: "blacklist"
+title: "blocklist"
 date: 2018-03-25T10:50:02+02:00
-anchor: "blacklisting-projects"
+anchor: "blocklisting-projects"
 weight:
 ---
 
 ## Configuration
 
-__name__: blacklist
+__name__: blocklist
 __type__: array
 __default__: []
 
@@ -16,7 +16,7 @@ __default__: []
   "name": "company/project",
   "extra": {
     "violinist": {
-      "blacklist": []
+      "blocklist": []
     }
   }
 }
@@ -27,8 +27,7 @@ An array of packages to always ignore while running updates with Violinist. Defa
 
 ## Explanation
 
-Some times a version of your package comes out that will never be compatible with your codebase. Some times this means you have to do some refactoring, but you only have time to do so some time in the future. Some times this makes you annoyed that Violinist is continiously trying to update that package, even if you know it will fail. This could be an example of when you want to blacklist a project.
-
+Some times a version of your package comes out that will never be compatible with your codebase. Some times this means you have to do some refactoring, but you only have time to do so some time in the future. Some times this makes you annoyed that Violinist is continiously trying to update that package, even if you know it will fail. This could be an example of when you want to add a project to the block list.
 If you want to blacklist a project, you can add some extra information into your composer.json.
 
 ## Example
