@@ -28,11 +28,12 @@ An array of packages to always ignore while running updates with Violinist. Defa
 ## Explanation
 
 Some times a version of your package comes out that will never be compatible with your codebase. Some times this means you have to do some refactoring, but you only have time to do so some time in the future. Some times this makes you annoyed that Violinist is continiously trying to update that package, even if you know it will fail. This could be an example of when you want to add a project to the block list.
-If you want to blacklist a project, you can add some extra information into your composer.json.
+
+If you want to add a project to the block list, you can add some extra information into your composer.json.
 
 ## Example
 
-Say you wanted to blacklist the project `vendor/package`. And say your composer.json looks something like this:
+Say you wanted to add the project `vendor/package` to the block list. And say your composer.json looks something like this:
 
 {{< highlight JSON >}}
 {
@@ -57,7 +58,7 @@ To make Violinist stop trying to update `vendor/package` you simply add the foll
   },
   "extra": {
     "violinist": {
-      "blacklist": [
+      "blocklist": [
         "vendor/package"
       ]
     }
@@ -68,7 +69,7 @@ To make Violinist stop trying to update `vendor/package` you simply add the foll
 
 ## Example with wildcards
 
-You can also use wildcards in your blacklist. Examples could be `vendor/*` or `vendor/prefix_*`.
+You can also use wildcards in your block list. Examples could be `vendor/*` or `vendor/prefix_*`.
 
 
 {{< highlight JSON "hl_lines=7-14" >}}
@@ -80,7 +81,7 @@ You can also use wildcards in your blacklist. Examples could be `vendor/*` or `v
   },
   "extra": {
     "violinist": {
-      "blacklist": [
+      "blocklist": [
         "vendor/*",
         "vendor/prefix_*"
       ]
