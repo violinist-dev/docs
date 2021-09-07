@@ -105,6 +105,12 @@ To make Violinist update them both together, you would do something like this:
 
 ### Example for Drupal (with block list)
 
+Quite often when you are creating Drupal projects with composer, you will have several packages that are generated for the same core version.
+
+The most common example of this is the package `drupal/core-composer-scaffold`.
+
+With the default violinist configuration you would get 2 merge requests when a new core version comes out. One for `drupal/core-recommended`, and one for `drupal/core-composer-scaffold`. This feels both tedious and unnecessary, since they kind of belong together, and are always released at the same time. So to skip the merge request for `drupal/core-composer-scaffold` and instead get this bundled with `drupal/core-recommended` you would add the following configuration to your `composer.json`:
+
 {{< highlight JSON "hl_lines=8-19" >}}
 {
   "name": "company/drupal-project",
@@ -127,3 +133,5 @@ To make Violinist update them both together, you would do something like this:
   }
 }
 {{< /highlight >}}
+
+If your project also uses `drupal/core-project-message` and/or `drupal/core-dev` you might want to add these as well.
