@@ -46,7 +46,7 @@ disableKinds = ["taxonomyTerm"]
     "violinist": {
       "allow_updates_beyond_constraint": 1,
       "assignees": [],
-      "blacklist": [],
+      "blocklist": [],
       "bundled_packages": [],
       "default_branch": "",
       "number_of_concurrent_updates": 0,
