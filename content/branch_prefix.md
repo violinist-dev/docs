@@ -26,4 +26,6 @@ A string representing a prefix that will be prepended before the default violini
 
 ## Explanation
 
-By default, violinist will create merge requests
+By default, violinist will create merge requests from a branch following a specific naming scheme. An update that updates psr/log from 1.0.0 to 1.1.4 would for example have a branch named `psrlog100114`.
+
+If you want to create some logic in your CI/CD system with regards to violinist, it can be practical to have all merge requests follow a prefix pattern. So then this option comes in handy.
