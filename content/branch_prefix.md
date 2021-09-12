@@ -21,3 +21,5 @@ __default__: ""
   }
 }
 {{< /highlight >}}
+
+A string representing a prefix that will be prepended before the default violinist branch name.
