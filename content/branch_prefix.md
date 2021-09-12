@@ -38,7 +38,9 @@ Say you wanted to have all merge requests to follow the following pattern (same 
 violinist-prefix/psrlog100114
 ```
 
-Then you would add the following configuration:
+> If you want to end your prefix with a special character. Say a slash (as above) or a dash. Please note that you have to specify the entire prefix string, including said last character.
+
+Then you would add the following configuration (please note the last character is the slash in the prefix):
 
 {{< highlight JSON "hl_lines=4-8" >}}
 {
