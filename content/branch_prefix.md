@@ -32,11 +32,7 @@ If you want to create some logic in your CI/CD system with regards to violinist,
 
 ## Example
 
-Say you wanted to have all merge requests to follow the following pattern (same example update as above):
-
-```
-violinist-prefix/psrlog100114
-```
+Say you wanted to have all merge requests to follow the following pattern (same example update as above): `violinist-prefix/psrlog100114`
 
 > If you want to end your prefix with a special character. Say a slash (as above) or a dash. Please note that you have to specify the entire prefix string, including said last character.
 
