@@ -23,3 +23,7 @@ __default__: ""
 {{< /highlight >}}
 
 A string representing a prefix that will be prepended before the default violinist branch name.
+
+## Explanation
+
+By default, violinist will create merge requests
