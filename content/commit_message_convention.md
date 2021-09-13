@@ -1,5 +1,5 @@
 ---
-title: "Commit_message_convention"
+title: "commit_message_convention"
 date: 2021-09-13T14:49:52Z
 anchor: "commit_message_convention"
 weight: 
@@ -46,9 +46,8 @@ If you want that Violinist commit messages follow the Conventional Commit, keep 
 
 This configuration will allow Violinist to push commit messages like:
 
-```
-build(dev): Update symfony/flex from v1.14.0 to v1.14.1
-```
+`build(dev): Update symfony/flex from v1.14.0 to v1.14.1`
+
 
 If you don't want to have a formatted commit message, set it to `none`.
 
@@ -65,6 +64,4 @@ If you don't want to have a formatted commit message, set it to `none`.
 
 Violinist will not format its commit message. It will be like:
 
-```
-Update symfony/flex
-```
+`Update symfony/flex`
