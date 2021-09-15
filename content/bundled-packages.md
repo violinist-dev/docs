@@ -8,15 +8,15 @@ weight:
 ## Configuration
 
 __name__: bundled_packages
-__type__: array
-__default__: []
+__type__: object
+__default__: {}
 
 {{< highlight JSON "hl_lines=5" >}}
 {
   "name": "company/project",
   "extra": {
     "violinist": {
-      "bundled_packages": []
+      "bundled_packages": {}
     }
   }
 }
