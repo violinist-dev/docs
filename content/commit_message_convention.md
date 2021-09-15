@@ -10,14 +10,14 @@ weight:
 
 __name__: commit_message_convention
 __type__: string
-__default__: "conventional"
+__default__: ""
 
 {{< highlight JSON "hl_lines=5" >}}
 {
   "name": "company/project",
   "extra": {
     "violinist": {
-      "commit_message_convention": "conventional"
+      "commit_message_convention": ""
     }
   }
 }
@@ -27,11 +27,11 @@ For Violinist to use a commit message convention or not.
 
 ## Explanation
 
-By default, violinist will use the [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/). If you don't want to have a formatted commit message, set it to `none`.
+By default, Violinist will use the [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/). You can make it explicit it with the value `conventional` or if you don't want to have a formatted commit message, set it to `none`.
 
 ## Example
 
-If you want that Violinist commit messages follow the Conventional Commit, keep the default or set the key to `conventional`.
+If you want that Violinist commit messages follow the Conventional Commit, keep the default or set the value to `conventional`.
 
 {{< highlight JSON "hl_lines=5" >}}
 {
@@ -62,6 +62,6 @@ If you don't want to have a formatted commit message, set it to `none`.
 }
 {{< /highlight >}}
 
-Violinist will not format its commit message. It will be like:
+Violinist will not format its commit messages. It will be like:
 
 `Update symfony/flex`
