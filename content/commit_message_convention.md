@@ -27,7 +27,7 @@ For Violinist to use a commit message convention or not.
 
 ## Explanation
 
-By default, Violinist will use the [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/). You can make it explicit it with the value `conventional` or if you don't want to have a formatted commit message, set it to `none`.
+By default, Violinist will use the [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/). You can make it explicit with the value `conventional` or if you don't want to have formatted commit messages, set it to `none`.
 
 ## Example
 
@@ -49,7 +49,7 @@ This configuration will allow Violinist to push commit messages like:
 `build(dev): Update symfony/flex from v1.14.0 to v1.14.1`
 
 
-If you don't want to have a formatted commit message, set it to `none`.
+If you don't want to have formatted commit messages, set it to `none`.
 
 {{< highlight JSON "hl_lines=5" >}}
 {
