@@ -48,6 +48,7 @@ disableKinds = ["taxonomyTerm"]
       "assignees": [],
       "blocklist": [],
       "bundled_packages": {},
+      "commit_message_convention": "",
       "default_branch": "",
       "number_of_concurrent_updates": 0,
       "one_pull_request_per_package": 0,
