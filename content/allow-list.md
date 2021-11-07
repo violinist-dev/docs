@@ -1,7 +1,7 @@
 ---
-title: "blocklist"
+title: "allow-list"
 date: 2018-03-25T10:50:02+02:00
-anchor: "blocklisting-projects"
+anchor: "allow-list"
 weight:
 ---
 
@@ -23,9 +23,11 @@ __default__: []
 {{< /highlight >}}
 
 
-An array of packages to explicitly allow when updating packages with violinist. Defaults to nothing.
+An array of packages to explicitly allow when updating packages with violinist. Defaults to nothing, which means all available updates will be attempted.
 
 ## Explanation
+
+Some projects only want to allow updates to specific projects. This can be because you use other tools or processes to update the rest of the projects, or maybe you are using bundled updates for some of your projects. If this is the case, you probably want to use the option allow list.
 
 Some times a version of your package comes out that will never be compatible with your codebase. Some times this means you have to do some refactoring, but you only have time to do so some time in the future. Some times this makes you annoyed that Violinist is continiously trying to update that package, even if you know it will fail. This could be an example of when you want to add a project to the block list.
 
