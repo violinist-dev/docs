@@ -10,4 +10,4 @@ weight:
 
 This documentation is open source. If you find a typo or you feel something is explained badly you can contribute to making it better!
 
-The source [source can be found at https://github.com/violinist-dev/docs/](https://github.com/violinist-dev/docs/)!
+The [source can be found at https://github.com/violinist-dev/docs/](https://github.com/violinist-dev/docs/)
