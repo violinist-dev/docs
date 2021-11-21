@@ -44,6 +44,7 @@ disableKinds = ["taxonomyTerm"]
   },
   "extra": {
     "violinist": {
+      "allow_list": [],
       "allow_updates_beyond_constraint": 1,
       "assignees": [],
       "blocklist": [],
