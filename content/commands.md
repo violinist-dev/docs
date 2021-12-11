@@ -23,7 +23,7 @@ The two options mean as follows:
 --minor-only (-m): Only shows packages that have minor SemVer-compatible updates.
 {{< /highlight >}}
 
-There are still several ways this can be manipulated. See the config options for details.
+There are still several ways this can be manipulated. See the config options for details. For example, If you set the option [check_only_direct_dependencies](#check-only-direct) to `0` the `--direct` flag will not be used.
 
 ## Updating packages
 
