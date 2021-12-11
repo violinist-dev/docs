@@ -50,6 +50,7 @@ disableKinds = ["taxonomyTerm"]
       "blocklist": [],
       "branch_prefix": "",
       "bundled_packages": {},
+      "check_only_direct_dependencies": 1,
       "commit_message_convention": "",
       "default_branch": "",
       "number_of_concurrent_updates": 0,
