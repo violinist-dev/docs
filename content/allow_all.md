@@ -41,8 +41,8 @@ Let's say your project looks like this:
   "description": "My awesome project",
   "require": {
     "vendor/package1": "~1.0.0",
-    "othervendor/otherpackage: "^2.0.7",
-    // ...and a dozen more...
+    "othervendor/otherpackage": "^2.0.7",
+    "// ...and a dozen more...": 1
   }
 }
 {{< /highlight >}}
@@ -51,12 +51,14 @@ And then, maybe you don't want one pull request per dependency. You simply want 
 
 To change the behavior of violinist to only run `composer update` with no arguments, and in one single merge request, you can do this:
 
-{{< highlight JSON "hl_lines=7-11" >}}
+{{< highlight JSON "hl_lines=9-13" >}}
 {
   "name": "company/project",
   "description": "My awesome project",
   "require": {
-    "vendor/package": "~1.0.0"
+    "vendor/package1": "~1.0.0",
+    "othervendor/otherpackage": "^2.0.7",
+    "// ...and a dozen more...": 1
   },
   "extra": {
     "violinist": {
