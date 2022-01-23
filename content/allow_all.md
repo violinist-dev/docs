@@ -33,22 +33,25 @@ This is probably most useful if you have not so many dependencies, or if you are
 
 ## Example
 
-This means that this update strategy will create a pull request for you in all of these scenarios:
-
-- If your project requires package `vendor/package1` and there is a new version of `vendor/package1`.
-
-Say you depend on the project `vendor/package` in range `~1.0.0`. And say the latest version is 1.1.0. And say you actually do not want to receive this update via Violinist. And say your composer.json looks something like this:
+Let's say your project looks like this:
 
 {{< highlight JSON >}}
 {
   "name": "company/project",
   "description": "My awesome project",
   "require": {
-    "vendor/package": "~1.0.0",
+    "vendor/package1": "~1.0.0",
   }
 }
 {{< /highlight >}}
 
+With no configuration, the only time violinist will create a pull request is when `vendor/package1` has a new version. However, this package may still depend on other packages which in turn may have updates that you would not receive by default. 
+
+This means that this update strategy will create a pull request for you in all of these scenarios:
+
+- If your project requires package `vendor/package1` and there is a new version of `vendor/package1`.
+- If your project requires package `vendor/package1` which in turn requires `vendor/package2`, and there is no new version of `vendor/package1`, but there is a new version of `vendor/package2`.
+- If your project requires package `vendor/package1` which in turn requires `vendor/package2` which in turn requires `vendor/package3`, and there are no new versions for `vendor/package1` or `vendor/package2`, but there is a new version of `vendor/package3`.
 
 To make Violinist stop trying to update `vendor/package` (and all other pages) beyond your specified version range you simply add the following to your composer.json:
 
