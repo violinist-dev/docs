@@ -29,8 +29,9 @@ Indicate if you always want violinist to update all packages (simply the command
 
 This is probably most useful if you have not so many dependencies, or if you are replacing a manual workflow that involves running `composer update` on a regular basis. If you are using this option, only one pull request will be created by violinist, and it will contain the updates that would happen if you were running `composer update`. So this option updates all of your dependencies, all of the time.
 
-> NB! This will not change any of your constraints. So strictly speaking, it will update all of your dependencies that has an update and where an update is allowed within the constraint.
+> Note! This will not change any of your constraints. So strictly speaking, it will update all of your dependencies that has an update and where an update is allowed within the constraint.
 
+> Note! This option is incompatible with allow list and block list. Those lists are intended to limit the list of updates being attempted (that is, which commands are being run). With the option `always_update_all` you have no such control over which packages are updated. It's simply all of them.
 ## Example
 
 Let's say your project looks like this:
