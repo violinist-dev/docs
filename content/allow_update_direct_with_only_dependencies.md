@@ -11,9 +11,12 @@ __name__: allow_update_direct_with_only_dependencies
 __type__: int
 __default__: 0
 
-{{< highlight JSON "hl_lines=5" >}}
+{{< highlight JSON "hl_lines=8" >}}
 {
   "name": "company/project",
+  "require": {
+    "vendor/package": "~1.0.0",
+  },
   "extra": {
     "violinist": {
       "allow_update_direct_with_only_dependencies": 0
@@ -32,11 +35,13 @@ This way, `composer update vendor/package --with-dependencies` will run, regardl
 
 ## Example
 
-Say you wanted to have all merge requests to follow the following pattern (same example update as above): `violinist-prefix/psrlog100114`
+Say you are trying out violinist and are duty fully merging all updates that comes in for a couple of weeks. And one day you decide to run `composer update` manually. Surprisingly you find out that there are several updates applied. How can that be? You have been using violinist and have merged all available updates?
 
-> If you want to end your prefix with a special character. Say a slash (as above) or a dash. Please note that you have to specify the entire prefix string, including said last character.
+The reason is violinist only updates direct dependencies (unless you set [check_only_direct_dependencies](#check-only-direct) to 0). So if one of your dependencies is in it's final version, and no more versions will be released, that final version can still depend on packages that receive weekly updates. Some people would therefore prefer to run the command `composer update vendor/package --with-dependencies` even if `vendor/package` has no updates, but the transitive dependencies from that package has updates.
 
-Then you would add the following configuration (please note the last character is the slash in the prefix):
+This is different than [check_only_direct_dependencies](#check-only-direct) set to 0, since `check_only_direct_dependencies` set to 0 would produce one merge request per direct or indirect dependency. While this option will only have merge requests for direct dependencies, some with actual updates to the direct dependency, and some only to one or more of the dependencies of a direct dependency.
+
+If this sounds like the configuration you want, you would change your `composer.json` like so:
 
 {{< highlight JSON "hl_lines=4-8" >}}
 {
@@ -44,8 +49,10 @@ Then you would add the following configuration (please note the last character i
   "description": "My awesome project",
   "extra": {
     "violinist": {
-      "branch_prefix": "violinist-prefix/"
+      "allow_update_direct_with_only_dependencies": 1
     }
   }
 }
 {{< /highlight >}}
+
+
