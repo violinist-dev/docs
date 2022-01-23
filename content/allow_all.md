@@ -27,15 +27,15 @@ Indicate if you always want violinist to update all packages (simply the command
 
 ## Explanation
 
-This is probably most useful if you have not so many dependencies, or if you are replacing a manual workflow that involves this. If you are using this option, only one pull request will be created by violinist, and it will contain the updates that would happen if you were running `composer update`. This means that this update strategy will create a pull request for you in all of these scenarios:
+This is probably most useful if you have not so many dependencies, or if you are replacing a manual workflow that involves this. If you are using this option, only one pull request will be created by violinist, and it will contain the updates that would happen if you were running `composer update`. So this option updates all of your dependencies, all of the time.
 
-- If your project requires package `vendor/package1` and there is a new version of `vendor/package1`.
-
-
-
-Strictly speaking, if your composer.json specifies that you want to have the package `vendor/package` in the version range `~1.0.0`, then composer will install all version in the range 1.0.x, but refuse to update it to 1.1.0. Some times this is what you want. But many times, a new version at 1.1.0 will include new features and be backwards compatible. So maybe you actually might want to start using that version instead? This is what the option for allowing to update beyond your version constraint does.
+> NB! This will not change any of your constraints. So strictly speaking, it will update all of your dependencies that has an update and where an update is allowed within the constraint.
 
 ## Example
+
+This means that this update strategy will create a pull request for you in all of these scenarios:
+
+- If your project requires package `vendor/package1` and there is a new version of `vendor/package1`.
 
 Say you depend on the project `vendor/package` in range `~1.0.0`. And say the latest version is 1.1.0. And say you actually do not want to receive this update via Violinist. And say your composer.json looks something like this:
 
