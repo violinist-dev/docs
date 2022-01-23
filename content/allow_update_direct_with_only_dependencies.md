@@ -26,11 +26,9 @@ Indicates that you want violinist to update your dependencies, even if your dire
 
 ## Explanation
 
-By default, violinist will only update your dependencies if one of your direct dependencies has an update available.
+By default, violinist will only update your dependencies if one of your direct dependencies has an update available. However, if a transative dependency has an update, it will not be updated until the direct dependency that introduce this dependency has an update. This option changes that.
 
-By default, violinist will create merge requests from a branch following a specific naming scheme. An update that updates psr/log from 1.0.0 to 1.1.4 would for example have a branch named `psrlog100114`.
-
-If you want to create some logic in your CI/CD system with regards to violinist, it can be practical to have all merge requests follow a prefix pattern. So then this option comes in handy.
+This way, `composer update vendor/package --with-dependencies` will run, regardless of the package having an update or not, and therefore also then update any (one or several) transative dependencies of `vendor/package`.
 
 ## Example
 
