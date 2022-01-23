@@ -22,9 +22,11 @@ __default__: 0
 }
 {{< /highlight >}}
 
-A string representing a prefix that will be prepended before the default violinist branch name.
+Indicates that you want violinist to update your dependencies, even if your direct dependency does not have a new version, but at least one package in the dependency tree descending from a direct dependency has an update available.
 
 ## Explanation
+
+By default, violinist will only update your dependencies if one of your direct dependencies has an update available.
 
 By default, violinist will create merge requests from a branch following a specific naming scheme. An update that updates psr/log from 1.0.0 to 1.1.4 would for example have a branch named `psrlog100114`.
 
