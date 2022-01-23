@@ -40,21 +40,16 @@ Let's say your project looks like this:
   "name": "company/project",
   "description": "My awesome project",
   "require": {
-    "vendor/package1": "~1.0.0"
+    "vendor/package1": "~1.0.0",
+    "othervendor/otherpackage: "^2.0.7",
+    // ...and a dozen more...
   }
 }
 {{< /highlight >}}
 
-With no configuration, the only time violinist will create a pull request is when `vendor/package1` has a new version.
+And then, maybe you don't want one pull request per dependency. You simply want to update everything from time to time. Like you would do `composer update`.
 
-This means that this update strategy will create a pull request for you in all of these scenarios:
-
-- If your project requires package `vendor/package1` and there is a new version of `vendor/package1`.
-- If your project requires package `vendor/package1` which in turn requires `vendor/package2`, and there is no new version of `vendor/package1`, but there is a new version of `vendor/package2`.
-- If your project requires package `vendor/package1` which in turn requires `vendor/package2` which in turn requires `vendor/package3`, and there are no new versions for `vendor/package1` or `vendor/package2`, but there is a new version of `vendor/package3`.
-
-To make Violinist stop trying to update `vendor/package` (and all other pages) beyond your specified version range you simply add the following to your composer.json:
-
+To change the behavior of violinist to only run `composer update` with no arguments, and in one single merge request, you can do this:
 
 {{< highlight JSON "hl_lines=7-11" >}}
 {
@@ -65,8 +60,16 @@ To make Violinist stop trying to update `vendor/package` (and all other pages) b
   },
   "extra": {
     "violinist": {
-      "allow_updates_beyond_constraint": 0
+      "always_update_all": 1
     }
   }
 }
 {{< /highlight >}}
+
+This means that this update strategy will create a pull request for you in all of these scenarios:
+
+- If your project requires package `vendor/package1` and there is a new version of `vendor/package1`.
+- If your project requires package `vendor/package1` which in turn requires `vendor/package2`, and there is no new version of `vendor/package1`, but there is a new version of `vendor/package2`.
+- If your project requires package `vendor/package1` which in turn requires `vendor/package2` which in turn requires `vendor/package3`, and there are no new versions for `vendor/package1` or `vendor/package2`, but there is a new version of `vendor/package3`.
+
+Either way, if there were packages updated, they will all be bundled in the same merge request, and not in separate merge requests per package.
