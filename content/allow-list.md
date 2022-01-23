@@ -26,7 +26,9 @@ __default__: []
 
 An array of packages to explicitly allow when updating packages with violinist. Defaults to nothing, which means all available updates will be attempted. This means that putting one package on the allow list will block all other updates from being attempted, while having zero packages on the allow list will not filter any of the updates.
 
-> NB! When using in combination with [blocklist](#blocklisting-projects), the updates will first be filtered through the allow list, and then it will apply block list rules. This means you can explicitly allow `symfony/*` while still adding `symfony/yaml` to the block list.
+> Note! When using in combination with [blocklist](#blocklisting-projects), the updates will first be filtered through the allow list, and then it will apply block list rules. This means you can explicitly allow `symfony/*` while still adding `symfony/yaml` to the block list.
+
+> Note! This option has no effect if used in combination with [always_update_all](#updating-all).
 
 ## Explanation
 
