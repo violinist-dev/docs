@@ -26,6 +26,8 @@ __default__: []
 
 An array of packages to always ignore while running updates with Violinist. Defaults to nothing.
 
+> Note! This option has no effect if used in combination with [always_update_all](#updating-all).
+
 ## Explanation
 
 Some times a version of your package comes out that will never be compatible with your codebase. Some times this means you have to do some refactoring, but you only have time to do so some time in the future. Some times this makes you annoyed that Violinist is continiously trying to update that package, even if you know it will fail. This could be an example of when you want to add a project to the block list.
