@@ -28,7 +28,9 @@ Indicate whether you want violinist to check only direct dependencies, or all de
 
 By default, violinist will only try to update packages you are directly dependent on. This means that if you are dependent on the package `asm89/stack-cors`, your project will be _indirectly_ dependent on for example `symfony/http-foundation`. What that also means though, is that by default only pull requests to update the package `asm89/stack-cors` will be created. For many projects, this is what is desired. However, the frequency of releases to these packages can vary a lot. For example, between 2 versions of `asm89/stack-cors` there could theoretically be 10 versions of `symfony/http-foundation`. Some then find it surprising that even if they are merging all of the pull requests from violinist, running `composer update` still updates some packages for them. This is the reason.
 
-> NB! This option will update all dependencies in your lock file. This can potentially mean _A LOT_ of pull requests. Therefore this option is best combined with either a [block list](#blocklisting-projects) or an [allow list](#allow-list)
+> Note! This option will update all dependencies in your lock file. This can potentially mean _A LOT_ of pull requests. Therefore this option is best combined with either a [block list](#blocklisting-projects) or an [allow list](#allow-list)
+
+> Note! This option has no effect if you have set `always_update_all` to 1.
 
 ## Example
 
