@@ -5,7 +5,7 @@ anchor: "assignees"
 weight:
 ---
 
->This feature is only available on the agency and enterprise plans.
+> This feature is only available on the agency and enterprise plans.
 
 ## Configuration
 
@@ -67,4 +67,4 @@ To make Violinist assign `my-review-user` to all of the pull requests created, s
 }
 {{< /highlight >}}
 
->NB! The above example is for github. For gitlab you would use a user id (see above).
+> Note! The above example is for github. For gitlab you would use a user id (see above).
