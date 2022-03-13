@@ -54,5 +54,3 @@ If this sounds like the configuration you want, you would change your `composer.
   }
 }
 {{< /highlight >}}
-
-

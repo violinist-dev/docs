@@ -55,7 +55,7 @@
     {{ range where .Site.Pages.ByTitle "Params.is_intro" "!=" true }}
         {{ if .Params.anchor }}
 
-        <section id="{{ .Params.anchor }}">
+        <section class="config-option" id="{{ .Params.anchor }}">
 
             <h1><a href="#{{ .Params.anchor }}">{{ .Title }}</a><small><a href="#html">{{ with .Site.Params.bttButton }}{{ . | markdownify }}{{ else }}Back to Top{{ end }}</a></small></h1>
 
