@@ -32,6 +32,8 @@ By default, violinist will only try to update packages you are directly dependen
 
 > Note! This option has no effect if you have set `always_update_all` to 1.
 
+> Note! This option has no effect if you have set `allow_update_indirect_with_direct` to 1.
+
 ## Example
 
 Maybe you have a project that depend on a "meta-package" for your company, that in turn will download all of the dependencies of your framework of choice. This can be very convenient for making sure projects are similar, company-wide. However, your meta-package might not get new updates very often, so the _indirect dependencies_ of your project (that is the dependencies of your "meta-package") might become out of date. Or even cause you to miss a security update. Then let's configure our project to get all updates for all dependencies.
