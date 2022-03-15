@@ -55,4 +55,4 @@ Maybe you have a project that depend on a "meta-package" for your company, that 
 
 This way, there will be pull requests created for all of the packages, direct or indirect. And dependencies will therefore be kept up to date, regardless of the meta-package `company/package-with-symfony-dependencies-declared` getting a new version or not.
 
-> NB! Again, this will potentially create _A LOT_ of pull requests. You probably want to combine this option with either a [block list](#blocklisting-projects) or an [allow list](#allow-list). Or maybe with [security_updates_only](#security-updates-only)
+> Note! Again, this will potentially create _A LOT_ of pull requests. You probably want to combine this option with either a [block list](#blocklisting-projects) or an [allow list](#allow-list). Or maybe with [security_updates_only](#security-updates-only). Or maybe you might be looking for the option [allow_update_direct_with_only_dependencies](#allow_update_direct_with_only_dependencies)
