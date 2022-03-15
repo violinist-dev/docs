@@ -24,7 +24,7 @@ __default__: 1
 
 Indicate whether you want violinist to check only direct dependencies, or all dependencies.
 
-> Note! If you are looking for a way to get dependency updates of your direct dependencies, even if the direct dependency does not have a new version, then you probably want the option [allow_update_direct_with_only_dependencies](#allow_update_direct_with_only_dependencies)
+> Note! If you are looking for a way to get dependency updates of your direct dependencies, even if the direct dependency does not have a new version, then you probably want the option [allow_update_direct_with_only_dependencies](#allow_update_direct_with_only_dependencies). The difference being, with the option `allow_update_direct_with_only_dependencies` you get one pull request per direct dependency. But with this option (`check_only_direct_dependencies` set to 0) you get one pull request per package you have installed in your project, regardless of the package being directly required or not.
 
 ## Explanation
 
