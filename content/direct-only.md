@@ -24,6 +24,8 @@ __default__: 1
 
 Indicate whether you want violinist to check only direct dependencies, or all dependencies.
 
+> Note! If you are looking for a way to get dependency updates of your direct dependencies, even if the direct dependency does not have a new version, then you probably want the option [allow_update_direct_with_only_dependencies](#allow_update_direct_with_only_dependencies). The difference being, with the option `allow_update_direct_with_only_dependencies` you get one pull request per direct dependency. But with this option (`check_only_direct_dependencies` set to 0) you get one pull request per package you have installed in your project, regardless of the package being directly required or not.
+
 ## Explanation
 
 By default, violinist will only try to update packages you are directly dependent on. This means that if you are dependent on the package `asm89/stack-cors`, your project will be _indirectly_ dependent on for example `symfony/http-foundation`. What that also means though, is that by default only pull requests to update the package `asm89/stack-cors` will be created. For many projects, this is what is desired. However, the frequency of releases to these packages can vary a lot. For example, between 2 versions of `asm89/stack-cors` there could theoretically be 10 versions of `symfony/http-foundation`. Some then find it surprising that even if they are merging all of the pull requests from violinist, running `composer update` still updates some packages for them. This is the reason.
@@ -55,4 +57,4 @@ Maybe you have a project that depend on a "meta-package" for your company, that 
 
 This way, there will be pull requests created for all of the packages, direct or indirect. And dependencies will therefore be kept up to date, regardless of the meta-package `company/package-with-symfony-dependencies-declared` getting a new version or not.
 
-> NB! Again, this will potentially create _A LOT_ of pull requests. You probably want to combine this option with either a [block list](#blocklisting-projects) or an [allow list](#allow-list). Or maybe with [security_updates_only](#security-updates-only)
+> Note! Again, this will potentially create _A LOT_ of pull requests. You probably want to combine this option with either a [block list](#blocklisting-projects) or an [allow list](#allow-list). Or maybe with [security_updates_only](#security-updates-only). Or maybe you might be looking for the option [allow_update_direct_with_only_dependencies](#allow_update_direct_with_only_dependencies)
