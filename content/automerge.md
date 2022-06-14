@@ -23,7 +23,7 @@ __default__: 0
 }
 {{< /highlight >}}
 
-Indicate whether or not you want a pull/merge request to have the automerge option enabled.
+Indicate whether or not you want pull/merge requests created by violinist to have the automerge option enabled.
 
 > Note! This option currently does not work with Bitbucket.
 
