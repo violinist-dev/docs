@@ -1,5 +1,5 @@
 ---
-title: "allow_update_direct_with_only_dependencies"
+title: "allow_update_indirect_with_direct"
 date: 2018-03-25T10:50:02+02:00
 anchor: "allow_update_direct_with_only_dependencies"
 weight:
@@ -7,7 +7,7 @@ weight:
 
 ## Configuration
 
-__name__: allow_update_direct_with_only_dependencies
+__name__: allow_update_indirect_with_direct
 __type__: int
 __default__: 0
 
@@ -19,7 +19,7 @@ __default__: 0
   },
   "extra": {
     "violinist": {
-      "allow_update_direct_with_only_dependencies": 0
+      "allow_update_indirect_with_direct": 0
     }
   }
 }
@@ -49,7 +49,7 @@ If this sounds like the configuration you want, you would change your `composer.
   "description": "My awesome project",
   "extra": {
     "violinist": {
-      "allow_update_direct_with_only_dependencies": 1
+      "allow_update_indirect_with_direct": 1
     }
   }
 }
