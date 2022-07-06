@@ -45,7 +45,7 @@ disableKinds = ["taxonomyTerm"]
   "extra": {
     "violinist": {
       "allow_list": [],
-      "allow_update_direct_with_only_dependencies": 0,
+      "allow_update_indirect_with_direct": 0,
       "allow_updates_beyond_constraint": 1,
       "always_update_all": 0,
       "assignees": [],
