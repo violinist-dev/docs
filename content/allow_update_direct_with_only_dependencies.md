@@ -39,7 +39,7 @@ Say you are trying out violinist and are duty fully merging all updates that com
 
 The reason is violinist only updates direct dependencies (unless you set [check_only_direct_dependencies](#check-only-direct) to 0). So if one of your dependencies is in it's final version, and no more versions will be released, that final version can still depend on packages that receive weekly updates. Some people would therefore prefer to run the command `composer update vendor/package --with-dependencies` even if `vendor/package` has no updates, but the transitive dependencies from that package has updates.
 
-This is different than [check_only_direct_dependencies](#check-only-direct) set to 0, since `check_only_direct_dependencies` set to 0 would produce one merge request per direct or indirect dependency. While this option (`allow_update_direct_with_only_dependencies`) will only have merge requests for direct dependencies, some with actual updates to the direct dependency, and some only to one or more of the dependencies of a direct dependency.
+This is different than [check_only_direct_dependencies](#check-only-direct) set to 0, since `check_only_direct_dependencies` set to 0 would produce one merge request per direct or indirect dependency. While this option (`allow_update_indirect_with_direct`) will only have merge requests for direct dependencies, some with actual updates to the direct dependency, and some only to one or more of the dependencies of a direct dependency.
 
 If this sounds like the configuration you want, you would change your `composer.json` like so:
 
