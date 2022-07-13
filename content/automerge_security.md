@@ -27,7 +27,7 @@ Indicate whether or not you want pull/merge requests created by violinist to hav
 
 > Note! This option currently does not work with Bitbucket.
 
-> Note! This option only overrides the automaterge option if the update is a security update. If `automerge_security` is set to `0`, but `automerge` is set to `1`, then automerge will be enabled.
+> Note! This option only overrides the automerge option if the update is a security update. If `automerge_security` is set to `0`, but `automerge` is set to `1`, then automerge will be enabled.
 
 ## Explanation
 
