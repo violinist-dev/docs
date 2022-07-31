@@ -1,0 +1,17 @@
+name: PHP extensions up to date 
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: 'ubuntu-20.04'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Dump module output 
+        run: |
+          docker run --rm violinist/php-base:7.4-multi php -m > /tmp/out
+          cat /tmp/out
