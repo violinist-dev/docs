@@ -13,5 +13,5 @@ jobs:
 
       - name: Dump module output 
         run: |
-          docker run --rm violinist/php-base:7.4-multi php -m > /tmp/out
-          cat /tmp/out
+          export modules=$(docker run --rm violinist/php-base:7.4-multi php -m)
+          echo $modules
