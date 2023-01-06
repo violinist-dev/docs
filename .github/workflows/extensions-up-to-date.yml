@@ -14,4 +14,12 @@ jobs:
       - name: Dump module output 
         run: |
           export modules=$(docker run --rm violinist/php-base:7.4-multi php -m)
-          echo $modules
+          echo $modules >> wa
+
+      - name: Check it's the same
+        run: |
+          if [ $(git status -s | wc -c) -ne 0 ]; then
+            echo "Working tree is not clean:"
+            git status
+            exit 1
+          fi
