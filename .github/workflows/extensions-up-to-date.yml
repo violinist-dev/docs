@@ -13,7 +13,7 @@ jobs:
 
       - name: Dump module output 
         run: |
-          export modules=$(docker run --rm violinist/php-base:7.4-multi php -m)
+          export MODULES=$(docker run --rm violinist/php-base:7.4-multi php -m)
           envsubst < content/extensions.txt > content/extensions.md
 
       - name: Check it's the same
