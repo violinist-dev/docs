@@ -34,7 +34,9 @@ imagick
 imap
 intl
 json
+ldap
 libxml
+mailparse
 mbstring
 memcached
 mongodb
