@@ -24,17 +24,19 @@ __default__: []
 }
 {{< /highlight >}}
 
-An array of labels that should be added to the merge request.
+An array of labels that should be added to the merge request, if the merge request is for a security update.
 
 > Note! This option is not supported for Bitbucket, as Bitbucket does not support labels for their pull requests.
 
 ## Explanation
 
-If you need to label the merge requests coming from violinist, for example for sorting them or even run logic in your CI pipeline, this option is probably what you want.
+If you need to label the merge requests coming from violinist that are security updates, for example for sorting them or even run logic in your CI pipeline, this option is probably what you want.
+
+> Note! Security labels will be added in addition to any labels you have configured with the option `labels`.
 
 ## Example
 
-Say you wanted to label all pull requests coming from violinist with the label `dependencies`. And say your composer.json looks something like this:
+Say you wanted to label all security related pull requests coming from violinist with the label `security asap`. And say your composer.json looks something like this:
 
 {{< highlight JSON >}}
 {
@@ -44,7 +46,7 @@ Say you wanted to label all pull requests coming from violinist with the label `
 {{< /highlight >}}
 
 
-To make Violinist assign `my-review-user` to all of the pull requests created, simply add the following to your composer.json:
+To make Violinist add the label `security asap` to all of the pull requests created that are security updates, simply add the following to your composer.json:
 
 
 {{< highlight JSON "hl_lines=4-10" >}}
