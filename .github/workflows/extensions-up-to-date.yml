@@ -14,7 +14,7 @@ jobs:
       - name: Dump module output 
         run: |
           export modules=$(docker run --rm violinist/php-base:7.4-multi php -m)
-          sed -e "s/MODULES/$modules/g" content/extensions.txt > content/extensions.md
+          envsubst < content/extension.txt > content/extensions.md
 
       - name: Check it's the same
         run: |
