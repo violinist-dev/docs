@@ -44,7 +44,7 @@ Say you wanted to label all pull requests coming from violinist with the label `
 {{< /highlight >}}
 
 
-To make Violinist assign `my-review-user` to all of the pull requests created, simply add the following to your composer.json:
+To make Violinist add the label `dependencies` to all pull requests created, simply add the following to your composer.json:
 
 
 {{< highlight JSON "hl_lines=4-10" >}}
@@ -54,7 +54,7 @@ To make Violinist assign `my-review-user` to all of the pull requests created, s
   "extra": {
     "violinist": {
       "labels": [
-        dependencies"
+        "dependencies"
       ]
     }
   }
