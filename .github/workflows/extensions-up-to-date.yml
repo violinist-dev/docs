@@ -1,0 +1,26 @@
+name: PHP extensions up to date 
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: 'ubuntu-20.04'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Dump module output 
+        run: |
+          export MODULES=$(docker run --rm violinist/php-base:7.4-multi php -m)
+          envsubst < content/extensions.txt > content/extensions.md
+
+      - name: Check it's the same
+        run: |
+          if [ $(git status -s | wc -c) -ne 0 ]; then
+            echo "Working tree is not clean:"
+            git status
+            git diff
+            exit 1
+          fi
