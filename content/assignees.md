@@ -26,7 +26,7 @@ __default__: []
 
 An array of assignees that this project will use as the default assignee for new pull requests.
 
->NB! The value of this option depends on your VCS provider. For github this will be an array of usernames. For gitlab the array should consist of user IDs. You can find your user id by visiting [https://gitlab.com/api/v4/users?username=YOUR_USERNAME](https://gitlab.com/api/v4/users?username=YOUR_USERNAME) where YOUR_USERNAME is your gitlab username. (reference: [https://forum.gitlab.com/t/where-is-my-user-id-in-gitlab-com/7912](https://forum.gitlab.com/t/where-is-my-user-id-in-gitlab-com/7912))
+>Note! The value of this option depends on your VCS provider. For github this will be an array of usernames. For gitlab the array should consist of user IDs. You can find your user id by visiting [https://gitlab.com/api/v4/users?username=YOUR_USERNAME](https://gitlab.com/api/v4/users?username=YOUR_USERNAME) where YOUR_USERNAME is your gitlab username. (reference: [https://forum.gitlab.com/t/where-is-my-user-id-in-gitlab-com/7912](https://forum.gitlab.com/t/where-is-my-user-id-in-gitlab-com/7912))
 >
 >If you are using self hosted gitlab, change the domain accordingly.
 >

@@ -1,6 +1,7 @@
 name: PHP extensions up to date 
 on:
   - push
+  - workflow_dispatch
   - pull_request
 
 jobs:
