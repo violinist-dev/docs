@@ -57,6 +57,8 @@ disableKinds = ["taxonomyTerm"]
       "check_only_direct_dependencies": 1,
       "commit_message_convention": "",
       "default_branch": "",
+      "labels": [],
+      "labels_security": [],
       "number_of_concurrent_updates": 0,
       "one_pull_request_per_package": 0,
       "run_scripts": 1,
