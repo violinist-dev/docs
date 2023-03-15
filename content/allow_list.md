@@ -59,17 +59,23 @@ Say you wanted violinist to only update `vendor/package1` in your project, even 
 
 To make sure violinist only even tries to update `vendor/package1` you simply add the following to your composer.json:
 
-{{< highlight JSON "hl_lines=7-13" >}}
+{{< highlight JSON "hl_lines=13-19" >}}
 {
   "name": "company/project",
   "description": "My awesome project",
   "require": {
-    "vendor/package": "^1.4.0"
+    "vendor/package1": "^1.4.0",
+    "vendor/package2": "^1.4.0",
+    "vendor/package3": "^1.4.0",
+    "vendor/package4": "^1.4.0",
+    "vendor/package5": "^1.4.0",
+    "vendor/package6": "^1.4.0",
+    "vendor/package7": "^1.4.0"
   },
   "extra": {
     "violinist": {
       "allow_list": [
-        "vendor/package"
+        "vendor/package1"
       ]
     }
   }
