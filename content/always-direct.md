@@ -29,7 +29,6 @@ Indicate if you want violinist to always allow packages that are direct dependen
 
 If your project is set to update both direct and indirect dependencies (by having the option `check_only_direct_dependencies` set to 0), maybe what you are actually after is updating the direct dependencies plus one or two indirect ones. To achieve this you could of course explicitly list all the packages you want updated using `allow_list`. But you could also use the option `always_allow_direct_dependencies` to automatically allow all direct dependencies, and then explicitly allow one or two packages in addition to that.
 
-> Note! This option is incompatible with allow list and block list. Those lists are intended to limit the list of updates being attempted (that is, which commands are being run). With the option `always_update_all` you have no such control over which packages are updated. It's simply all of them.
 ## Example
 
 Let's say your project looks like this:
@@ -40,15 +39,14 @@ Let's say your project looks like this:
   "description": "My awesome project",
   "require": {
     "vendor/package1": "~1.0.0",
-    "othervendor/otherpackage": "^2.0.7",
-    "// ...and a dozen more...": 1
+    "othervendor/otherpackage": "^2.0.7"
   }
 }
 {{< /highlight >}}
 
-And then, maybe you don't want one pull request per dependency. You simply want to update everything from time to time. Like you would do `composer update`.
+And then, maybe `othervendor/otherpackage` has a bunch of indirect dependencies. And you don't want a merge request for every update, but if there are updates to the indirect dependency `third/module` then you actually do want a merge request for that.
 
-To change the behavior of violinist to only run `composer update` with no arguments, and in one single merge request, you can do this:
+To achieve this with violinist, you can do this:
 
 {{< highlight JSON "hl_lines=9-13" >}}
 {
@@ -61,16 +59,19 @@ To change the behavior of violinist to only run `composer update` with no argume
   },
   "extra": {
     "violinist": {
-      "always_update_all": 1
+      "always_allow_direct_dependencies": 1,
+      "check_only_direct_dependencies": 0,
+      "allow_list": [
+        "third/module"
+      ]
     }
   }
 }
 {{< /highlight >}}
 
-This means that this update strategy will create a pull request for you in all of these scenarios:
+This means that this update strategy will create a pull request for you in these scenarios:
 
-- If your project requires package `vendor/package1` and there is a new version of `vendor/package1`.
-- If your project requires package `vendor/package1` which in turn requires `vendor/package2`, and there is no new version of `vendor/package1`, but there is a new version of `vendor/package2`.
-- If your project requires package `vendor/package1` which in turn requires `vendor/package2` which in turn requires `vendor/package3`, and there are no new versions for `vendor/package1` or `vendor/package2`, but there is a new version of `vendor/package3`.
+- When there is a new version of a direct dependency (for example `vendor/package1`).
+- When there is a new version of the indirect dependency `third/module`.
 
-Either way, if there were packages updated, they will all be bundled in the same merge request, and not in separate merge requests per package.
+But not if there is an update available for another indirect dependency without it also being an update available for a direct dependency.
