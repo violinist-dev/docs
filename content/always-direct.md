@@ -48,14 +48,13 @@ And then, maybe `othervendor/otherpackage` has a bunch of indirect dependencies.
 
 To achieve this with violinist, you can do this:
 
-{{< highlight JSON "hl_lines=9-17" >}}
+{{< highlight JSON "hl_lines=8-16" >}}
 {
   "name": "company/project",
   "description": "My awesome project",
   "require": {
     "vendor/package1": "~1.0.0",
-    "othervendor/otherpackage": "^2.0.7",
-    "// ...and a dozen more...": 1
+    "othervendor/otherpackage": "^2.0.7"
   },
   "extra": {
     "violinist": {
