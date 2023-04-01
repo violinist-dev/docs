@@ -23,13 +23,11 @@ __default__: 0
 }
 {{< /highlight >}}
 
-Indicate if you always want violinist to update all packages (simply the command `composer update` with no arguments) every time it runs. 
+Indicate if you want violinist to always allow packages that are direct dependencies, without explicitly putting each one on the allow list.
 
 ## Explanation
 
-This is probably most useful if you have not so many dependencies, or if you are replacing a manual workflow that involves running `composer update` on a regular basis. If you are using this option, only one pull request will be created by violinist, and it will contain the updates that would happen if you were running `composer update`. So this option updates all of your dependencies, all of the time.
-
-> Note! This will not change any of your constraints. So strictly speaking, it will update all of your dependencies that has an update and where an update is allowed within the constraint.
+If your project is set to update both direct and indirect dependencies (by having the option `check_only_direct_dependencies` set to 0), maybe what you are actually after is updating the direct dependencies plus one or two indirect ones. To achieve this you could of course explicitly list all the packages you want updated using `allow_list`. But you could also use the option `always_allow_direct_dependencies` to automatically allow all direct dependencies, and then explicitly allow one or two packages in addition to that.
 
 > Note! This option is incompatible with allow list and block list. Those lists are intended to limit the list of updates being attempted (that is, which commands are being run). With the option `always_update_all` you have no such control over which packages are updated. It's simply all of them.
 ## Example
