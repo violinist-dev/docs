@@ -14,4 +14,8 @@ It's possible to have 2 instances of a project on violinist with different updat
 - You want different strategies for different update types. Maybe you want security updates only, and merged automatically into `main` (using options `security_updates_only`, `default_branch` and `automerge`. But in addition maybe you want violinist to open regular merge requests towards `develop` without `automerge` and with all dependencies.
 - You want to test some violinist option (or violinist altogether) without having to actually merge violinist config into the default (or target) branch.
 
+## How do you specify a config branch?
+
+When you add a new project to violinist, you will have the option to choose a config branch together with setting the URL to your project.
+
 ## Why are Config branches not configuration 
