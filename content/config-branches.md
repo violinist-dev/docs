@@ -16,6 +16,10 @@ It's possible to have 2 instances of a project on violinist with different updat
 
 ## How do you specify a config branch?
 
-When you add a new project to violinist, you will have the option to choose a config branch together with setting the URL to your project.
+When you add a new project to violinist, you will have the option to choose a config branch together with setting the URL to your project or choosing a PHP version.
 
-## Why are Config branches not configuration 
+> Note! This option would only be enabled if you are on a plan that support config branches. Otherwise the option would appear as disabled.
+
+## Why are Config branches not configuration?
+
+As the name suggests, the config branch will be used to check out a specific branch, and then read the violinist config from there. If this was used because there is no violinist config in the main branch, well, then there would be no place to read the config branch from, would there? 
