@@ -62,6 +62,7 @@ sockets
 sodium
 SPL
 sqlite3
+sqlsrv
 standard
 tokenizer
 xml
