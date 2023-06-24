@@ -67,6 +67,7 @@ sqlite3
 sqlsrv
 standard
 tokenizer
+uuid
 xml
 xmlreader
 xmlrpc
