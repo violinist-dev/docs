@@ -5,7 +5,7 @@ anchor: "assignees"
 weight:
 ---
 
-> This feature is only available on the agency and enterprise plans.
+> This feature is only available on the agency and enterprise plans. However, if the project in question is open-source, it's available regardless of plan.
 
 ## Configuration
 
