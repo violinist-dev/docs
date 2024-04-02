@@ -22,6 +22,7 @@ Core
 ctype
 curl
 date
+decimal
 dom
 exif
 fileinfo
@@ -49,6 +50,7 @@ PDO
 pdo_mysql
 pdo_pgsql
 pdo_sqlite
+pdo_sqlsrv
 Phar
 posix
 rdkafka
@@ -62,13 +64,16 @@ sockets
 sodium
 SPL
 sqlite3
+sqlsrv
 standard
 tokenizer
+uuid
 xml
 xmlreader
 xmlrpc
 xmlwriter
 xsl
+yaml
 Zend OPcache
 zip
 zlib
