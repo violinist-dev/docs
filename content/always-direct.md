@@ -1,0 +1,76 @@
+
+---
+title: "always_allow_direct_dependencies"
+date: 2018-03-25T10:50:02+02:00
+anchor: "always-allow-direct"
+weight: 
+---
+
+## Configuration
+
+__name__: always_allow_direct_dependencies
+__type__: int
+__default__: 0
+
+{{< highlight JSON "hl_lines=5" >}}
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+      "always_allow_direct_dependencies": 0
+    }
+  }
+}
+{{< /highlight >}}
+
+Indicate if you want violinist to always allow packages that are direct dependencies, without explicitly putting each one on the allow list.
+
+## Explanation
+
+If your project is set to update both direct and indirect dependencies (by having the option `check_only_direct_dependencies` set to 0), maybe what you are actually after is updating the direct dependencies plus one or two indirect ones. To achieve this you could of course explicitly list all the packages you want updated using `allow_list`. But you could also use the option `always_allow_direct_dependencies` to automatically allow all direct dependencies, and then explicitly allow one or two packages in addition to that.
+
+## Example
+
+Let's say your project looks like this:
+
+{{< highlight JSON >}}
+{
+  "name": "company/project",
+  "description": "My awesome project",
+  "require": {
+    "vendor/package1": "~1.0.0",
+    "othervendor/otherpackage": "^2.0.7"
+  }
+}
+{{< /highlight >}}
+
+And then, maybe `othervendor/otherpackage` has a bunch of indirect dependencies. And you don't want a merge request for every update, but if there are updates to the indirect dependency `third/module` then you actually do want a merge request for that.
+
+To achieve this with violinist, you can do this:
+
+{{< highlight JSON "hl_lines=8-16" >}}
+{
+  "name": "company/project",
+  "description": "My awesome project",
+  "require": {
+    "vendor/package1": "~1.0.0",
+    "othervendor/otherpackage": "^2.0.7"
+  },
+  "extra": {
+    "violinist": {
+      "always_allow_direct_dependencies": 1,
+      "check_only_direct_dependencies": 0,
+      "allow_list": [
+        "third/module"
+      ]
+    }
+  }
+}
+{{< /highlight >}}
+
+This means that this update strategy will create a pull request for you in these scenarios:
+
+- When there is a new version of a direct dependency (for example `vendor/package1`).
+- When there is a new version of the indirect dependency `third/module`.
+
+But not if there is an update available for another indirect dependency without it also being an update available for a direct dependency.
