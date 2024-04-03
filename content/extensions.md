@@ -29,6 +29,7 @@ fileinfo
 filter
 ftp
 gd
+gmp
 hash
 iconv
 imagick
