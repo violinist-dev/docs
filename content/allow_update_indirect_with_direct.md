@@ -27,6 +27,8 @@ __default__: 0
 
 Indicates that you want violinist to update your dependencies, even if your direct dependency does not have a new version, but at least one package in the dependency tree descending from a direct dependency has an update available.
 
+> Note! This setting has no effect if `always_update_all` is enabled.
+
 ## Explanation
 
 By default, violinist will only update your dependencies if one of your direct dependencies has an update available. However, if a transative dependency has an update, it will not be updated until the direct dependency that introduce this dependency has an update. This option changes that.
@@ -54,3 +56,5 @@ If this sounds like the configuration you want, you would change your `composer.
   }
 }
 {{< /highlight >}}
+
+> Note! This setting has no effect if `always_update_all` is enabled.

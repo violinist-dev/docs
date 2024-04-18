@@ -29,6 +29,7 @@ fileinfo
 filter
 ftp
 gd
+gmp
 hash
 iconv
 imagick
@@ -41,6 +42,7 @@ mailparse
 mbstring
 memcached
 mongodb
+msgpack
 mysqli
 mysqlnd
 openssl
