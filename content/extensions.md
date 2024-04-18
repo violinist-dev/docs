@@ -42,6 +42,7 @@ mailparse
 mbstring
 memcached
 mongodb
+msgpack
 mysqli
 mysqlnd
 openssl
