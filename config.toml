@@ -61,6 +61,7 @@ disableKinds = ["taxonomyTerm"]
       "labels": [],
       "labels_security": [],
       "number_of_concurrent_updates": 0,
+      "skip_security_updates_on_concurrent_limit": 1,
       "one_pull_request_per_package": 0,
       "run_scripts": 1,
       "security_updates_only": 0,
