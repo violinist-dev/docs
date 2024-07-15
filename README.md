@@ -1,4 +1,4 @@
-# docs
+# docs.violinist.io
 Documentation for Violinist
 
 ## Requirements
