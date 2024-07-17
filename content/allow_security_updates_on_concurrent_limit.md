@@ -23,11 +23,11 @@ __default__: 0
 }
 {{< /highlight >}}
 
-Indicates if you do not want to allow security package updates when the concurrent limit is reached.
+Indicates if you want to allow security updates when the concurrent limit is reached, in addition to your open merge requests.
 
 ## Explanation
 
-This option controls the Violinist's behavior when the concurrent limit is reached. By default, the Violinist does not allow bypassing any security package updates when the concurrent limit is reached. However, when the concurrent limit is reached, you must manually check and perform the security updates.
+This option controls the behavior when the concurrent limit is reached. By default, Violinist does not allow any additional merge requests when the concurrent limit is reached, even if the additional updates might be security updates. Changing this option might allow security updates to bypass the limit.
 
 ## Example
 
