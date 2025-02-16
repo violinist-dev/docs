@@ -11,11 +11,12 @@ weight:
 <div class="config">__type__: int</div>
 <div class="config">__default__: 0</div></div>
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "security_updates_only": 0
     }
   }
@@ -32,7 +33,7 @@ If you are only interested in getting automated pull requests for security updat
 
 Say you have a project with a lot of updates coming in all the time, but you are only interested in getting security updates through violinist. Then you would change the option `security_updates_only` to 1. So in practice, change composer.json to look something like this:
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -41,6 +42,7 @@ Say you have a project with a lot of updates coming in all the time, but you are
   },
   "extra": {
     "violinist": {
+// highlight-next-line
       "security_updates_only": 1
     }
   }

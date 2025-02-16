@@ -12,11 +12,12 @@ weight:
 <div class="config">__type__: array</div>
 <div class="config">__default__: []</div></div>
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "blocklist": []
     }
   }
@@ -38,7 +39,7 @@ If you want to add a project to the block list, you can add some extra informati
 
 Say you wanted to add the project `vendor/package` to the block list. And say your composer.json looks something like this:
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -52,13 +53,14 @@ Say you wanted to add the project `vendor/package` to the block list. And say yo
 To make Violinist stop trying to update `vendor/package` you simply add the following to your composer.json:
 
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
   "require": {
     "vendor/package": "^1.4.0"
   },
+// highlight-start
   "extra": {
     "violinist": {
       "blocklist": [
@@ -66,6 +68,7 @@ To make Violinist stop trying to update `vendor/package` you simply add the foll
       ]
     }
   }
+// highlight-end
 }
 ```
 
@@ -75,13 +78,14 @@ To make Violinist stop trying to update `vendor/package` you simply add the foll
 You can also use wildcards in your block list. Examples could be `vendor/*` or `vendor/prefix_*`.
 
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
   "require": {
     "vendor/package": "^1.4.0"
   },
+// highlight-start
   "extra": {
     "violinist": {
       "blocklist": [
@@ -90,5 +94,6 @@ You can also use wildcards in your block list. Examples could be `vendor/*` or `
       ]
     }
   }
+// highlight-end
 }
 ```

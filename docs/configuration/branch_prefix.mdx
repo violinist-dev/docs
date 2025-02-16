@@ -11,11 +11,12 @@ weight:
 <div class="config">__type__: string</div>
 <div class="config">__default__: ""</div></div>
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "branch_prefix": ""
     }
   }
@@ -38,14 +39,16 @@ Say you wanted to have all merge requests to follow the following pattern (same 
 
 Then you would add the following configuration (please note the last character is the slash in the prefix):
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
+// highlight-start
   "extra": {
     "violinist": {
       "branch_prefix": "violinist-prefix/"
     }
   }
+// highlight-end
 }
 ```

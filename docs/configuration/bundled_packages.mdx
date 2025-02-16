@@ -11,11 +11,12 @@ weight:
 <div class="config">__type__: object</div>
 <div class="config">__default__: {}</div></div>
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "bundled_packages": {}
     }
   }
@@ -41,7 +42,7 @@ If you want to bundle some projects, you can add some extra information into you
 
 Say your project depends on both `symfony/dom-crawler` and `symfony/yaml`. And you want to get them both updated in one pull request, bundled with `symfony/dom-crawler`. And say your composer.json looks something like this:
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -56,7 +57,7 @@ Say your project depends on both `symfony/dom-crawler` and `symfony/yaml`. And y
 To make Violinist update them both together, you would do something like this:
 
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -64,6 +65,7 @@ To make Violinist update them both together, you would do something like this:
     "symfony/dom-crawler": "^3.4",
     "symfony/yaml": "^3.4"
   },
+// highlight-start
   "extra": {
     "violinist": {
       "bundled_packages": {
@@ -73,6 +75,7 @@ To make Violinist update them both together, you would do something like this:
       }
     }
   }
+// highlight-end
 }
 ```
 
@@ -80,7 +83,7 @@ To make Violinist update them both together, you would do something like this:
 
 > With the configuration above, when a new release is released for __symfony/dom-crawler__ and __symfony/yaml__ (which usually are released at the same time) you will get 2 pull requests. One pull request will update symfony/dom-crawler, bundled with symfony/yaml. The other one will update symfony/yaml. This is probably not what you want. You probably want to have just the one pull request for symfony/dom-crawler where symfony/yaml is already updated, and not get individual pull requests for symfony/yaml. To achieve this, you need to also add symfony/yaml to the block list. Like so:
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -88,6 +91,7 @@ To make Violinist update them both together, you would do something like this:
     "symfony/dom-crawler": "^3.4",
     "symfony/yaml": "^3.4"
   },
+// highlight-start
   "extra": {
     "violinist": {
       "bundled_packages": {
@@ -100,6 +104,7 @@ To make Violinist update them both together, you would do something like this:
       ]
     }
   }
+// highlight-end
 }
 ```
 
@@ -111,7 +116,7 @@ The most common example of this is the package `drupal/core-composer-scaffold`.
 
 With the default violinist configuration you would get 2 merge requests when a new core version comes out. One for `drupal/core-recommended`, and one for `drupal/core-composer-scaffold`. This feels both tedious and unnecessary, since they kind of belong together, and are always released at the same time. So to skip the merge request for `drupal/core-composer-scaffold` and instead get this bundled with `drupal/core-recommended` you would add the following configuration to your `composer.json`:
 
-```json
+```json showLineNumbers
 {
   "name": "company/drupal-project",
   "description": "My awesome Drupal project",
@@ -119,6 +124,7 @@ With the default violinist configuration you would get 2 merge requests when a n
     "drupal/core-composer-scaffold": "^9.2.0",
     "drupal/core-recommended": "^9.2.0"
   },
+// highlight-start
   "extra": {
     "violinist": {
         "bundled_packages": {
@@ -131,6 +137,7 @@ With the default violinist configuration you would get 2 merge requests when a n
         ]
     }
   }
+// highlight-end
 }
 ```
 

@@ -11,11 +11,12 @@ weight:
 <div class="config">__type__: int</div>
 <div class="config">__default__: 1</div></div>
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "check_only_direct_dependencies": 1
     }
   }
@@ -40,7 +41,7 @@ By default, violinist will only try to update packages you are directly dependen
 
 Maybe you have a project that depend on a "meta-package" for your company, that in turn will download all of the dependencies of your framework of choice. This can be very convenient for making sure projects are similar, company-wide. However, your meta-package might not get new updates very often, so the _indirect dependencies_ of your project (that is the dependencies of your "meta-package") might become out of date. Or even cause you to miss a security update. Then let's configure our project to get all updates for all dependencies.
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -49,6 +50,7 @@ Maybe you have a project that depend on a "meta-package" for your company, that 
   },
   "extra": {
     "violinist": {
+// highlight-next-line
       "check_only_direct_dependencies": 0
     }
   }

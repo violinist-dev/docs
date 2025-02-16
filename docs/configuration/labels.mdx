@@ -13,11 +13,12 @@ weight:
 <div class="config">__type__: array</div>
 <div class="config">__default__: []</div></div>
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "labels": []
     }
   }
@@ -36,7 +37,7 @@ If you need to label the merge requests coming from violinist, for example for s
 
 Say you wanted to label all pull requests coming from violinist with the label `dependencies`. And say your composer.json looks something like this:
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project"
@@ -47,10 +48,11 @@ Say you wanted to label all pull requests coming from violinist with the label `
 To make Violinist add the label `dependencies` to all pull requests created, simply add the following to your composer.json:
 
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
+// highlight-start
   "extra": {
     "violinist": {
       "labels": [
@@ -58,5 +60,6 @@ To make Violinist add the label `dependencies` to all pull requests created, sim
       ]
     }
   }
+// highlight-end
 }
 ```

@@ -12,11 +12,12 @@ weight:
 <div class="config">__type__: array</div>
 <div class="config">__default__: []</div></div>
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "allow_list": []
     }
   }
@@ -40,7 +41,7 @@ If you want to add a project to the allow list, you can add some extra informati
 
 Say you wanted violinist to only update `vendor/package1` in your project, even if you had a bunch of other dependencies. And say your composer.json looks something like this:
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -59,7 +60,7 @@ Say you wanted violinist to only update `vendor/package1` in your project, even 
 
 To make sure violinist only even tries to update `vendor/package1` you simply add the following to your composer.json:
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -72,6 +73,7 @@ To make sure violinist only even tries to update `vendor/package1` you simply ad
     "vendor/package6": "^1.4.0",
     "vendor/package7": "^1.4.0"
   },
+// highlight-start
   "extra": {
     "violinist": {
       "allow_list": [
@@ -79,6 +81,7 @@ To make sure violinist only even tries to update `vendor/package1` you simply ad
       ]
     }
   }
+// highlight-end
 }
 ```
 
@@ -90,13 +93,14 @@ This will make violinist only create pull/merge requests for `vendor/package1` e
 You can also use wildcards in your allow list. Examples could be `vendor/*` or `vendor/prefix_*`.
 
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
   "require": {
     "vendor/package": "^1.4.0"
   },
+// highlight-start
   "extra": {
     "violinist": {
       "allow_list": [
@@ -105,5 +109,6 @@ You can also use wildcards in your allow list. Examples could be `vendor/*` or `
       ]
     }
   }
+// highlight-end
 }
 ```

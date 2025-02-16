@@ -12,11 +12,12 @@ weight:
 <div class="config">__type__: string</div>
 <div class="config">__default__: ""</div></div>
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "commit_message_convention": ""
     }
   }
@@ -33,11 +34,12 @@ Violinist has support for using the [Conventional Commits](https://www.conventio
 
 If you want that Violinist commit messages follow the Conventional Commit, set the value to `conventional`.
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "commit_message_convention": "conventional"
     }
   }
@@ -51,11 +53,12 @@ This configuration will allow Violinist to push commit messages like:
 
 If you don't want to have formatted commit messages, set it to `none` or leave it blank.
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "commit_message_convention": "none"
     }
   }

@@ -11,11 +11,12 @@ weight:
 <div class="config">__type__: int</div>
 <div class="config">__default__: 0</div></div>
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "one_pull_request_per_package": 0
     }
   }
@@ -32,7 +33,7 @@ Some packages update more often than you do maintenance on your project. If this
 
 If a package is out of date, and a new version comes out, the default behaviour of Violinist would be to create a new pull request for this version. But say you are not very active in maintaining your project, and you just want the one pull request to stay up to date. Say you want to come to your repo and see the pull request "Update vendor/package" instead of 4 pull requests with the titles "Update vendor/package to version x.x.x". You simply go ahead and change this option to 1.
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -41,6 +42,7 @@ If a package is out of date, and a new version comes out, the default behaviour 
   },
   "extra": {
     "violinist": {
+// highlight-next-line
       "one_pull_request_per_package": 1
     }
   }

@@ -11,11 +11,12 @@ weight:
 <div class="config">__type__: int</div>
 <div class="config">__default__: 1</div></div>
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "update_dev_dependencies": 1
     }
   }
@@ -32,7 +33,7 @@ If you have a project where you for some reason do not want to update your dev d
 
 Say you wanted to avoid updating all of your dev dependencies. And say your composer.json looked something like this:
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -51,7 +52,7 @@ Say you wanted to avoid updating all of your dev dependencies. And say your comp
 To make Violinist  stop updating your dev dependencies, you simply add the following to your composer.json:
 
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -63,10 +64,12 @@ To make Violinist  stop updating your dev dependencies, you simply add the follo
     "vendor/dev-package2": "*",
     "vendor/dev-package3": "*"
   },
+// highlight-start
   "extra": {
     "violinist": {
       "update_dev_dependencies": 0
     }
   }
+// highlight-end
 }
 ```

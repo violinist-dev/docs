@@ -11,11 +11,12 @@ weight:
 <div class="config">__type__: int</div>
 <div class="config">__default__: 0</div></div>
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "always_update_all": 0
     }
   }
@@ -35,7 +36,7 @@ This is probably most useful if you have not so many dependencies, or if you are
 
 Let's say your project looks like this:
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -51,7 +52,7 @@ And then, maybe you don't want one pull request per dependency. You simply want 
 
 To change the behavior of violinist to only run `composer update` with no arguments, and in one single merge request, you can do this:
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -60,11 +61,13 @@ To change the behavior of violinist to only run `composer update` with no argume
     "othervendor/otherpackage": "^2.0.7",
     "// ...and a dozen more...": 1
   },
+// highlight-start
   "extra": {
     "violinist": {
       "always_update_all": 1
     }
   }
+// highlight-end
 }
 ```
 

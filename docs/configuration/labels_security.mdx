@@ -13,11 +13,12 @@ weight:
 <div class="config">__type__: array</div>
 <div class="config">__default__: []</div></div>
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "labels_security": []
     }
   }
@@ -38,7 +39,7 @@ If you need to label the merge requests coming from violinist that are security 
 
 Say you wanted to label all security related pull requests coming from violinist with the label `security asap`. And say your composer.json looks something like this:
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project"
@@ -49,10 +50,11 @@ Say you wanted to label all security related pull requests coming from violinist
 To make Violinist add the label `security asap` to all of the pull requests created that are security updates, simply add the following to your composer.json:
 
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
+// highlight-start
   "extra": {
     "violinist": {
       "labels_security": [
@@ -60,5 +62,6 @@ To make Violinist add the label `security asap` to all of the pull requests crea
       ]
     }
   }
+// highlight-end
 }
 ```

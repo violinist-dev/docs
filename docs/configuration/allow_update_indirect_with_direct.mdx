@@ -11,7 +11,7 @@ weight:
 <div class="config">__type__: int</div>
 <div class="config">__default__: 0</div></div>
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "require": {
@@ -19,6 +19,7 @@ weight:
   },
   "extra": {
     "violinist": {
+// highlight-next-line
       "allow_update_indirect_with_direct": 0
     }
   }
@@ -45,15 +46,17 @@ This is different than [check_only_direct_dependencies](#check-only-direct) set 
 
 If this sounds like the configuration you want, you would change your `composer.json` like so:
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
+// highlight-start
   "extra": {
     "violinist": {
       "allow_update_indirect_with_direct": 1
     }
   }
+// highlight-end
 }
 ```
 

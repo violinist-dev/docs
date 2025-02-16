@@ -11,11 +11,12 @@ weight:
 <div class="config">__type__: int</div>
 <div class="config">__default__: 0</div></div>
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "number_of_concurrent_updates": 0
     }
   }
@@ -32,7 +33,7 @@ If you have a whole range of build steps and environments for a project per bran
 
 If you have a large project, some times the number of dependencies that are out of date could be many, especially when starting Violinist monitoring for the first time. And maybe you are creating QA enviroments for all your branches, or maybe your branches trigger build steps that take a long time to complete. So you want to throttle Violinist somehow. Then this option is for you. So if you wanted to limit the number of open pull requests to `5`, for example, then you would change your composer.json to look something like this:
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -41,6 +42,7 @@ If you have a large project, some times the number of dependencies that are out 
   },
   "extra": {
     "violinist": {
+// highlight-next-line
       "number_of_concurrent_updates": 5
     }
   }

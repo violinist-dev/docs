@@ -13,11 +13,12 @@ weight:
 <div class="config">__type__: array</div>
 <div class="config">__default__: []</div></div>
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "assignees": []
     }
   }
@@ -42,7 +43,7 @@ If you have a large team and want some people to get explicitly assigned (and pr
 
 Say you wanted to assign the user `my-review-user` for all pull requests created on the project `company/project`. And say your composer.json looks something like this:
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project"
@@ -53,10 +54,11 @@ Say you wanted to assign the user `my-review-user` for all pull requests created
 To make Violinist assign `my-review-user` to all of the pull requests created, simply add the following to your composer.json:
 
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
+// highlight-start
   "extra": {
     "violinist": {
       "assignees": [
@@ -64,6 +66,7 @@ To make Violinist assign `my-review-user` to all of the pull requests created, s
       ]
     }
   }
+// highlight-end
 }
 ```
 

@@ -11,11 +11,12 @@ weight:
 <div class="config">__type__: string</div>
 <div class="config">__default__: ''</div></div>
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "default_branch": ""
     }
   }
@@ -32,12 +33,13 @@ Different projects uses different workflows for their branches. For example, you
 
 If a project uses the `main` branch as the default branch, and you want the pull requests to be based on the branch `develop`, you might want to configure your project like so:
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "default_branch": "develop"
     }
   }

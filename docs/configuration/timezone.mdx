@@ -11,11 +11,12 @@ weight:
 <div class="config">__type__: string</div>
 <div class="config">__default__: +0000</div></div>
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "timezone": "+0000"
     }
   }
@@ -32,7 +33,7 @@ It would not help much to restrict the timeframe for the updates to be run, unle
 
 Say you want to only update the project with Violinist outside working hours, and you are located in the timezone __PDT__. By default, specifying a timeframe would use the UTC timezone, so to avoid having to convert the time to your timezone, you could specify this in your composer.json. So say your project, including timeframe_disallowed, had the following composer.json: 
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -51,7 +52,7 @@ Say you want to only update the project with Violinist outside working hours, an
 To make Violinist start using your timezone, you would add something like this:
 
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -61,6 +62,7 @@ To make Violinist start using your timezone, you would add something like this:
   "extra": {
     "violinist": {
       "timeframe_disallowed": "06:00-18:00",
+// highlight-next-line
       "timezone": "-0700"
     }
   }
@@ -69,7 +71,7 @@ To make Violinist start using your timezone, you would add something like this:
 
 You can also use one of the [predefined PHP timezones](http://php.net/manual/en/timezones.php):
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -79,6 +81,7 @@ You can also use one of the [predefined PHP timezones](http://php.net/manual/en/
   "extra": {
     "violinist": {
       "timeframe_disallowed": "06:00-18:00",
+// highlight-next-line
       "timezone": "America/Los_Angeles"
     }
   }

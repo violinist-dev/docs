@@ -11,11 +11,12 @@ weight:
 <div class="config">__type__: string</div>
 <div class="config">__default__: 0</div></div>
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "extra": {
     "violinist": {
+// highlight-next-line
       "timeframe_disallowed": 0
     }
   }
@@ -34,7 +35,7 @@ If you want to combine this with your local time, you want to use the option [ti
 
 Say you want to only update the project with Violinist outside working hours. For example not inside the timeframe 6AM to 6PM (06:00 - 18:00). And say your composer.json looks like this:
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
@@ -48,17 +49,19 @@ Say you want to only update the project with Violinist outside working hours. Fo
 To make Violinist stop trying to update during working hours. Then you would specify a timeframe like so:
 
 
-```json
+```json showLineNumbers
 {
   "name": "company/project",
   "description": "My awesome project",
   "require": {
     "vendor/package": "^1.4.0",
   },
+// highlight-start
   "extra": {
     "violinist": {
       "timeframe_disallowed": "06:00-18:00"
     }
   }
+// highlight-end
 }
 ```
