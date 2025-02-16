@@ -29,6 +29,7 @@ fileinfo
 filter
 ftp
 gd
+gettext
 gmp
 hash
 iconv
@@ -45,6 +46,7 @@ mongodb
 msgpack
 mysqli
 mysqlnd
+OAuth
 openssl
 pcntl
 pcre
