@@ -1,4 +1,4 @@
-name: PHP extensions up to date 
+name: PHP extensions up to date
 on:
   - push
   - workflow_dispatch
@@ -7,15 +7,15 @@ on:
 jobs:
   test:
     name: Run tests
-    runs-on: 'ubuntu-20.04'
+    runs-on: 'ubuntu-latest'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Dump module output 
+      - name: Dump module output
         run: |
-          export MODULES=$(docker run --rm ghcr.io/violinist-dev/php-base:7.4-multi php -m)
-          envsubst < content/extensions.txt > content/extensions.md
+          export MODULES=$(docker run --rm ghcr.io/violinist-dev/php-base:8.3-multi php -m)
+          envsubst < docs/introduction/extensions.txt > docs/introduction/extensions.mdx
 
       - name: Check it's the same
         run: |
