@@ -9,7 +9,7 @@ weight:
 Sometimes your project or a dependency actually requires a PHP extension. Since this is a requirement, your updates can then fail either upon installing your project, or when updating it. For this reason, it might be useful to know what extensions violinist has available when checking for updates in your project.
 ## PHP extensions available
 
-This is the current output for the PHP 7.4 image of the command `php -m`:
+This is the current output for the PHP 8.3 image of the command `php -m`:
 
 ```
 $ php -m
