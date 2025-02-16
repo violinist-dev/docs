@@ -1,9 +1,8 @@
-
 ---
 title: "always_update_all"
 date: 2018-03-25T10:50:02+02:00
 anchor: "updating-all"
-weight: 
+weight:
 ---
 
 ## Configuration
@@ -23,7 +22,7 @@ __default__: 0
 }
 {{< /highlight >}}
 
-Indicate if you always want violinist to update all packages (simply the command `composer update` with no arguments) every time it runs. 
+Indicate if you always want violinist to update all packages (simply the command `composer update` with no arguments) every time it runs.
 
 ## Explanation
 
