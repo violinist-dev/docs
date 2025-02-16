@@ -1,9 +1,8 @@
-
 ---
 title: "always_allow_direct_dependencies"
 date: 2018-03-25T10:50:02+02:00
 anchor: "always-allow-direct"
-weight: 
+weight:
 ---
 
 ## Configuration

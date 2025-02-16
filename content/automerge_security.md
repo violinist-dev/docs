@@ -1,9 +1,8 @@
-
 ---
 title: "automerge_security"
 date: 2018-03-25T10:50:02+02:00
 anchor: "automerge_security"
-weight: 
+weight:
 ---
 
 ## Configuration
