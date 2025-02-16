@@ -1,0 +1,137 @@
+---
+title: "bundled_packages"
+date: 2018-03-25T10:50:02+02:00
+anchor: "bundled-packages"
+weight:
+---
+
+## Configuration
+
+<div class="config-wrapper"><div class="config">__name__: bundled_packages</div>
+<div class="config">__type__: object</div>
+<div class="config">__default__: {}</div></div>
+
+```json
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+      "bundled_packages": {}
+    }
+  }
+}
+```
+
+
+An array of packages to bundle with other packages, keyed by the main package.
+
+>Quite often you probably want to also avoid getting pull requests for the packages you are bundling. To do this, you probably want to use a [block list](#blocklisting-projects) the packages in question.
+
+## Explanation
+
+Some times you depend on packages that are typically released in new versions at the same time. For example symfony packages. So instead of getting one pull request per symfony package your project depends on, you can get one pull request with all of them, bundled together with the update of one package.
+
+This is even better when coupled with a block list of projects, so you just skip those bundled packages all together.
+
+If you want to bundle some projects, you can add some extra information into your composer.json.
+
+## Examples
+
+### Simple example
+
+Say your project depends on both `symfony/dom-crawler` and `symfony/yaml`. And you want to get them both updated in one pull request, bundled with `symfony/dom-crawler`. And say your composer.json looks something like this:
+
+```json
+{
+  "name": "company/project",
+  "description": "My awesome project",
+  "require": {
+    "symfony/dom-crawler": "^3.4",
+    "symfony/yaml": "^3.4"
+  }
+}
+```
+
+
+To make Violinist update them both together, you would do something like this:
+
+
+```json
+{
+  "name": "company/project",
+  "description": "My awesome project",
+  "require": {
+    "symfony/dom-crawler": "^3.4",
+    "symfony/yaml": "^3.4"
+  },
+  "extra": {
+    "violinist": {
+      "bundled_packages": {
+        "symfony/dom-crawler": [
+          "symfony/yaml"
+        ]
+      }
+    }
+  }
+}
+```
+
+### Example with a block list
+
+> With the configuration above, when a new release is released for __symfony/dom-crawler__ and __symfony/yaml__ (which usually are released at the same time) you will get 2 pull requests. One pull request will update symfony/dom-crawler, bundled with symfony/yaml. The other one will update symfony/yaml. This is probably not what you want. You probably want to have just the one pull request for symfony/dom-crawler where symfony/yaml is already updated, and not get individual pull requests for symfony/yaml. To achieve this, you need to also add symfony/yaml to the block list. Like so:
+
+```json
+{
+  "name": "company/project",
+  "description": "My awesome project",
+  "require": {
+    "symfony/dom-crawler": "^3.4",
+    "symfony/yaml": "^3.4"
+  },
+  "extra": {
+    "violinist": {
+      "bundled_packages": {
+        "symfony/dom-crawler": [
+          "symfony/yaml"
+        ]
+      },
+      "blocklist": [
+        "symfony/yaml"
+      ]
+    }
+  }
+}
+```
+
+### Example for Drupal (with block list)
+
+Quite often when you are creating Drupal projects with composer, you will have several packages that are generated for the same core version.
+
+The most common example of this is the package `drupal/core-composer-scaffold`.
+
+With the default violinist configuration you would get 2 merge requests when a new core version comes out. One for `drupal/core-recommended`, and one for `drupal/core-composer-scaffold`. This feels both tedious and unnecessary, since they kind of belong together, and are always released at the same time. So to skip the merge request for `drupal/core-composer-scaffold` and instead get this bundled with `drupal/core-recommended` you would add the following configuration to your `composer.json`:
+
+```json
+{
+  "name": "company/drupal-project",
+  "description": "My awesome Drupal project",
+  "require": {
+    "drupal/core-composer-scaffold": "^9.2.0",
+    "drupal/core-recommended": "^9.2.0"
+  },
+  "extra": {
+    "violinist": {
+        "bundled_packages": {
+          "drupal/core-recommended": [
+            "drupal/core-composer-scaffold"
+          ]
+        },
+        "blocklist": [
+          "drupal/core-composer-scaffold"
+        ]
+    }
+  }
+}
+```
+
+If your project also uses `drupal/core-project-message` and/or `drupal/core-dev` you might want to add these as well.
