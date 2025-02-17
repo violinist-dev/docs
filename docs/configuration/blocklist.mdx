@@ -1,0 +1,99 @@
+---
+title: "blocklist"
+alias: "block_list"
+date: 2018-03-25T10:50:02+02:00
+anchor: "blocklisting-projects"
+weight:
+---
+
+## Configuration
+
+<div className="config-wrapper"><div className="config">__name__: blocklist</div>
+<div className="config">__type__: array</div>
+<div className="config">__default__: []</div></div>
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+// highlight-next-line
+      "blocklist": []
+    }
+  }
+}
+```
+
+
+An array of packages to always ignore while running updates with Violinist. Defaults to nothing.
+
+> Note! This option has no effect if used in combination with [always_update_all](#updating-all).
+
+## Explanation
+
+Some times a version of your package comes out that will never be compatible with your codebase. Some times this means you have to do some refactoring, but you only have time to do so some time in the future. Some times this makes you annoyed that Violinist is continiously trying to update that package, even if you know it will fail. This could be an example of when you want to add a project to the block list.
+
+If you want to add a project to the block list, you can add some extra information into your composer.json.
+
+## Example
+
+Say you wanted to add the project `vendor/package` to the block list. And say your composer.json looks something like this:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "description": "My awesome project",
+  "require": {
+    "vendor/package": "^1.4.0"
+  }
+}
+```
+
+
+To make Violinist stop trying to update `vendor/package` you simply add the following to your composer.json:
+
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "description": "My awesome project",
+  "require": {
+    "vendor/package": "^1.4.0"
+  },
+// highlight-start
+  "extra": {
+    "violinist": {
+      "blocklist": [
+        "vendor/package"
+      ]
+    }
+  }
+// highlight-end
+}
+```
+
+
+## Example with wildcards
+
+You can also use wildcards in your block list. Examples could be `vendor/*` or `vendor/prefix_*`.
+
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "description": "My awesome project",
+  "require": {
+    "vendor/package": "^1.4.0"
+  },
+// highlight-start
+  "extra": {
+    "violinist": {
+      "blocklist": [
+        "vendor/*",
+        "vendor/prefix_*"
+      ]
+    }
+  }
+// highlight-end
+}
+```

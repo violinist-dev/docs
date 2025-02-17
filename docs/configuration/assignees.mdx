@@ -1,0 +1,73 @@
+---
+title: "assignees"
+date: 2019-04-04T20:22:04+02:00
+anchor: "assignees"
+weight:
+---
+
+> This feature is only available on the agency and enterprise plans. However, if the project in question is open-source, it's available regardless of plan.
+
+## Configuration
+
+<div className="config-wrapper"><div className="config">__name__: assignees</div>
+<div className="config">__type__: array</div>
+<div className="config">__default__: []</div></div>
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+// highlight-next-line
+      "assignees": []
+    }
+  }
+}
+```
+
+An array of assignees that this project will use as the default assignee for new pull requests.
+
+>Note! The value of this option depends on your VCS provider. For github this will be an array of usernames. For gitlab the array should consist of user IDs. You can find your user id by visiting [https://gitlab.com/api/v4/users?username=YOUR_USERNAME](https://gitlab.com/api/v4/users?username=YOUR_USERNAME) where YOUR_USERNAME is your gitlab username. (reference: [https://forum.gitlab.com/t/where-is-my-user-id-in-gitlab-com/7912](https://forum.gitlab.com/t/where-is-my-user-id-in-gitlab-com/7912))
+>
+>If you are using self hosted gitlab, change the domain accordingly.
+>
+>Another difference is that gitlab only accepts one assignee per pull request. So while it should still be an array, if it contains more than one item, only the first user id will be assigned.
+>
+>If you are using Bitbucket, then a limitation will be that you cannot assign the same user you have authenticated Violinist with. For example, if you logged in to Violinist using the username `user123`, then the value of assignees can not be `user123` as bitbucket does not allow this.
+
+## Explanation
+
+If you have a large team and want some people to get explicitly assigned (and probably by extension notified) per project, this is the setting to use. You can assign several users if you are using Github, but only one user if you are using Gitlab.
+
+## Example
+
+Say you wanted to assign the user `my-review-user` for all pull requests created on the project `company/project`. And say your composer.json looks something like this:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "description": "My awesome project"
+}
+```
+
+
+To make Violinist assign `my-review-user` to all of the pull requests created, simply add the following to your composer.json:
+
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "description": "My awesome project",
+// highlight-start
+  "extra": {
+    "violinist": {
+      "assignees": [
+        "my-review-user"
+      ]
+    }
+  }
+// highlight-end
+}
+```
+
+> Note! The above example is for github. For gitlab you would use a user id (see above).

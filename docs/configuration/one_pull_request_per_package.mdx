@@ -1,0 +1,52 @@
+---
+title: "one_pull_request_per_package"
+date: 2018-12-06T19:28:34+01:00
+anchor: "one-pull-request-per-package"
+weight: 
+---
+
+## Configuration
+
+<div className="config-wrapper"><div className="config">__name__: one_pull_request_per_package</div>
+<div className="config">__type__: int</div>
+<div className="config">__default__: 0</div></div>
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+// highlight-next-line
+      "one_pull_request_per_package": 0
+    }
+  }
+}
+```
+
+Indicate whether you want one pull request per package or not.
+
+## Explanation
+
+Some packages update more often than you do maintenance on your project. If this is the case, you might find you have 4 pull requests for the version 8.0.2 through 8.0.5 of a certain package. This would in turn end up with you closing 3 pull requests, and merging one. If this is the case, maybe you want the option `one_pull_request_per_package`, so you only have one pull request for that package, that keeps itself up to date.
+
+## Example
+
+If a package is out of date, and a new version comes out, the default behaviour of Violinist would be to create a new pull request for this version. But say you are not very active in maintaining your project, and you just want the one pull request to stay up to date. Say you want to come to your repo and see the pull request "Update vendor/package" instead of 4 pull requests with the titles "Update vendor/package to version x.x.x". You simply go ahead and change this option to 1.
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "description": "My awesome project",
+  "require": {
+    "vendor/package": "~1.0.0",
+  },
+  "extra": {
+    "violinist": {
+// highlight-next-line
+      "one_pull_request_per_package": 1
+    }
+  }
+}
+```
+
+This way, the same pull request will stay up to date, when the next version comes out. Basically, violinist will force-push to the same branch for each new version, until you merge the update for the package, or the pull request becomes outdated by you updating the package manually.

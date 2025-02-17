@@ -1,0 +1,11 @@
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+
+THIS_SHOULD_BE_REPLACED
+
+if (ExecutionEnvironment.canUseDOM) {
+  // Check if we have a hash in the url.
+  if (window.location.hash) {
+    // Get the hash and remove the #.
+    const hash = window.location.hash.slice(1);
+  }
+}
