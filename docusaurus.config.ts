@@ -49,7 +49,9 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
+    colorMode: {
+      respectPrefersColorScheme: true
+    },
     image: 'img/violinist-logo.png',
     navbar: {
       title: 'Violinist',
