@@ -3,21 +3,20 @@ Documentation for Violinist
 
 ## Requirements
 
-[Hugo](https://gohugo.io/)
+- NodeJS (Currently v22)
+- npm
 
 ## Adding a new doc page
 
-```
-$ hugo new <filename.md>
-```
+If the page is a configuration option, it should go inside `docs/configuration/`. If it's a general documentation page, place a new `mdx` (or `md`) file in the preferred location.
 
 ## Development mode
 
 ```
-$ hugo server -D
+$ npm start
 ```
 
-The docs will probably be available on [http://localhost:1313/](http://localhost:1313/)
+The docs will probably be available on [http://localhost:3000/](http://localhost:3000/)
 
 ## Build the docs
 
