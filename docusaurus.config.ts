@@ -3,6 +3,7 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
+  clientModules: ['./src/hashMigrate.js'],
   title: 'Violinist documentation',
   tagline: "",
   favicon: 'img/favicon.ico',
@@ -68,37 +69,57 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Support',
           items: [
             {
-              label: 'Docs',
+              label: 'Documentation',
               to: '/',
             },
+            {
+              label: 'API Documentation',
+              href: 'https://violinist.io/api-docs',
+            },
+            {
+              label: 'About Violinist.io',
+              href: 'https://violinist.io/about',
+            },
           ],
         },
         {
-          title: 'Community',
+          title: 'Legal',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Contact us',
+              href: 'https://violinist.io/contact',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'Pricing',
+              href: 'https://violinist.io/pricing',
             },
             {
-              label: 'X (Twitter)',
-              href: 'https://x.com/violinist_io',
+              label: 'Terms of use',
+              href: 'https://violinist.io/terms',
+            },
+            {
+              label: 'Privacy',
+              href: 'https://violinist.io/privacy',
             },
           ],
         },
         {
-          title: 'More',
+          title: 'Social',
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/violinist-dev/docs',
+              href: 'https://github.com/violinist-dev',
+            },
+            {
+              label: '@violinist_io on X (Twitter)',
+              href: 'https://twitter.com/violinist_io',
+            },
+            {
+              label: '@violinistdevio on Medium',
+              href: 'https://medium.com/@violinistdevio',
             },
           ],
         },

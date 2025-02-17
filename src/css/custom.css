@@ -28,3 +28,13 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+nav.navbar .navbar__inner,
+.docsWrapper_node_modules-\@docusaurus-theme-classic-lib-theme-DocRoot-Layout-styles-module {
+  max-width: 1600px;
+  margin: auto;
+}
+
+nav.navbar .navbar__inner {
+  padding: 0 20px;
+}
