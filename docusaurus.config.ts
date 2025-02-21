@@ -55,7 +55,6 @@ const config: Config = {
       apiKey: '0438660c716bfa25509059a98c648998',
       indexName: 'violinist',
       contextualSearch: true,
-      externalUrlRegex: 'docs\\.violinist\\.io',
       // Optional: path for search page that enabled by default (`false` to disable it)
       searchPagePath: false,
       insights: true,
