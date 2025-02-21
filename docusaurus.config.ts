@@ -58,6 +58,7 @@ const config: Config = {
       externalUrlRegex: 'docs\\.violinist\\.io',
       // Optional: path for search page that enabled by default (`false` to disable it)
       searchPagePath: false,
+      insights: true,
     },
     colorMode: {
       respectPrefersColorScheme: true
