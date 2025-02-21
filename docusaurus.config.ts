@@ -49,6 +49,16 @@ const config: Config = {
   ],
 
   themeConfig: {
+    algolia: {
+      appId: 'E9P8STU02D',
+      // Public API key: it is safe to commit it
+      apiKey: '0438660c716bfa25509059a98c648998',
+      indexName: 'violinist',
+      contextualSearch: true,
+      externalUrlRegex: 'docs\\.violinist\\.io',
+      // Optional: path for search page that enabled by default (`false` to disable it)
+      searchPagePath: false,
+    },
     colorMode: {
       respectPrefersColorScheme: true
     },
@@ -63,6 +73,10 @@ const config: Config = {
         {
           href: 'https://github.com/violinist-dev/docs',
           label: 'GitHub',
+          position: 'right',
+        },
+        {
+          type: 'search',
           position: 'right',
         },
       ],
