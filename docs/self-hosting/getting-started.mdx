@@ -1,0 +1,29 @@
+---
+title: Getting started
+---
+
+## Requirements
+
+The only requirement is to be able to run a docker container. For example as part of your CI setup, or on a server (or computer) with docker installed.
+
+There are several ways to be able to run docker containers, but one would be to download and install docker from [docker.com](https://www.docker.com/)
+
+## Running an update container
+
+```bash
+docker run \
+  --pull=always \
+  -e "LICENCE_KEY=my_key" \
+  -e "PROJECT_URL=https://github.com/user/repo" \
+  -e "USER_TOKEN=ghp_jYgGb_1npvkiHTdnM" \
+  ghcr.io/violinist-dev/update-check-runner:8.3-multi-composer-2
+```
+
+Let's break that down:
+
+- `docker run \ ` this is where we tell docker to run something.
+- `--pull=always \` this tells docker to always download the latest version. This way you will always run the updated version of the runner container.
+- `-e "LICENCE_KEY=my_key" \` this tells docker to run with the environment variable `LICENCE_KEY` set to `my_key`. In practice you will put the licence key you want to use here (either a trial key or a purchased key).
+- `-e "PROJECT_URL=https://github.com/user/repo" \` this tells docker to run with the environment variable `PROJECT_URL` set to `https://github.com/user/repo`. This is the actual project you want to receive pull requests on.
+- `-e "USER_TOKEN=ghp_jYgGb_1npvkiHTdnM" \` this tells docker to run with the environment variable `USER_TOKEN` set to `ghp_jYgGb_1npvkiHTdnM`. This token is made up, and you will probably want to replace it with your own Personal Access Token (PAT) or similar.
+- `ghcr.io/violinist-dev/update-check-runner:8.3-multi-composer-2` this is the image we will use. In this example we are running the image for PHP version 8.3 with Composer 2. At the time of writing there are no other (major) Composer versions available.
