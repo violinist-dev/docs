@@ -1,3 +1,26 @@
 ---
 title: Updating Update Runners
 ---
+
+We strongly recommend always pulling the latest version when running the update container. This is done by passing the option `--pull=always` to the `docker run` command.
+
+For example like this:
+
+```
+docker run \
+  --pull=always \
+  -e "LICENCE_KEY=my_key" \
+  -e "PROJECT_URL=https://github.com/user/repo" \
+  -e "USER_TOKEN=ghp_jYgGb_1npvkiHTdnM" \
+  ghcr.io/violinist-dev/update-check-runner:8.3-multi-composer-2
+```
+
+If you choose to not do that (for example by omitting the `pull` flag or setting a pull strategy for a CI fleet somehow) you would typically update the runner by using `docker pull`.
+
+For example like this:
+
+```
+docker pull ghcr.io/violinist-dev/update-check-runner:8.3-multi-composer-2
+```
+
+Both of these examples are for the image for PHP version 8.3 and Composer major version 2. Replace or duplicate for appropriate versions relevant to you.
