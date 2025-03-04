@@ -15,10 +15,12 @@ docker run \
   ghcr.io/violinist-dev/update-check-runner:8.3-multi-composer-2
 ```
 
-If you choose to not do that (for example by omitting the `pull` flag, you would typically update the runner by using `docker pull`.
+If you choose to not do that (for example by omitting the `pull` flag or setting a pull strategy for a CI fleet somehow) you would typically update the runner by using `docker pull`.
 
 For example like this:
 
 ```
 docker pull ghcr.io/violinist-dev/update-check-runner:8.3-multi-composer-2
 ```
+
+Both of these examples are for the image for PHP version 8.3 and Composer major version 2. Replace or duplicate for appropriate versions relevant to you.
