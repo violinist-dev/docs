@@ -1,8 +1,5 @@
 ---
 title: "allow_update_indirect_with_direct"
-date: 2018-03-25T10:50:02+02:00
-anchor: "allow_update_direct_with_only_dependencies"
-weight:
 ---
 
 ## Configuration
@@ -19,7 +16,7 @@ weight:
   },
   "extra": {
     "violinist": {
-// highlight-next-line
+      // highlight-next-line
       "allow_update_indirect_with_direct": 0
     }
   }
@@ -50,13 +47,13 @@ If this sounds like the configuration you want, you would change your `composer.
 {
   "name": "company/project",
   "description": "My awesome project",
-// highlight-start
+  // highlight-start
   "extra": {
     "violinist": {
       "allow_update_indirect_with_direct": 1
     }
   }
-// highlight-end
+  // highlight-end
 }
 ```
 
