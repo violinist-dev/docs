@@ -1,0 +1,76 @@
+---
+title: "allow_security_updates_on_concurrent_limit"
+---
+
+## Configuration
+
+<div className="config-wrapper"><div className="config">__name__: allow_security_updates_on_concurrent_limit</div>
+<div className="config">__type__: int</div>
+<div className="config">__default__: 0</div></div>
+
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+// highlight-next-line
+      "allow_security_updates_on_concurrent_limit": 0
+    }
+  }
+}
+```
+
+
+Indicates if you want to allow security updates when the concurrent limit is reached, in addition to your open merge requests.
+
+
+## Explanation
+
+This option controls the behavior when the concurrent limit is reached. By default, Violinist does not allow any additional merge requests when the concurrent limit is reached, even if the additional updates might be security updates. Changing this option might allow security updates to bypass the limit.
+
+## Example
+
+Say you have used the parameter `number_of_concurrent_updates` to limit the number of concurrent open MRs from Violinist. This would make violinist block any additional updates to create a new merge request, including security updates when the concurrent limit has been reached. If you want to receive merge requests for security updates even when the concurrent limit has been reached, you would change the `allow_security_updates_on_concurrent_limit` option to `1`.
+
+An example configuration could be:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "description": "My awesome project",
+  "require": {
+    "vendor/package1": "^1.4.0",
+    "vendor/package2": "^1.4.0",
+    "vendor/package3": "^1.4.0"
+  },
+  "extra": {
+    "violinist": {
+      "number_of_concurrent_updates": 1
+    }
+  }
+}
+```
+
+
+To make sure violinist will open merge requests for security updates regardless of the number of open merge requests, simply change it to:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "description": "My awesome project",
+  "require": {
+    "vendor/package1": "^1.4.0",
+    "vendor/package2": "^1.4.0",
+    "vendor/package3": "^1.4.0"
+  },
+  "extra": {
+    "violinist": {
+      "number_of_concurrent_updates": 1,
+      // highlight-start
+      "allow_security_updates_on_concurrent_limit": 1
+      // highlight-end
+    }
+  }
+}
+```
