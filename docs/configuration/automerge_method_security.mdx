@@ -1,0 +1,68 @@
+---
+title: "automerge_method_security"
+---
+
+
+## Configuration
+
+<div className="config-wrapper"><div className="config">__name__: automerge_method_security</div>
+<div className="config">__type__: string</div>
+<div className="config">__default__: "merge"</div></div>
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+      // highlight-next-line
+      "automerge_method_security": "merge"
+    }
+  }
+}
+```
+
+Indicates which merge method should be used when using [automerge](/configuration/automerge). But in contrast to the [automerge_method](/configuration/automerge_method) option, this will allow you to have a separate method for security updates.
+
+> Note! This option currently does not work with Bitbucket.
+
+## Explanation
+
+When violinist opens a merge request which enables automerge, the UI for the supported providers will allow you to select which method should be used for merging. The three options are `merge`, `rebase` or `squash`. If you leave this blank, violinist will use the default, which is `merge`.
+
+This option will only apply to security updates, and if there is another value specified for [automerge_method](/configuration/automerge_method) then the value for `automerge_method_security` will be used if its a security update.
+
+## Example
+
+Many people use a `main` branch for their production environment. Say you wanted to enable automerge with all your violinist.io merge requests, but if there was a security update, you would want this to be automerged into the `main` branch. And maybe for the main branch, you are required to use `merge` as the strategy, for git history purposes. Then let's say your configuration looked something like this:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+      "automerge": "1",
+      "automerge_method": "squash",
+    }
+  }
+}
+```
+
+Then, to make it use the branch `main` and the method `merge` for the security updates being created by violinist, then you would change it like this:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+      "automerge": "1",
+      "automerge_method": "squash",
+      // highlight-start
+      "default_branch_security": "main",
+      "automerge_method_security": "merge"
+      // highlight-end
+    }
+  }
+}
+```
+
+If you leave this option blank (or use an invalid option value), it will use the value set for [automerge_method](/configuration/automerge_method) (if any). If no value is set for either of the options, it will use the default value which is `merge`.
