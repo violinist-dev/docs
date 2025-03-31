@@ -10,3 +10,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    groups:
+      docusaurus:
+        patterns:
+          - "@docusaurus/*"
