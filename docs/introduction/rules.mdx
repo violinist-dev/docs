@@ -1,0 +1,84 @@
+---
+title: "Rules"
+is_intro: true
+date: 2024-05-01T10:50:02+02:00
+anchor: "rules"
+weight:
+---
+
+Rules let you describe how Violinist should behave when it discovers available updates. By combining conditions and actions you
+can automate repetitive chores, tailor notification preferences, and keep noisy pull requests out of your repositories.
+
+## How rules are evaluated
+
+Violinist evaluates rules every time an update job runs. Rules are processed from top to bottom in the Rules interface, so a rule placed higher in the list can override the behaviour of the rules beneath it.
+
+:::tip Use rule ordering to your advantage
+Place broad rules (for example, "apply to every dependency") at the bottom and keep narrowly scoped rules at the top. That way
+you can have default behaviour for most projects while still allowing exceptions.
+:::
+
+## Creating a rule
+
+1. Open the Violinist dashboard and choose **Rules** from the main navigation.
+2. Click **New rule** and give it a descriptive name so you can find it later.
+3. Define one or more conditions that determine when the rule should run.
+4. Pick the actions Violinist should take when every condition is met.
+5. Save the rule and drag it to the correct position in the rules list.
+
+Rules can be edited at any time. Changes take effect the next time a scheduled update runs, or immediately if you trigger an
+update manually from the project page.
+
+## Available conditions
+
+You can mix and match any of the following conditions to target exactly the updates you care about:
+
+- **Project** – Limit the rule to specific repositories or organisations.
+- **Package pattern** – Match one package or a wildcard such as `symfony/*`.
+- **Dependency type** – Target only production, development, or security advisories.
+- **Update type** – Restrict the rule to patch, minor, or major version bumps.
+- **Default branch** – Apply rules only when the project uses a particular default branch.
+- **Schedule** – Trigger the rule only for updates that run on a specific day or schedule window.
+- **Status checks** – Require that a particular check has passed before the rule can continue.
+
+Any condition left blank is treated as "match everything".
+
+## Actions
+
+After a rule matches, Violinist applies the selected actions in the order they are configured. Common actions include:
+
+- **Auto merge** the pull request once all status checks pass.
+- **Skip creating** a pull request when you do not want Violinist to manage that dependency.
+- **Change the update schedule** by moving the update to a different cadence.
+- **Adjust notification settings** such as disabling Slack alerts or sending an email summary.
+- **Label or assign** the pull request so your triage workflow knows who should review the change.
+
+You can add more than one action to a rule. For example, one rule may both re-label a PR and reschedule the update.
+
+## Examples
+
+### Skip nightly test packages on legacy branches
+
+- **Conditions:** project is `company/legacy-app`, package pattern `vendor/nightly-*`, branch `legacy`.
+- **Actions:** Do not create a pull request.
+
+This keeps experimental packages out of the branch that stabilises your production deployments.
+
+### Auto merge patch-level framework updates
+
+- **Conditions:** package pattern `symfony/*`, update type `patch`, status checks `ci/tests` passed.
+- **Actions:** Apply the `dependencies` label and enable auto merge when checks pass.
+
+### Send security advisories to a separate channel
+
+- **Conditions:** dependency type `security`.
+- **Actions:** Disable standard notifications and send the alert to your security-specific webhook.
+
+## Best practices
+
+- Review your rules periodically to ensure they still reflect your workflow.
+- Keep rule names descriptive—future you (and your teammates) will thank you.
+- Test complex rules by triggering a manual update so you can confirm the resulting behaviour.
+- Document any organisation-wide rules in your team handbook so new collaborators know what to expect.
+
+With carefully structured rules you can let Violinist handle the routine updates while you focus on the work that matters most.
