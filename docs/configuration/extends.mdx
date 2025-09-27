@@ -29,7 +29,7 @@ When you have many repositories that should behave the same way, copying the ful
 
 Each entry in the array can either reference a Composer package that exposes a Violinist configuration file or point to a relative path inside the repository. Violinist will fetch the configuration snippets in the order you list them, merge the keys they contain, and finally apply whatever options are defined directly inside the local `extra.violinist` block. Later entries, including the local configuration, always override values defined earlier in the list, allowing every project to keep its unique tweaks while inheriting the defaults that come from your shared templates.
 
-Because extended configuration is resolved at run time, you can update a central document and have every repository inherit the change the next time Violinist runs. This keeps large organisations aligned without requiring the same change to be repeated in dozens of composer files.
+Because extended configuration is resolved at run time, you can update a central document and have every repository inherit the change the next time Violinist runs. When you share configuration through a Composer package, each project still needs to receive an updated version of that package—usually by running an automated dependency update such as a Violinist pull request—before the new settings take effect. This keeps large organisations aligned without requiring the same change to be repeated in dozens of composer files.
 
 ## Example
 
