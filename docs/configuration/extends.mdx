@@ -1,0 +1,104 @@
+---
+title: "extends"
+date: 2024-06-06T00:00:00+00:00
+anchor: "extends"
+weight:
+---
+
+## Configuration
+
+<div className="config-wrapper"><div className="config">__name__: extends</div>
+<div className="config">__type__: array</div>
+<div className="config">__default__: []</div></div>
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+// highlight-next-line
+      "extends": []
+    }
+  }
+}
+```
+
+## Explanation
+
+When you have many repositories that should behave the same way, copying the full Violinist configuration to every `composer.json` quickly becomes hard to maintain. The `extends` option lets you centralise your shared settings in one or more remote JSON documents and ask Violinist to import them before applying the project specific overrides that live in the repository.
+
+Each entry in the array can either reference a Composer package that exposes a Violinist configuration file or point to a relative path inside the repository. Violinist will fetch the configuration snippets in the order you list them, merge the keys they contain, and finally apply whatever options are defined directly inside the local `extra.violinist` block. Later entries, including the local configuration, always override values defined earlier in the list, allowing every project to keep its unique tweaks while inheriting the defaults that come from your shared templates.
+
+Because extended configuration is resolved at run time, you can update a central document and have every repository inherit the change the next time Violinist runs. When you share configuration through a Composer package, each project still needs to receive an updated version of that package—usually by running an automated dependency update such as a Violinist pull request—before the new settings take effect. This keeps large organisations aligned without requiring the same change to be repeated in dozens of composer files.
+
+## Example
+
+Imagine that your organisation has agreed on a default set of labels and automerge behaviour. You store those defaults in a small JSON file inside the repository at `.violinist/base.json`:
+
+```json showLineNumbers
+{
+  "labels": [
+    "dependencies",
+    "automated"
+  ],
+  "automerge": 1,
+  "automerge_method": "squash"
+}
+```
+
+Then each project can reference that shared configuration while still changing or extending whatever it needs:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+// highlight-start
+      "extends": [
+        ".violinist/base.json"
+      ],
+      "labels": [
+        "dependencies",
+        "needs-release"
+      ],
+      "automerge_method": "merge"
+// highlight-end
+    }
+  }
+}
+```
+
+In this example the project inherits the `automerge` value from the shared document, overrides the merge method to "merge", and adds an extra label next to the defaults that were defined globally.
+
+If you publish a reusable configuration through a Composer package, you can point `extends` at the package name. Violinist will read the `extra.violinist` block from that dependency's `composer.json` and merge it before applying the local overrides:
+
+```json showLineNumbers
+{
+  "extra": {
+    "violinist": {
+      "extends": [
+        "acme/violinist-policies"
+      ]
+    }
+  }
+}
+```
+
+## Chaining multiple sources
+
+If you have several layers of defaults you can add as many entries to `extends` as you need. For example, the first entry might reference a package that publishes a shared configuration, and the second entry could reference a file that lives within the current repository. Violinist will read each source in sequence and merge the configuration so that the most specific file wins for overlapping keys:
+
+```json showLineNumbers
+{
+  "extra": {
+    "violinist": {
+      "extends": [
+        "vendor/shared-violinist-config",
+        ".violinist/team-overrides.json"
+      ]
+    }
+  }
+}
+```
+
+This approach lets you compose a final configuration from multiple reusable building blocks, keeping your Violinist setup tidy even as the number of monitored projects grows.
