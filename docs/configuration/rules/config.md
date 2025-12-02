@@ -83,7 +83,7 @@ Any configuration option that can be set at the root level can also be set in a 
 - `commit_message_convention` - Commit message format
 - `bundled_packages` - Package bundling configuration
 
-For a complete list of all configuration options, see the [configuration documentation](/configuration).
+For a complete list of all configuration options, see the configuration documentation.
 
 ## Examples
 

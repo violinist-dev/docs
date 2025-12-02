@@ -70,7 +70,7 @@ Any Violinist configuration option can be overridden in the `config` section of 
 - `update_dev_dependencies` - Control whether to update dev dependencies
 - `check_only_direct_dependencies` - Check only direct dependencies
 - `default_branch` - Specify a different target branch for pull requests
-- And many more - see the [configuration documentation](/configuration) for all available options
+- And many more - see the configuration documentation for all available options
 
 ## Examples
 
