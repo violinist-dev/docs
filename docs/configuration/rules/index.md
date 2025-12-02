@@ -1,5 +1,5 @@
 ---
-title: "rules" (beta)
+title: "rules (beta)"
 ---
 
 
