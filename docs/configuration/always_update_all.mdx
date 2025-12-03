@@ -25,6 +25,8 @@ weight:
 
 Indicate if you always want violinist to update all packages (simply the command `composer update` with no arguments) every time it runs.
 
+> **Note:** This option is **root project only** and cannot be used within [rules](/configuration/rules). This update strategy is incompatible with package-specific rules since it updates all packages together.
+
 ## Explanation
 
 This is probably most useful if you have not so many dependencies, or if you are replacing a manual workflow that involves running `composer update` on a regular basis. If you are using this option, only one pull request will be created by violinist, and it will contain the updates that would happen if you were running `composer update`. So this option updates all of your dependencies, all of the time.

@@ -25,6 +25,8 @@ weight:
 
 Indicate whether or not you want pull/merge requests created by violinist to have the automerge option enabled when the update is a security update.
 
+> **Note:** This option can be used within [rules](/configuration/rules) to enable security automerge for specific package groups.
+
 > Note! This option currently does not work with Bitbucket.
 
 > Note! This option only overrides the automerge option if the update is a security update. If `automerge_security` is set to `0`, but `automerge` is set to `1`, then automerge will be enabled.
