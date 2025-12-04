@@ -14,3 +14,9 @@ updates:
       docusaurus:
         patterns:
           - "@docusaurus/*"
+      react-related:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
