@@ -33,7 +33,7 @@ This can be useful when the PHP version or extensions available in Violinist's e
 
 ## Example
 
-Say you have a project that requires PHP 8.2, but Violinist runs with a different PHP version. Without this option, Composer might refuse to update packages because of the PHP version mismatch. To work around this, enable `ignore_platform_requirements`:
+Say your production environment uses a PHP extension that isn't universally available. Without this option, Composer might refuse to update packages because the extension isn't present when checking for updates. To work around this, enable `ignore_platform_requirements`:
 
 ```json showLineNumbers
 {
@@ -41,6 +41,7 @@ Say you have a project that requires PHP 8.2, but Violinist runs with a differen
   "description": "My awesome project",
   "require": {
     "php": "^8.2",
+    "ext-acme": "*",
     "vendor/package": "~1.0.0"
   },
   "extra": {
@@ -52,4 +53,9 @@ Say you have a project that requires PHP 8.2, but Violinist runs with a differen
 }
 ```
 
-With this configuration, Violinist will ignore the PHP version requirement and proceed with checking for updates. Your CI pipeline should still verify that the updated dependencies work correctly with your actual PHP version.
+:::note
+`ext-acme` is a fictional extension used for illustration purposes.
+:::
+```
+
+With this configuration, Violinist will ignore platform requirements and proceed with checking for updates. Your CI pipeline should still verify that the updated dependencies work correctly with your actual platform configuration.
