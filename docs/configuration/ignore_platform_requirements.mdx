@@ -27,7 +27,7 @@ Ignore PHP platform requirements when checking for updates.
 
 ## Explanation
 
-When enabled, Violinist will pass the `--ignore-platform-reqs` flag to Composer commands. This tells Composer to ignore platform requirements (PHP version, extensions, etc.) when resolving and updating dependencies.
+When enabled, Violinist will set the `COMPOSER_IGNORE_PLATFORM_REQS` environment variable. This tells Composer to ignore platform requirements (PHP version, extensions, etc.) when resolving and updating dependencies.
 
 This can be useful when the PHP version or extensions available in Violinist's environment differ from your production environment.
 
