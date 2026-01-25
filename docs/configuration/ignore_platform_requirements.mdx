@@ -1,0 +1,55 @@
+---
+title: "ignore_platform_requirements"
+date: 2026-01-25T10:00:00+01:00
+anchor: "ignore-platform-requirements"
+weight:
+---
+
+## Configuration
+
+<div className="config-wrapper"><div className="config">__name__: ignore_platform_requirements</div>
+<div className="config">__type__: int</div>
+<div className="config">__default__: 0</div></div>
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+// highlight-next-line
+      "ignore_platform_requirements": 0
+    }
+  }
+}
+```
+
+Ignore PHP platform requirements when checking for updates.
+
+## Explanation
+
+When enabled, Violinist will pass the `--ignore-platform-reqs` flag to Composer commands. This tells Composer to ignore platform requirements (PHP version, extensions, etc.) when resolving and updating dependencies.
+
+This can be useful when the PHP version or extensions available in Violinist's environment differ from your production environment.
+
+## Example
+
+Say you have a project that requires PHP 8.2, but Violinist runs with a different PHP version. Without this option, Composer might refuse to update packages because of the PHP version mismatch. To work around this, enable `ignore_platform_requirements`:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "description": "My awesome project",
+  "require": {
+    "php": "^8.2",
+    "vendor/package": "~1.0.0"
+  },
+  "extra": {
+    "violinist": {
+// highlight-next-line
+      "ignore_platform_requirements": 1
+    }
+  }
+}
+```
+
+With this configuration, Violinist will ignore the PHP version requirement and proceed with checking for updates. Your CI pipeline should still verify that the updated dependencies work correctly with your actual PHP version.
