@@ -1,0 +1,48 @@
+---
+title: "default_branch_security"
+---
+
+## Configuration
+
+<div className="config-wrapper"><div className="config">__name__: default_branch_security</div>
+<div className="config">__type__: string</div>
+<div className="config">__default__: ''</div></div>
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+      // highlight-next-line
+      "default_branch_security": ""
+    }
+  }
+}
+```
+
+Indicate what branch you want the Violinist pull requests created against, spefically if the update is a security update.
+
+## Explanation
+
+Different projects uses different workflows for their branches. For example, your default branch in your VCS provider might be your production branch (for example `main`) while you want the merge requests to be created towards a development branch (for example `develop`). By default, Violinist will use the default branch for the repository to create the merge requests, but if you want the base branch to differ from this setting when merge requests are security updates, you want to use the `default_branch_security` option.
+
+## Example
+
+If a project uses the `develop` branch as the default branch, and you want the merge requests that are security updates to go straigth to `main`, you might want to configure your project like so:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "description": "My awesome project",
+  "extra": {
+    "violinist": {
+      // highlight-next-line
+      "default_branch_security": "main"
+    }
+  }
+}
+```
+
+If you do not enter anything in this field, leaving the default value for it in there (`""` - an empty string) the project will use the settings from the project repository. In the example above that would mean the branch `develop`.
+
+Please also note that if you have a value for the configuration option [default_branch](/configuration/default_branch) then this will be used as a fallback for a default value of empty string (`""`) for this configuration option (`default_branch_security`).
