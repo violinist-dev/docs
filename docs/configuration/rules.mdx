@@ -25,11 +25,21 @@ weight:
 
 Define package-specific configuration rules that override the default settings.
 
+> This option is currently in **beta**. This means its options are considered stable (no backwards incompatible changes will be added), but that there are some stability and usability improvements expected.
+
 ## Explanation
 
 The `rules` option allows you to apply different configuration settings to different groups of packages. This is useful when you want to handle certain packages differently from your default configuration. For example, you might want to apply security-only updates to development tools while allowing all updates for production dependencies.
 
 Rules are evaluated in order, and when a package matches a rule, the configuration from that rule is merged with your default configuration.
+
+### Comparison with bundled_packages
+
+If you want to group packages together in a more flexible pattern than using [bundled_packages](/configuration/bundled_packages), then `rules` is for you. The main differences are:
+
+- [bundled_packages](/configuration/bundled_packages) will only update its bundled packages if the "parent" package has an update, while rules can update the group if any of the packages has an update.
+- Rules make it possible to have different configurations per group. For example, you can automerge one group but not others.
+- Rules support pattern matching with wildcards and negation, making them much more flexible.
 
 ## Structure
 
