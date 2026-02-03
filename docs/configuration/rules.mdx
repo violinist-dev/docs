@@ -1,0 +1,335 @@
+---
+title: "rules"
+date: 2025-01-28T12:00:00+01:00
+anchor: "rules"
+weight:
+---
+
+## Configuration
+
+<div className="config-wrapper"><div className="config">__name__: rules</div>
+<div className="config">__type__: array</div>
+<div className="config">__default__: []</div></div>
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+// highlight-next-line
+      "rules": []
+    }
+  }
+}
+```
+
+Define package-specific configuration rules that override the default settings.
+
+## Explanation
+
+The `rules` option allows you to apply different configuration settings to different groups of packages. This is useful when you want to handle certain packages differently from your default configuration. For example, you might want to apply security-only updates to development tools while allowing all updates for production dependencies.
+
+Rules are evaluated in order, and when a package matches a rule, the configuration from that rule is merged with your default configuration.
+
+## Structure
+
+Rules is an array of rule objects. Each rule object has the following structure:
+
+```json showLineNumbers
+{
+  "rules": [
+    {
+      "name": "Human readable name",
+      "slug": "machine-readable-slug",
+      "matchRules": [
+        {
+          "type": "names",
+          "values": ["vendor/*", "!vendor/excluded-package"]
+        }
+      ],
+      "config": {
+        "blocklist": [],
+        "branch_prefix": "deps/",
+        "security_updates_only": 1
+      }
+    }
+  ]
+}
+```
+
+### Rule Properties
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `name` | string | A human-readable name for the rule (for documentation purposes) |
+| `slug` | string | A machine-readable identifier for the rule |
+| `matchRules` | array | An array of match rule objects that determine which packages this rule applies to |
+| `config` | object | Configuration options to apply when a package matches |
+
+## Match Rules
+
+Match rules determine which packages a rule applies to. Each match rule has a `type` and associated properties.
+
+### Type: `names`
+
+Match packages by name using [fnmatch](https://www.php.net/manual/en/function.fnmatch.php) patterns.
+
+| Pattern | Description |
+|---------|-------------|
+| `vendor/*` | Match all packages from a vendor |
+| `vendor/package` | Match a specific package |
+| `vendor/prefix-*` | Match packages with a specific prefix |
+| `!vendor/package` | Exclude a specific package (negative match) |
+
+When using negative matches (`!`), the package is excluded from the rule even if it matches a positive pattern. This allows you to select a broad group of packages and then exclude specific ones.
+
+```json showLineNumbers
+{
+  "matchRules": [
+    {
+      "type": "names",
+      "values": [
+        "drupal/*",
+        "!drupal/core-recommended",
+        "!drupal/core-composer-scaffold"
+      ]
+    }
+  ]
+}
+```
+
+This example matches all `drupal/*` packages except `drupal/core-recommended` and `drupal/core-composer-scaffold`.
+
+## Config Overrides
+
+Within a rule's `config` object, you can override most configuration options. The configuration from matching rules is merged with your default configuration.
+
+### Overridable Options
+
+The following options can be used within rules:
+
+- [allow_list](/configuration/allow_list)
+- [allow_update_indirect_with_direct](/configuration/allow_update_indirect_with_direct)
+- [allow_updates_beyond_constraint](/configuration/allow_updates_beyond_constraint)
+- [always_allow_direct_dependencies](/configuration/always_allow_direct_dependencies)
+- [always_update_all](/configuration/always_update_all)
+- [assignees](/configuration/assignees)
+- [automerge](/configuration/automerge)
+- [automerge_method](/configuration/automerge_method)
+- [automerge_method_security](/configuration/automerge_method_security)
+- [automerge_security](/configuration/automerge_security)
+- [blocklist](/configuration/blocklist)
+- [branch_prefix](/configuration/branch_prefix)
+- [bundled_packages](/configuration/bundled_packages)
+- [check_only_direct_dependencies](/configuration/check_only_direct_dependencies)
+- [commit_message_convention](/configuration/commit_message_convention)
+- [composer_outdated_flag](/configuration/composer_outdated_flag)
+- [default_branch](/configuration/default_branch)
+- [default_branch_security](/configuration/default_branch_security)
+- [ignore_platform_requirements](/configuration/ignore_platform_requirements)
+- [labels](/configuration/labels)
+- [labels_security](/configuration/labels_security)
+- [one_pull_request_per_package](/configuration/one_pull_request_per_package)
+- [run_scripts](/configuration/run_scripts)
+- [security_updates_only](/configuration/security_updates_only)
+- [update_dev_dependencies](/configuration/update_dev_dependencies)
+- [update_with_dependencies](/configuration/update_with_dependencies)
+
+### Root-level Only Options
+
+The following options cannot be overridden in rules and only apply at the root configuration level:
+
+- [number_of_concurrent_updates](/configuration/number_of_concurrent_updates)
+- [allow_security_updates_on_concurrent_limit](/configuration/allow_security_updates_on_concurrent_limit)
+- [timeframe_disallowed](/configuration/timeframe_disallowed)
+- [timezone](/configuration/timezone)
+
+## Examples
+
+### Security-only updates for dev dependencies
+
+Only receive security updates for development tools while allowing all updates for production dependencies:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+// highlight-start
+      "rules": [
+        {
+          "name": "Dev tools - security only",
+          "slug": "dev-tools-security",
+          "matchRules": [
+            {
+              "type": "names",
+              "values": ["phpunit/*", "phpstan/*", "squizlabs/*", "friendsofphp/*"]
+            }
+          ],
+          "config": {
+            "security_updates_only": 1
+          }
+        }
+      ]
+// highlight-end
+    }
+  }
+}
+```
+
+### Bundling Drupal Core packages
+
+Bundle all Drupal core packages together so they update in a single pull request:
+
+```json showLineNumbers
+{
+  "name": "company/drupal-project",
+  "extra": {
+    "violinist": {
+// highlight-start
+      "rules": [
+        {
+          "name": "Drupal Core packages",
+          "slug": "drupal-core",
+          "matchRules": [
+            {
+              "type": "names",
+              "values": ["drupal/core-recommended"]
+            }
+          ],
+          "config": {
+            "bundled_packages": {
+              "drupal/core-recommended": [
+                "drupal/core-composer-scaffold",
+                "drupal/core-project-message"
+              ]
+            }
+          }
+        }
+      ],
+      "blocklist": [
+        "drupal/core-composer-scaffold",
+        "drupal/core-project-message"
+      ]
+// highlight-end
+    }
+  }
+}
+```
+
+### Custom branch prefixes per package group
+
+Use different branch prefixes for different types of dependencies:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+// highlight-start
+      "rules": [
+        {
+          "name": "Framework updates",
+          "slug": "framework",
+          "matchRules": [
+            {
+              "type": "names",
+              "values": ["symfony/*", "laravel/*"]
+            }
+          ],
+          "config": {
+            "branch_prefix": "deps/framework/"
+          }
+        },
+        {
+          "name": "Testing tools",
+          "slug": "testing",
+          "matchRules": [
+            {
+              "type": "names",
+              "values": ["phpunit/*", "mockery/*", "fakerphp/*"]
+            }
+          ],
+          "config": {
+            "branch_prefix": "deps/testing/"
+          }
+        }
+      ]
+// highlight-end
+    }
+  }
+}
+```
+
+### Disable dev dependency updates for Drupal contrib
+
+Update dev dependencies by default but disable them for Drupal contrib modules:
+
+```json showLineNumbers
+{
+  "name": "company/drupal-project",
+  "extra": {
+    "violinist": {
+      "update_dev_dependencies": 1,
+// highlight-start
+      "rules": [
+        {
+          "name": "Drupal Contrib",
+          "slug": "drupal-contrib",
+          "matchRules": [
+            {
+              "type": "names",
+              "values": [
+                "drupal/*",
+                "!drupal/core-*"
+              ]
+            }
+          ],
+          "config": {
+            "update_dev_dependencies": 0
+          }
+        }
+      ]
+// highlight-end
+    }
+  }
+}
+```
+
+### Automerge minor updates for specific packages
+
+Automatically merge minor updates for well-tested packages while requiring manual review for others:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+// highlight-start
+      "rules": [
+        {
+          "name": "Trusted packages - automerge",
+          "slug": "trusted-automerge",
+          "matchRules": [
+            {
+              "type": "names",
+              "values": ["psr/*", "symfony/polyfill-*"]
+            }
+          ],
+          "config": {
+            "automerge": 1,
+            "composer_outdated_flag": "minor"
+          }
+        }
+      ]
+// highlight-end
+    }
+  }
+}
+```
+
+## Rule Precedence
+
+When a package matches multiple rules, the configurations are merged in order. Later rules can override settings from earlier rules. If you have overlapping patterns, place more specific rules after more general ones.
+
+> **Note:** Root-level configuration is always applied first, then rules are evaluated and merged in the order they appear.
