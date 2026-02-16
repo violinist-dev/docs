@@ -118,20 +118,16 @@ Within a rule's `config` object, you can override most configuration options. Th
 
 The following options can be used within rules:
 
-- [allow_list](/configuration/allow_list)
 - [allow_update_indirect_with_direct](/configuration/allow_update_indirect_with_direct)
 - [allow_updates_beyond_constraint](/configuration/allow_updates_beyond_constraint)
-- [always_allow_direct_dependencies](/configuration/always_allow_direct_dependencies)
 - [always_update_all](/configuration/always_update_all)
 - [assignees](/configuration/assignees)
 - [automerge](/configuration/automerge)
 - [automerge_method](/configuration/automerge_method)
 - [automerge_method_security](/configuration/automerge_method_security)
 - [automerge_security](/configuration/automerge_security)
-- [blocklist](/configuration/blocklist)
 - [branch_prefix](/configuration/branch_prefix)
 - [bundled_packages](/configuration/bundled_packages)
-- [check_only_direct_dependencies](/configuration/check_only_direct_dependencies)
 - [commit_message_convention](/configuration/commit_message_convention)
 - [composer_outdated_flag](/configuration/composer_outdated_flag)
 - [default_branch](/configuration/default_branch)
@@ -141,18 +137,22 @@ The following options can be used within rules:
 - [labels_security](/configuration/labels_security)
 - [one_pull_request_per_package](/configuration/one_pull_request_per_package)
 - [run_scripts](/configuration/run_scripts)
-- [security_updates_only](/configuration/security_updates_only)
-- [update_dev_dependencies](/configuration/update_dev_dependencies)
 - [update_with_dependencies](/configuration/update_with_dependencies)
 
 ### Root-level Only Options
 
-The following options cannot be overridden in rules and only apply at the root configuration level:
+The following options cannot be overridden in rules and only apply at the root configuration level. These options control global filtering that happens before rules are evaluated:
 
-- [number_of_concurrent_updates](/configuration/number_of_concurrent_updates)
+- [allow_list](/configuration/allow_list)
 - [allow_security_updates_on_concurrent_limit](/configuration/allow_security_updates_on_concurrent_limit)
+- [always_allow_direct_dependencies](/configuration/always_allow_direct_dependencies)
+- [blocklist](/configuration/blocklist)
+- [check_only_direct_dependencies](/configuration/check_only_direct_dependencies)
+- [number_of_concurrent_updates](/configuration/number_of_concurrent_updates)
+- [security_updates_only](/configuration/security_updates_only)
 - [timeframe_disallowed](/configuration/timeframe_disallowed)
 - [timezone](/configuration/timezone)
+- [update_dev_dependencies](/configuration/update_dev_dependencies)
 
 ## Examples
 
