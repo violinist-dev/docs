@@ -5,7 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   clientModules: ['./src/hashMigrate.js'],
   title: 'Violinist documentation',
-  tagline: "",
+  tagline:
+    'Automated Composer dependency updates for PHP repositories, with pull requests, changelog summaries, and monitoring to keep your projects secure and current.',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here

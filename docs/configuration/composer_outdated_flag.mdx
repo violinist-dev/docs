@@ -1,0 +1,82 @@
+---
+title: "composer_outdated_flag"
+date: 2025-11-23T10:00:00+01:00
+anchor: "composer-outdated-flag"
+weight:
+---
+
+## Configuration
+
+<div className="config-wrapper"><div className="config">__name__: composer_outdated_flag</div>
+<div className="config">__type__: string</div>
+<div className="config">__default__: minor</div></div>
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+// highlight-next-line
+      "composer_outdated_flag": "minor"
+    }
+  }
+}
+```
+
+Control the semantic versioning level for checking outdated packages.
+
+## Explanation
+
+By default, Violinist uses the `composer outdated -D -m` command to check for updates, where the `-m` flag restricts checks to minor SemVer-compatible updates. The `composer_outdated_flag` option allows you to customize this behavior by specifying which level of updates you want to check for.
+
+The option accepts three values:
+
+- **`major`**: Check for all updates including major version changes (no restriction flag)
+- **`minor`**: Check only for minor and patch updates (uses `-m` / `--minor-only` flag) - this is the default
+- **`patch`**: Check only for patch-level updates (uses `-p` / `--patch-only` flag)
+
+This setting affects how Violinist searches for available updates, which in turn determines what pull requests will be created for your project.
+
+## Example
+
+If you want to be more conservative and only receive pull requests for patch-level updates (bug fixes and security patches), you can configure your project like this:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "description": "My production application",
+  "require": {
+    "vendor/package": "^2.1.0",
+  },
+  "extra": {
+    "violinist": {
+// highlight-next-line
+      "composer_outdated_flag": "patch"
+    }
+  }
+}
+```
+
+With this configuration, if you have version 2.1.0 installed and versions 2.1.1, 2.2.0, and 3.0.0 are available, Violinist will only create a pull request for version 2.1.1.
+
+Conversely, if you want to receive pull requests for all updates including major version changes:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "description": "My development project",
+  "require": {
+    "vendor/package": "^2.1.0",
+  },
+  "extra": {
+    "violinist": {
+// highlight-next-line
+      "composer_outdated_flag": "major"
+    }
+  }
+}
+```
+
+With this configuration, Violinist will create pull requests for major version updates like 3.0.0, in addition to minor and patch updates.
+
+> Note: This option can be combined with other configuration options like [check_only_direct_dependencies](/configuration/check_only_direct_dependencies), [security_updates_only](/configuration/security_updates_only), and others to fine-tune which updates you want to receive.

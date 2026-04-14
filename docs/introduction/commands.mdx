@@ -23,7 +23,10 @@ The two options mean as follows:
 --minor-only (-m): Only shows packages that have minor SemVer-compatible updates.
 ```
 
-There are still several ways this can be manipulated. See the config options for details. For example, If you set the option [check_only_direct_dependencies](#check-only-direct) to `0` the `--direct` flag will not be used.
+There are still several ways this can be manipulated. See the config options for details. For example:
+
+- If you set the option [check_only_direct_dependencies](#check-only-direct) to `0` the `--direct` flag will not be used.
+- You can control the update level (major, minor, or patch) using the [composer_outdated_flag](/configuration/composer_outdated_flag) option.
 
 ## Updating packages
 
@@ -35,4 +38,4 @@ composer update vendor/package --with-dependencies
 
 If you do not want violinist to update with dependencies, you can use the configuration option [update_with_dependencies](#update-with-deps) and set this to `0`.
 
-If you want to update a package bundled with another package, you probably want to have a look at the option [bundled_packages](#bundled-packages).
+If you want to update a package bundled with another package, you probably want to have a look at the option [bundled_packages](/configuration/bundled_packages).
