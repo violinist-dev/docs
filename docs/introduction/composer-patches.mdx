@@ -1,0 +1,63 @@
+---
+title: "Composer patches"
+is_intro: true
+date: 2018-03-25T10:50:02+02:00
+anchor: "composer-patches"
+weight:
+---
+
+If your project uses the [composer-patches](https://github.com/cweagans/composer-patches) plugin by cweagans, there are a few things to be aware of when using violinist.
+
+## How composer-patches works
+
+The `cweagans/composer-patches` plugin allows you to apply patches to your composer dependencies after they are installed or updated. Patches are typically defined in your `composer.json` under the `extra` section:
+
+```json
+{
+  "extra": {
+    "patches": {
+      "vendor/package": {
+        "Description of the patch": "https://example.com/patch.patch"
+      }
+    }
+  }
+}
+```
+
+When composer installs or updates a package that has patches defined, the plugin will download and apply those patches automatically.
+
+## Patches that no longer apply
+
+This is the most common issue when using composer-patches with violinist. When a dependency is updated, the patch you have defined may no longer apply cleanly to the new version. This happens because the code the patch targets has changed in the new version.
+
+When this happens, the update will fail and violinist will not be able to create a pull request for that package. This is actually the desired behavior — it prevents you from unknowingly running a version of a package without your expected patch applied.
+
+### What to do
+
+When you notice that an update is failing because of a patch that no longer applies, you have a few options:
+
+1. **Check if the patch is still needed.** The new version of the package may already include the fix your patch was providing. If so, remove the patch from your `composer.json` and the update should succeed on the next run.
+
+2. **Update the patch.** If the patch is still needed, you will need to create a new version of the patch that applies cleanly to the new version of the package. Update the patch reference in your `composer.json` and the update should succeed on the next run.
+
+3. **Add the package to the blocklist.** If you are not ready to deal with the patch yet, you can [block the package](/configuration/blocklist) from being updated by violinist until you are ready.
+
+## Patches from a local file
+
+If your patches are stored as local files in your repository (as opposed to remote URLs), they will work fine with violinist. Violinist checks out your repository before running composer commands, so local patch files will be available.
+
+```json
+{
+  "extra": {
+    "patches": {
+      "vendor/package": {
+        "My local patch": "patches/my-fix.patch"
+      }
+    }
+  }
+}
+```
+
+## Patches and the lock file
+
+Keep in mind that composer-patches modifies packages after they are installed. The `composer.lock` file will reflect the unpatched version of the package. This is normal and expected behavior. The patches are applied on top of what the lock file specifies.
