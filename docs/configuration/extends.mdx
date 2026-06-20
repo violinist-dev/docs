@@ -25,7 +25,7 @@ weight:
 
 ## Explanation
 
-When you have many repositories that should behave the same way, copying the full Violinist configuration to every `composer.json` quickly becomes hard to maintain. The `extends` option lets you centralise your shared settings in one or more remote JSON documents and ask Violinist to import them before applying the project specific overrides that live in the repository.
+When you have many repositories that should behave the same way, copying the full Violinist configuration to every `composer.json` quickly becomes hard to maintain. The `extends` option lets you centralise your shared settings in one or more remote JSON documents and ask Violinist to import them before applying the project-specific overrides that live in the repository.
 
 Each entry in the array can either reference a Composer package that exposes a Violinist configuration file or point to a relative path inside the repository. Violinist will fetch the configuration snippets in the order you list them, merge the keys they contain, and finally apply whatever options are defined directly inside the local `extra.violinist` block. Later entries, including the local configuration, always override values defined earlier in the list, allowing every project to keep its unique tweaks while inheriting the defaults that come from your shared templates.
 
