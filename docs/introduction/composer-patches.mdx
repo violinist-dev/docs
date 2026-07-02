@@ -34,13 +34,15 @@ When this happens, the update will fail and violinist will not be able to create
 
 ### What to do
 
-When you notice that an update is failing because of a patch that no longer applies, you have a few options:
+When you notice that an update is failing because of a patch that no longer applies, fixing it requires two steps, both of which you have to do yourself — violinist cannot do either one automatically:
 
-1. **Check if the patch is still needed.** The new version of the package may already include the fix your patch was providing. If so, remove the patch from your `composer.json` and the update should succeed on the next run.
+1. **Edit the patches section.** In your `composer.json`, either remove the patch entry if the new version of the package already includes the fix it was providing, or update the patch reference to a version of the patch that applies cleanly to the new version.
 
-2. **Update the patch.** If the patch is still needed, you will need to create a new version of the patch that applies cleanly to the new version of the package. Update the patch reference in your `composer.json` and the update should succeed on the next run.
+2. **Update the package manually.** Editing `composer.json` alone isn't enough — you also need to run `composer update vendor/package` yourself (locally or in CI) so the package is actually updated and the patch is applied. Commit the resulting `composer.json` and `composer.lock` together.
 
-3. **Add the package to the blocklist.** If you are not ready to deal with the patch yet, you can [block the package](/configuration/blocklist) from being updated by violinist until you are ready.
+Once both changes are committed, violinist will be able to pick up updates for that package again.
+
+If you are not ready to deal with the patch yet, you can instead [block the package](/configuration/blocklist) from being updated by violinist until you are.
 
 ## Patches from a local file
 
