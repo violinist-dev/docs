@@ -158,6 +158,7 @@ The following options cannot be overridden in rules and only apply at the root c
 - [always_update_all](/configuration/always_update_all)
 - [check_only_direct_dependencies](/configuration/check_only_direct_dependencies)
 - [composer_outdated_flag](/configuration/composer_outdated_flag)
+- [extends](/configuration/extends)
 - [ignore_platform_requirements](/configuration/ignore_platform_requirements)
 - [number_of_concurrent_updates](/configuration/number_of_concurrent_updates)
 - [timeframe_disallowed](/configuration/timeframe_disallowed)
@@ -169,6 +170,8 @@ The following options cannot be overridden in rules and only apply at the root c
 ### Security-only updates for dev dependencies
 
 Only receive security updates for development tools while allowing all updates for production dependencies:
+
+> **Note:** Because this rule matches more than one package, all matched dev-tool updates are [grouped into a single pull request](#grouping-into-a-single-pull-request) titled `` Update group `Dev tools - security only` `` rather than one pull request per package.
 
 ```json showLineNumbers
 {
@@ -237,7 +240,7 @@ Bundle all Drupal core packages together so they update in a single pull request
 }
 ```
 
-> **Note:** A `bundled_packages` value set *inside* a rule's `config` is only honored for individual (non-grouped) updates — it is ignored on the [grouping path](#grouping-into-a-single-pull-request). Since a matching rule already groups the packages it matches into one pull request, to bundle additional packages, add them to the rule's `matchRules` instead, or set `bundled_packages` at the root level.
+> **Note:** This example works because the rule matches a single package (`drupal/core-recommended`), which keeps it off the [grouping path](#grouping-into-a-single-pull-request) — a `bundled_packages` value set *inside* a rule's `config` is only honored for individual (non-grouped) updates. If you broaden `matchRules` so the rule matches more than one package, those packages are grouped automatically and the rule's `bundled_packages` is ignored. In that case, bundle additional packages by adding them to the rule's `matchRules` instead, or set `bundled_packages` at the root level.
 
 ### Custom branch prefixes per package group
 
