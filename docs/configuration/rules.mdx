@@ -77,8 +77,8 @@ Rules is an array of rule objects. Each rule object has the following structure:
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `name` | string | A human-readable name for the rule (for documentation purposes) |
-| `slug` | string | A machine-readable identifier for the rule |
+| `name` | string | A human-readable name for the rule. Used as the title and body heading of the grouped pull request (`` Update group `<name>` ``) |
+| `slug` | string | A machine-readable identifier for the rule. Used to build the git branch name for the grouped pull request. If omitted, the branch name is derived from a slugified `name` |
 | `matchRules` | array | An array of match rule objects that determine which packages this rule applies to |
 | `config` | object | Configuration options to apply when a package matches |
 
@@ -139,10 +139,8 @@ The following options can be used within rules:
 - [branch_prefix](/configuration/branch_prefix)
 - [bundled_packages](/configuration/bundled_packages)
 - [commit_message_convention](/configuration/commit_message_convention)
-- [composer_outdated_flag](/configuration/composer_outdated_flag)
 - [default_branch](/configuration/default_branch)
 - [default_branch_security](/configuration/default_branch_security)
-- [ignore_platform_requirements](/configuration/ignore_platform_requirements)
 - [labels](/configuration/labels)
 - [labels_security](/configuration/labels_security)
 - [one_pull_request_per_package](/configuration/one_pull_request_per_package)
@@ -159,6 +157,8 @@ The following options cannot be overridden in rules and only apply at the root c
 - [always_allow_direct_dependencies](/configuration/always_allow_direct_dependencies)
 - [always_update_all](/configuration/always_update_all)
 - [check_only_direct_dependencies](/configuration/check_only_direct_dependencies)
+- [composer_outdated_flag](/configuration/composer_outdated_flag)
+- [ignore_platform_requirements](/configuration/ignore_platform_requirements)
 - [number_of_concurrent_updates](/configuration/number_of_concurrent_updates)
 - [timeframe_disallowed](/configuration/timeframe_disallowed)
 - [timezone](/configuration/timezone)
@@ -283,9 +283,9 @@ Use different branch prefixes for different types of dependencies:
 }
 ```
 
-### Automerge minor updates for specific packages
+### Automerge updates for trusted packages
 
-Automatically merge minor updates for well-tested packages while requiring manual review for others:
+Automatically merge updates for a set of well-tested packages while requiring manual review for everything else:
 
 ```json showLineNumbers
 {
@@ -305,7 +305,7 @@ Automatically merge minor updates for well-tested packages while requiring manua
           ],
           "config": {
             "automerge": 1,
-            "composer_outdated_flag": "minor"
+            "automerge_method": "rebase"
           }
         }
       ]
