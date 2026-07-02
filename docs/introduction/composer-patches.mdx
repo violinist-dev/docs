@@ -43,23 +43,3 @@ When you notice that an update is failing because of a patch that no longer appl
 Once both changes are committed, violinist will be able to pick up updates for that package again.
 
 If you are not ready to deal with the patch yet, you can instead [block the package](/configuration/blocklist) from being updated by violinist until you are.
-
-## Patches from a local file
-
-If your patches are stored as local files in your repository (as opposed to remote URLs), they will work fine with violinist. Violinist checks out your repository before running composer commands, so local patch files will be available.
-
-```json
-{
-  "extra": {
-    "patches": {
-      "vendor/package": {
-        "My local patch": "patches/my-fix.patch"
-      }
-    }
-  }
-}
-```
-
-## Patches and the lock file
-
-Keep in mind that composer-patches modifies packages after they are installed. The `composer.lock` file will reflect the unpatched version of the package. This is normal and expected behavior. The patches are applied on top of what the lock file specifies.
