@@ -1,0 +1,45 @@
+---
+title: "Composer patches"
+is_intro: true
+date: 2018-03-25T10:50:02+02:00
+anchor: "composer-patches"
+weight:
+---
+
+If your project uses the [composer-patches](https://github.com/cweagans/composer-patches) plugin by cweagans, there are a few things to be aware of when using violinist.
+
+## How composer-patches works
+
+The `cweagans/composer-patches` plugin allows you to apply patches to your composer dependencies after they are installed or updated. Patches are typically defined in your `composer.json` under the `extra` section:
+
+```json
+{
+  "extra": {
+    "patches": {
+      "vendor/package": {
+        "Description of the patch": "https://example.com/patch.patch"
+      }
+    }
+  }
+}
+```
+
+When composer installs or updates a package that has patches defined, the plugin will download and apply those patches automatically.
+
+## Patches that no longer apply
+
+This is the most common issue when using composer-patches with violinist. When a dependency is updated, the patch you have defined may no longer apply cleanly to the new version. This happens because the code the patch targets has changed in the new version.
+
+When this happens, the update will fail and violinist will not be able to create a pull request for that package. This is actually the desired behavior — it prevents you from unknowingly running a version of a package without your expected patch applied.
+
+### What to do
+
+When you notice that an update is failing because of a patch that no longer applies, fixing it requires two steps, both of which you have to do yourself — violinist cannot do either one automatically:
+
+1. **Edit the patches section.** In your `composer.json`, either remove the patch entry if the new version of the package already includes the fix it was providing, or update the patch reference to a version of the patch that applies cleanly to the new version.
+
+2. **Update the package manually.** Editing `composer.json` alone isn't enough — you also need to run `composer update vendor/package` yourself (locally or in CI) so the package is actually updated and the patch is applied. Commit the resulting `composer.json` and `composer.lock` together.
+
+Once both changes are committed, violinist will be able to pick up updates for that package again.
+
+If you are not ready to deal with the patch yet, you can instead [block the package](/configuration/blocklist) from being updated by violinist until you are.
