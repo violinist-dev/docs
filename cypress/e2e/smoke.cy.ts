@@ -26,6 +26,9 @@ describe('docs navigation', () => {
   it('opens a doc page from the sidebar', () => {
     cy.visit('/');
 
+    cy.get('.theme-doc-sidebar-container')
+      .find('button[aria-label="Expand sidebar category \'Self hosting\'"]')
+      .click();
     cy.get('.theme-doc-sidebar-container').contains('a', 'Getting started').click();
 
     cy.location('pathname').should('eq', '/self-hosting/getting-started');

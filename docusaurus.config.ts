@@ -20,6 +20,7 @@ const config: Config = {
   projectName: 'docs',
 
   onBrokenLinks: 'throw',
+  onBrokenAnchors: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
