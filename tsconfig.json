@@ -2,6 +2,7 @@
   // This file is not used in compilation. It is here just for a nice editor experience.
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
-    "baseUrl": "."
+    // @docusaurus/tsconfig sets the deprecated `baseUrl` option; silence the TS 5101 warning until upstream migrates.
+    "ignoreDeprecations": "6.0"
   }
 }

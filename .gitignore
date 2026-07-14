@@ -1,3 +1,6 @@
 /build
 /node_modules
 /.docusaurus
+/cypress/videos
+/cypress/screenshots
+/cypress/downloads
