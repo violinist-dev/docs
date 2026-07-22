@@ -30,7 +30,7 @@
     "@docusaurus/module-type-aliases": "3.10.2",
     "@docusaurus/tsconfig": "3.10.2",
     "@docusaurus/types": "3.10.2",
-    "cypress": "^15.18.1",
+    "cypress": "^15.19.0",
     "start-server-and-test": "^3.0.11",
     "typescript": "~6.0.3"
   },
