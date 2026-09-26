@@ -28,7 +28,7 @@ Indicates if you want to allow security updates when the concurrent limit is rea
 
 ## Explanation
 
-This option controls the behavior when the concurrent limit is reached. By default, Violinist does not allow any additional merge requests when the concurrent limit is reached, even if the additional updates might be security updates. Changing this option might allow security updates to bypass the limit.
+This option controls how security updates behave when the concurrent limit is reached. By default, security updates are subject to the same limit as other updates. Enabling this option allows security updates to bypass the limit. To make selected packages bypass the limit regardless of whether the update is a security update, use [concurrent_updates_bypass_packages](/configuration/concurrent_updates_bypass_packages).
 
 ## Example
 
