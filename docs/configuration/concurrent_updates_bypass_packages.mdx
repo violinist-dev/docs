@@ -39,6 +39,26 @@ Package names are matched using the same `fnmatch`-based name matching used by [
 - `vendor/package1` matches one exact package.
 - `vendor/*` matches packages from that vendor.
 - `vendor/prefix_*` matches packages whose package name starts with `prefix_` for that vendor.
+- `!vendor/package1` excludes a package from the bypass, even if it also matches a wildcard pattern earlier in the list. See [negative matches](/configuration/rules#type-names) for details.
+
+For example, to bypass everything from `company/infrastructure-*` except the legacy package:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+      "number_of_concurrent_updates": 2,
+// highlight-start
+      "concurrent_updates_bypass_packages": [
+        "company/infrastructure-*",
+        "!company/infrastructure-legacy"
+      ]
+// highlight-end
+    }
+  }
+}
+```
 
 The bypass only affects the concurrency limit. Existing pull request detection and other update checks still apply, so configuring a package here does not cause Violinist to create duplicate pull requests.
 
