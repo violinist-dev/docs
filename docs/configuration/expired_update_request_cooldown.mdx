@@ -1,0 +1,77 @@
+---
+title: "expired_update_request_cooldown"
+---
+
+## Configuration
+
+<div className="config-wrapper"><div className="config">__name__: expired_update_request_cooldown</div>
+<div className="config">__type__: string</div>
+<div className="config">__default__: 2 x maximum_update_request_age</div></div>
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+      "number_of_concurrent_updates": 5,
+      "maximum_update_request_age": "8w",
+// highlight-next-line
+      "expired_update_request_cooldown": "16w"
+    }
+  }
+}
+```
+
+Defines how long a dependency must wait after an expired update request is closed before it becomes eligible for a new update request.
+
+## Explanation
+
+This option is used together with [`maximum_update_request_age`](/configuration/maximum_update_request_age). When Violinist closes an update request because it exceeded the configured maximum age, the dependency enters a cooldown measured from the time that request was closed.
+
+During the cooldown, Violinist does not immediately recreate an update request for the same dependency. This allows other outdated dependencies to use the available concurrent update slots.
+
+When the cooldown ends, the dependency becomes a normal update candidate again. If it is still outdated, Violinist may create a new update request for the latest available version. The previously closed request is not reopened.
+
+If `expired_update_request_cooldown` is omitted, it defaults to twice `maximum_update_request_age`. For example, a maximum age of `8w` results in a cooldown of `16w`.
+
+Supported duration suffixes are:
+
+- `d` for days
+- `w` for weeks
+- `m` for months
+
+The value must be a positive integer followed by one of these suffixes.
+
+## Example
+
+With:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+      "number_of_concurrent_updates": 5,
+      "maximum_update_request_age": "8w"
+    }
+  }
+}
+```
+
+Violinist may close an update request after 8 weeks. Because no explicit cooldown is configured, the dependency then receives the default cooldown of 16 weeks from the time the request is closed.
+
+To use a different cooldown, configure it explicitly:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+      "number_of_concurrent_updates": 5,
+      "maximum_update_request_age": "8w",
+// highlight-next-line
+      "expired_update_request_cooldown": "4w"
+    }
+  }
+}
+```
