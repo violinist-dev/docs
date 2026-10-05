@@ -49,4 +49,4 @@ If you have a large project, some times the number of dependencies that are out 
 }
 ```
 
-This way, the number of open pull requests will not pass 5 at any point. This will be true, even if you decide to change other configuration options, such as `one_pull_request_per_package` for example, so it might be the case that you have to close some pull requests manually to achieve the desired result.
+This way, Violinist will normally stop creating additional update pull requests when 5 are already open. Explicit concurrency exceptions can allow additional pull requests beyond this limit, such as [security updates](/configuration/allow_security_updates_on_concurrent_limit) or packages configured in [concurrent_updates_bypass_packages](/configuration/concurrent_updates_bypass_packages).
