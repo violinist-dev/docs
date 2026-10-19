@@ -1,0 +1,90 @@
+---
+title: "concurrent_updates_bypass_packages"
+---
+
+## Configuration
+
+<div className="config-wrapper"><div className="config">__name__: concurrent_updates_bypass_packages</div>
+<div className="config">__type__: array</div>
+<div className="config">__default__: []</div></div>
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+      "number_of_concurrent_updates": 2,
+// highlight-start
+      "concurrent_updates_bypass_packages": [
+        "vendor/package1",
+        "vendor/*",
+        "vendor/prefix_*"
+      ]
+// highlight-end
+    }
+  }
+}
+```
+
+Allow selected packages to continue updating when the configured [concurrent update limit](/configuration/number_of_concurrent_updates) has been reached.
+
+> **Note:** This option is **root project only** and cannot be used within [rules](/configuration/rules). It modifies the global `number_of_concurrent_updates` behavior.
+
+## Explanation
+
+Normally, Violinist stops creating additional dependency update pull requests when `number_of_concurrent_updates` has been reached. This option lets selected packages bypass that concurrency check, which can be useful for infrastructure, platform, or other high-priority dependencies that should not wait for unrelated update pull requests to be closed.
+
+Package names are matched using the same `fnmatch`-based name matching used by [rules](/configuration/rules#type-names). This means the list can contain exact package names or wildcard patterns, for example:
+
+- `vendor/package1` matches one exact package.
+- `vendor/*` matches packages from that vendor.
+- `vendor/prefix_*` matches packages whose package name starts with `prefix_` for that vendor.
+- `!vendor/package1` excludes a package from the bypass, even if it also matches a wildcard pattern earlier in the list. See [negative matches](/configuration/rules#type-names) for details.
+
+For example, to bypass everything from `company/infrastructure-*` except the legacy package:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+      "number_of_concurrent_updates": 2,
+// highlight-start
+      "concurrent_updates_bypass_packages": [
+        "company/infrastructure-*",
+        "!company/infrastructure-legacy"
+      ]
+// highlight-end
+    }
+  }
+}
+```
+
+The bypass only affects the concurrency limit. Existing pull request detection and other update checks still apply, so configuring a package here does not cause Violinist to create duplicate pull requests.
+
+A bypassed update can increase the total number of open Violinist pull requests beyond `number_of_concurrent_updates`. For example, if the limit is `2` and two regular update pull requests are already open, a matching package can still create another pull request.
+
+### Grouped updates
+
+When [rules](/configuration/rules) group several packages into one pull request, the grouped update bypasses the concurrent limit if at least one package in the group matches `concurrent_updates_bypass_packages`. The whole group continues because the grouped update is created as a single pull request.
+
+## Example
+
+To limit normal dependency updates to two open pull requests while always allowing selected infrastructure packages through the concurrency check:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+      "number_of_concurrent_updates": 2,
+      "concurrent_updates_bypass_packages": [
+        "company/infrastructure-*",
+        "company/platform"
+      ]
+    }
+  }
+}
+```
+
+If two regular Violinist pull requests are already open, an update for `company/platform` or a package matching `company/infrastructure-*` can still be attempted. Other packages remain subject to the configured limit.
