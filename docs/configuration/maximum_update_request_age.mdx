@@ -1,0 +1,64 @@
+---
+title: "maximum_update_request_age"
+---
+
+## Configuration
+
+<div className="config-wrapper"><div className="config">__name__: maximum_update_request_age</div>
+<div className="config">__type__: string</div>
+<div className="config">__default__: empty</div></div>
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+      "number_of_concurrent_updates": 5,
+// highlight-next-line
+      "maximum_update_request_age": "8w"
+    }
+  }
+}
+```
+
+Defines how long a Violinist update request may stay open before it is considered expired.
+
+> **Note:** This option only affects the concurrent update limit and is inactive unless [`number_of_concurrent_updates`](/configuration/number_of_concurrent_updates) is greater than `0`.
+
+## Explanation
+
+When `number_of_concurrent_updates` is enabled, old update requests can otherwise occupy all available concurrent update slots indefinitely. Setting `maximum_update_request_age` allows Violinist to close stale update requests before calculating the concurrent limit, freeing those slots for other dependencies.
+
+The age is measured from when the update request was created. Activity such as comments or rebases does not reset the age.
+
+An update request means a pull request on GitHub or Bitbucket, or a merge request on GitLab.
+
+Supported duration suffixes are:
+
+- `d` for days
+- `w` for weeks
+- `m` for months
+
+The value must be a positive integer followed by one of these suffixes, for example `14d`, `8w`, or `3m`.
+
+If this option is omitted, the existing behavior is unchanged and Violinist does not expire update requests because of their age.
+
+## Example
+
+With the following configuration:
+
+```json showLineNumbers
+{
+  "name": "company/project",
+  "extra": {
+    "violinist": {
+      "number_of_concurrent_updates": 5,
+      "maximum_update_request_age": "8w"
+    }
+  }
+}
+```
+
+an open Violinist update request becomes eligible for expiration after 8 weeks. Once it is closed, it no longer consumes one of the 5 concurrent update slots.
+
+The affected dependency then enters an [`expired_update_request_cooldown`](/configuration/expired_update_request_cooldown) before Violinist may create a new update request for it.

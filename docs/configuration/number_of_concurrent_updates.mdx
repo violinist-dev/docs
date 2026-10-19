@@ -50,3 +50,5 @@ If you have a large project, some times the number of dependencies that are out 
 ```
 
 This way, the number of open pull requests will not pass 5 at any point. This will be true, even if you decide to change other configuration options, such as `one_pull_request_per_package` for example, so it might be the case that you have to close some pull requests manually to achieve the desired result.
+
+If old Violinist update requests should stop occupying these slots indefinitely, you can combine this option with [`maximum_update_request_age`](/configuration/maximum_update_request_age). After an expired request is closed, [`expired_update_request_cooldown`](/configuration/expired_update_request_cooldown) controls how long the same dependency must wait before becoming eligible for a new update request.
